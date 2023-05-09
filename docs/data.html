@@ -195,13 +195,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#csvの場合" id="toc-csvの場合" class="nav-link active" data-scroll-target="#csvの場合"><span class="toc-section-number">2.1</span>  csvの場合</a>
+  <li><a href="#使用するデータ" id="toc-使用するデータ" class="nav-link active" data-scroll-target="#使用するデータ"><span class="toc-section-number">2.1</span>  使用するデータ</a></li>
+  <li><a href="#データの保存先" id="toc-データの保存先" class="nav-link" data-scroll-target="#データの保存先"><span class="toc-section-number">2.2</span>  データの保存先</a></li>
+  <li><a href="#csvの場合" id="toc-csvの場合" class="nav-link" data-scroll-target="#csvの場合"><span class="toc-section-number">2.3</span>  csvの場合</a>
   <ul class="collapse">
-  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="toc-section-number">2.1.1</span>  read.csv</a></li>
-  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="toc-section-number">2.1.2</span>  read_csv</a></li>
+  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="toc-section-number">2.3.1</span>  read.csv</a></li>
+  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="toc-section-number">2.3.2</span>  read_csv</a></li>
   </ul></li>
-  <li><a href="#dta-stata-の場合" id="toc-dta-stata-の場合" class="nav-link" data-scroll-target="#dta-stata-の場合"><span class="toc-section-number">2.2</span>  dta (Stata) の場合</a></li>
-  <li><a href="#sav-spss-の場合" id="toc-sav-spss-の場合" class="nav-link" data-scroll-target="#sav-spss-の場合"><span class="toc-section-number">2.3</span>  sav (SPSS) の場合</a></li>
+  <li><a href="#dta-stata-の場合" id="toc-dta-stata-の場合" class="nav-link" data-scroll-target="#dta-stata-の場合"><span class="toc-section-number">2.4</span>  dta (Stata) の場合</a></li>
+  <li><a href="#sav-spss-の場合" id="toc-sav-spss-の場合" class="nav-link" data-scroll-target="#sav-spss-の場合"><span class="toc-section-number">2.5</span>  sav (SPSS) の場合</a></li>
   </ul>
 </nav>
     </div>
@@ -233,10 +235,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  haven   <span class="co"># sav, dta, sasファイルなどを読み込む．</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="csvの場合" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="csvの場合"><span class="header-section-number">2.1</span> csvの場合</h2>
-<section id="read.csv" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">2.1.1</span> read.csv</h3>
+<section id="使用するデータ" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="使用するデータ"><span class="header-section-number">2.1</span> 使用するデータ</h2>
+<p>東京大学社会科学研究所附属社会調査・データアーカイブ研究センター（the Center for Social Research and Data Archives: CSRDA）で公開されている「東大社研・若年パネル調査（JLPS-Y）wave1，2007（非制限公開疑似データ）」（調査番号：u001，寄託者：東京大学社会科学研究所パネル調査プロジェクト）を用いる．</p>
+<p><a href="https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/">https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/</a></p>
+</section>
+<section id="データの保存先" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="データの保存先"><span class="header-section-number">2.2</span> データの保存先</h2>
+<ul>
+<li><code>R4SS</code>：作業ディレクトリ
+<ul>
+<li><code>data</code>：データを保存するフォルダ
+<ul>
+<li><code>processed</code>：加工したデータを保存するフォルダ</li>
+<li><code>raw</code>：加工前の生データを保存するフォルダ
+<ul>
+<li><code>u001_readme.docx</code></li>
+<li><code>u001.csv</code>：csv形式のデータ</li>
+<li><code>u001.dta</code>：dta形式のデータ（Stata）</li>
+<li><code>u001.sav</code>：sav形式のデータ（SPSS）</li>
+<li><code>u001c.pdf</code>：調査票</li>
+</ul></li>
+</ul></li>
+<li><code>scripts</code>：Rスクリプトを保存するフォルダ</li>
+</ul></li>
+</ul>
+<p>MACの画面だと <a href="#fig-folders">Figure&nbsp;<span>2.1</span></a> のようになる．</p>
+<div id="fig-folders" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/folders.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">図&nbsp;2.1： RStudioの画面</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="csvの場合" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="csvの場合"><span class="header-section-number">2.3</span> csvの場合</h2>
+<section id="read.csv" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">2.3.1</span> read.csv</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csvでcsvデータを読み込む</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>d_csv_1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span>
@@ -300,8 +335,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="read_csv" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">2.1.2</span> read_csv</h3>
+<section id="read_csv" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">2.3.2</span> read_csv</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_csvでcsvデータを読み込む</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>d_csv_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -342,8 +377,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </section>
 </section>
-<section id="dta-stata-の場合" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="dta-stata-の場合"><span class="header-section-number">2.2</span> dta (Stata) の場合</h2>
+<section id="dta-stata-の場合" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="dta-stata-の場合"><span class="header-section-number">2.4</span> dta (Stata) の場合</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_dtaでdtaデータを読み込む</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/raw/u001.dta"</span>)</span>
@@ -374,8 +409,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
-<section id="sav-spss-の場合" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="sav-spss-の場合"><span class="header-section-number">2.3</span> sav (SPSS) の場合</h2>
+<section id="sav-spss-の場合" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sav-spss-の場合"><span class="header-section-number">2.5</span> sav (SPSS) の場合</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_savでsavデータを読み込む</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data/raw/u001.sav"</span>)</span>

@@ -406,15 +406,18 @@ Rでは分析などの機能をひとつのパッケージとしてまとめて�
 install.packages("tidyverse", dependencies = TRUE)  # データの整理
 install.packages("haven", dependencies = TRUE)  # データの読み込み
 install.packages("janitor", dependencies = TRUE)  # データの変換
+install.packages("here", dependencies = TRUE)   # プロジェクト内のファイルを表示
+install.packages("fs", dependencies = TRUE)  # フォルダの作成
 ```
 
 これまでの作業はインストールだけであり，そのままではパッケージの関数などは利用できない．パッケージを使用したい場合は`library(パッケージ名)`で呼び出す必要がある．これはRStudioを閉じて再度立ち上げたら必要な作業なので，スクリプトに書いておく．
 
 ```{r}
-#| eval = FALSE
 library(tidyverse)  # データの整理
 library(haven)  # データの読み込み
 library(janitor)  # 度数分布表
+library(here)  # プロジェクト内のファイルを表示
+library(fs)  # ファイルの作成
 ```
 
 なおインストールされているパッケージについてはOutput paneの「Packages」のタブか
@@ -489,11 +492,7 @@ x |> mean()
 
 
 
-
-
-
-
-## ディレクトリを作成する
+## 作業ディレクトリを作成する
 
 データ，スクリプト，作成した図表，先行研究，資料，執筆した論文などをひとつのフォルダの中にまとめておこう．このようなあるプロジェクトに関連するファイルが含まれたフォルダを作業ディレクトリ（Working Directory）と呼ぶ．例えばここでは`R4SS`という名前のフォルダを作成する．中身はひとまずはからのままでもよい．
 
@@ -543,32 +542,78 @@ getwd()
 getwd()
 ```
 
-`here`パッケージの`here()`関数を用いることで，作業ディレクトリの仲間で確認できる．
+`here`パッケージの`here()`関数を用いる．
 
 ```{r}
 # 作業ディレクトリの確認
-here::here()
-# 作業ディレクトリの中のdataフォルダ
-here::here("data")
-#作業ディレクトリの中のdataフォルダのcsvファイル
-here::here("data", "u001.csv")
+here()
 ```
 
-## データの場所の確認
+
+## フォルダの整理
+
+`dir_create()`関数でファイルを作成する．ファイルの作成場所に`here()`とすれば作業ディレクトリにファイルが作成されるので，`here(c("フォルダ1", "フォルダ2",...))`のようにすれば，作業ディレクトリにフォルダ1，フォルダ2，．．．のようにファイルが作成される．
+
+次のコードによって，作業ディレクトリに`scripts`，`figures`，`tables`，`documents`，`manuscripts`というフォルダを作成する．
 
 ```{r}
-here::here("data")
+dir_create(here(c("scripts",           # Rスクリプトを保存
+                  "figures",           # 図を保存
+                  "tables",           # 表を保存
+                  "documents",        # 先行研究や資料を保存するフォルダ
+                  "manuscripts"      # 原稿を保存
+                  )))
+```
+
+`data`というフォルダには未加工のデータを保存するフォルダ`raw`と処理済みのデータを保存するフォルダ`processed`の2つを準備したい．`here()`関数の第1引数を`"data"`とし第2引数を`"raw"`として，`dir_create()`関数を適用する．
+
+順番に確認していこう．作業ディレクトリの`data`というフォルダの`raw`というフォルダは`here("data", "raw")`で，作業ディレクトリの`data`というフォルダの`processed`というフォルダは`here("data", "processed")`で指定できる．
+
+```{r}
+here("data", "raw")
+here("data", "processed")
+```
+
+これはパスを書いただけなので，`dir_create()`関数でフォルダを作成する．
+
+```{r}
+dir_create(here("data", "raw"))        # データを保存（生データ）
+dir_create(here("data", "processed"))  # データを保存（処理したデータ）
 ```
 
 
+次のようなフォルダが作成されていれば作業完了である．
+
+- `R4SS`：作業ディレクトリ
+    - `data`：データを保存するフォルダ
+        - `processed`：加工したデータを保存するフォルダ
+        - `raw`：加工前の生データを保存するフォルダ
+    - `scripts`：Rスクリプトを保存するフォルダ
+    - `figures`：図を保存するフォルダ
+    - `tables`：表を保存するフォルダ
+    - `documents`：先行研究や資料を保存するフォルダ
+    - `manuscripts`：原稿を保存するフォルダ
+
+先程保存したRスクリプトは`scripts`フォルダ内に移動しておこう．
+
+
+## ファイルの場所を表示する
+
+`u001.csv`の場所は，`../R4SS/data/u001.csv`のようになっている．
+`here()`をつかって表示してみよう．
+
+```{r}
+# u001.csvの場所の表示
+here("data", "raw", "u001.csv")
+```
 
 
 
 
 ## Rの終了
 
--   スクリプト（.Rとなっているテキストのファイル）のみを保存して終了すればよい．
--   個人的には作業スペースの保存は必要ないと考えるので，Save Workspace...などとたずねられても，Noとする．
+Rスクリプトを保存して終了すればよい．個人的には作業スペースの保存は必要ないと考えるので，Save Workspace...などとたずねられても，Noとする．@fig-save_option で，「Restore .RData into workspace at startup」のチェックは外し，「Save Workspace to .RDta on exit:」も「Never」としておこう．
 
+![保存についてのオプション](figures/save_option.png){#fig-save_option}
 
 
