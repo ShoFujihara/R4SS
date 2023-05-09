@@ -3956,17 +3956,27 @@ vertical-align: -.125em;
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの読み込み</span></a>
+  <a href="./pipe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">パイプ演算子</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">変数へのアクセス</span></a>
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">データの読み込み</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tips.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">便利なRの機能</span></a>
+  <a href="./variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">変数へのアクセス</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tips.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">便利なRの機能</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -3983,7 +3993,10 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#本資料の説明" id="toc-本資料の説明" class="nav-link active" data-scroll-target="#本資料の説明">本資料の説明</a></li>
+  <li><a href="#本資料の説明" id="toc-本資料の説明" class="nav-link active" data-scroll-target="#本資料の説明">本資料の説明</a>
+  <ul class="collapse">
+  <li><a href="#表記上の注意" id="toc-表記上の注意" class="nav-link" data-scroll-target="#表記上の注意">表記上の注意</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -4021,7 +4034,9 @@ vertical-align: -.125em;
 <section id="本資料の説明" class="level1 unnumbered">
 <h1 class="unnumbered">本資料の説明</h1>
 <p>社会調査のためのRの入門についての資料です．</p>
-<p>パッケージについては<code>パッケージ名</code>関数， 関数については<code>関数名()</code>関数と示す． 特定のパッケージの関数であることを明記するために<code>パッケージ名::関数名()</code>とすることもある．</p>
+<section id="表記上の注意" class="level2">
+<h2 class="anchored" data-anchor-id="表記上の注意">表記上の注意</h2>
+<p>パッケージについては<code>パッケージ名</code>パッケージ， 関数については<code>関数名()</code>関数と示す．例えば<code>tidyverse</code>というパッケージは<code>tidyverse</code>パッケージ， <code>summarise</code>という関数は<code>summarise()</code>関数と示す． 特定のパッケージの関数であることを明記するために<code>パッケージ名::関数名()</code>関数とすることもある．例えば<code>dplyr::summarise()</code>関数と示す．</p>
 <p>その他，オブジェクトなどはaではなく<code>a</code>のように示す．</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -4051,6 +4066,7 @@ vertical-align: -.125em;
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

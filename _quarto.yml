@@ -9,8 +9,10 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - pipe.qmd
     - data.qmd
     - variables.qmd
+    - quarto.qmd
     - tips.qmd
     - references.qmd
 

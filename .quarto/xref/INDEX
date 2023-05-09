@@ -34,5 +34,11 @@
   },
   "tips.qmd": {
     "tips.html": "767decc8"
+  },
+  "pipe.qmd": {
+    "pipe.html": "f9957578"
+  },
+  "quarto.qmd": {
+    "quarto.html": "da7f804d"
   }
 }
