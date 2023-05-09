@@ -5,8 +5,8 @@
 .DS_score
 
 data
-/data
-/submitted
+data/**
+submitted/**
 /.quarto/
 /_site/
 /notes
