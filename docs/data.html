@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>data</title>
+<title>社会調査のためのR - 2&nbsp; データの読み込み</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,11 +87,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./variables.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -124,21 +127,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの読み込み</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">社会調査のためのR</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">社会調査のためのR入門</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rの基礎</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの読み込み</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">変数</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#csvの場合" id="toc-csvの場合" class="nav-link active" data-scroll-target="#csvの場合"><span class="toc-section-number">2.1</span>  csvの場合</a>
+  <ul class="collapse">
+  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="toc-section-number">2.1.1</span>  read.csv</a></li>
+  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="toc-section-number">2.1.2</span>  read_csv</a></li>
+  </ul></li>
+  <li><a href="#dta-stata-の場合" id="toc-dta-stata-の場合" class="nav-link" data-scroll-target="#dta-stata-の場合"><span class="toc-section-number">2.2</span>  dta (Stata) の場合</a></li>
+  <li><a href="#sav-spss-の場合" id="toc-sav-spss-の場合" class="nav-link" data-scroll-target="#sav-spss-の場合"><span class="toc-section-number">2.3</span>  sav (SPSS) の場合</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの読み込み</span></h1>
+</div>
 
 
-<section id="データの読み込み" class="level1">
-<h1>データの読み込み</h1>
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
 <p>データの読み込みを行う際に<code>readr</code>と<code>haven</code>パッケージを用いる． <code>readr</code>パッケージのかわりに<code>tidyverse</code>パッケージを呼び出してもよい．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージの呼び出し</span></span>
@@ -148,10 +228,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  haven   <span class="co"># sav, dta, sasファイルなどを読み込む．</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="csvの場合" class="level2">
-<h2 class="anchored" data-anchor-id="csvの場合">csvの場合</h2>
-<section id="read.csv" class="level3">
-<h3 class="anchored" data-anchor-id="read.csv">read.csv</h3>
+<section id="csvの場合" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="csvの場合"><span class="header-section-number">2.1</span> csvの場合</h2>
+<section id="read.csv" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">2.1.1</span> read.csv</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csvでcsvデータを読み込む</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>d_csv_1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span>
@@ -215,8 +295,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="read_csv" class="level3">
-<h3 class="anchored" data-anchor-id="read_csv">read_csv</h3>
+<section id="read_csv" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">2.1.2</span> read_csv</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_csvでcsvデータを読み込む</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>d_csv_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -257,8 +337,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </section>
 </section>
-<section id="dta-stata-の場合" class="level2">
-<h2 class="anchored" data-anchor-id="dta-stata-の場合">dta (Stata) の場合</h2>
+<section id="dta-stata-の場合" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="dta-stata-の場合"><span class="header-section-number">2.2</span> dta (Stata) の場合</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_dtaでdtaデータを読み込む</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/raw/u001.dta"</span>)</span>
@@ -289,8 +369,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
-<section id="sav-spss-の場合" class="level2">
-<h2 class="anchored" data-anchor-id="sav-spss-の場合">sav (SPSS) の場合</h2>
+<section id="sav-spss-の場合" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sav-spss-の場合"><span class="header-section-number">2.3</span> sav (SPSS) の場合</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_savでsavデータを読み込む</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data/raw/u001.sav"</span>)</span>
@@ -322,7 +402,6 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -424,6 +503,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rの基礎</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./variables.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">変数</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
