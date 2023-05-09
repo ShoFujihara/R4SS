@@ -27,9 +27,18 @@ ybirth
 d$ybirth
 ```
 
+```{r}
+d |> count(ybirth)
+```
 
 
+```{r}
+d |> tabyl(ybirth)
+```
 
+```{r}
+d |> tabyl(ybirth) |> tibble()
+```
 
 
 # 変数の加工，選択，処理
@@ -48,6 +57,13 @@ library(dplyr)
 ```
 
 ## 新しい変数の作成
+
+```{r}
+d |> mutate(age_2006 = 2006 - ybirth)
+d |> mutate(age_2006 = 2006 - ybirth, .before = 1)
+d <- d |> mutate(age_2006 = 2006 - ybirth)
+d |> count(ybirth, age_2006)
+```
 
 
 ## 変数の選択
