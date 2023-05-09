@@ -207,7 +207,7 @@
     "href": "variables.html",
     "title": "4  変数へのアクセス",
     "section": "",
-    "text": "pacman::p_load(tidyverse,\n               haven,\n               janitor,\n               here)\nd <- read_dta(here(\"data\",\"raw\",\"u001.dta\"))\n# A tibble: 1,000 × 72と表示されており，1 これはデータが1000行72列から構成されていることを示している． これは社会調査の場合，1000のケース（対象者）と72の変数からなるデータであることを意味する．\nでは変数のひとつである出生年ybirthについてみていきたい．dというデータの中に，ybirthという変数はあるが，ybirthとそのまま入力してもobject 'ybirth' not foundといったエラーがでてくる．\nこれはybirthという変数はdというデータの中にあるからである． データの中の変数にアクセスするためにはデータ名$変数名のようにする．"
+    "text": "# パッケージの呼び出し\npacman::p_load(tidyverse,\n               haven,\n               janitor,\n               here)\n# データの読み込み\nd <- read_dta(here(\"data\",\"raw\",\"u001.dta\"))\n# A tibble: 1,000 × 72と表示されており，1 これはデータが1000行72列から構成されていることを示している． これは社会調査の場合，1000のケース（対象者）と72の変数からなるデータであることを意味する．\nでは変数のひとつである出生年ybirthについてみていきたい．dというデータの中に，ybirthという変数はあるが，ybirthとそのまま入力してもobject 'ybirth' not foundといったエラーがでてくる．\nこれはybirthという変数はdというデータの中にあるからである． データの中の変数にアクセスするためにはデータ名$変数名のようにする．"
   },
   {
     "objectID": "variables.html#新しい変数の作成",

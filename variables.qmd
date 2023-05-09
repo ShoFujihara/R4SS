@@ -1,17 +1,18 @@
 # 変数へのアクセス
 
 ```{r}
+# パッケージの呼び出し
 pacman::p_load(tidyverse,
                haven,
                janitor,
                here)
+# データの読み込み
 d <- read_dta(here("data","raw","u001.dta"))
 ```
 
 `# A tibble: 1,000 × 72`と表示されており，1
 これはデータが1000行72列から構成されていることを示している．
 これは社会調査の場合，1000のケース（対象者）と72の変数からなるデータであることを意味する．
-
 
 では変数のひとつである出生年`ybirth`についてみていきたい．`d`というデータの中に，`ybirth`という変数はあるが，`ybirth`とそのまま入力しても`object 'ybirth' not found`といったエラーがでてくる．
 
@@ -28,15 +29,18 @@ d$ybirth
 ```
 
 ```{r}
+# 度数を表示
 d |> count(ybirth)
 ```
 
 
 ```{r}
+# 度数と割合を表示
 d |> tabyl(ybirth)
 ```
 
 ```{r}
+# 度数と割合を表示し，tbl形式に
 d |> tabyl(ybirth) |> tibble()
 ```
 

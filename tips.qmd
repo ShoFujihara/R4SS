@@ -15,7 +15,7 @@ mean
 methods(mean)
 ```
 
-．様々な結果が示されるがここでは，2めの要素にある`mean.default*`を確認しよう．`*`をとって`mean.default`と入力するだけでよい．
+様々な結果が示されるがここでは，2めの要素にある`mean.default*`を確認しよう．`*`をとって`mean.default`と入力するだけでよい．
 
 ```{r}
 mean.default
