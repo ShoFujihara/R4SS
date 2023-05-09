@@ -128,11 +128,13 @@ head(d_dta)
 class(d_dta)
 ```
 
-`here`を使用すれば次のように書ける．
+Stataのファイルに含まれているラベルの情報も読み込まれる．`here`を使用すれば次のように書ける．
 
 ```{r}
 d_dta <- read_dta(here("data","raw","u001.dta"))
 ```
+
+
 
 
 ## sav (SPSS) の場合
@@ -146,10 +148,28 @@ head(d_sav)
 class(d_sav)
 ```
 
+
+Stataと同様にSPSSのファイルに含まれているラベルの情報も読み込まれる．
 `here`を使用すれば次のように書ける．
 
 ```{r}
 d_sav <- read_sav(here("data","raw","u001.sav"))
+```
+
+
+
+## ラベルを取り除きたい
+
+ラベルを取り除きたい場合は，`zap_label()`関数や`zap_labels()`関数を用いる．
+
+- `zap_label()`：変数ラベルを取り除く
+- `zap_labels()`：値ラベルを取り除く
+
+以下では，`d_sav`に`zap_label()`関数と`zap_labels()`関数を適用し，変数ラベルと値ラベルを取り除き，`d_sav_nolab`という新しいオブジェクトとして保存している．
+
+```{r}
+d_sav_nolab <- d_sav |> zap_label() |> zap_labels()
+d_sav_nolab
 ```
 
 
