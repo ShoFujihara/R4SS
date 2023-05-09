@@ -1,0 +1,38 @@
+{
+  "index.qmd": {
+    "index.html": "d73b8b50",
+    "index.tex": "1f1bc881"
+  },
+  "1.intro.qmd": {
+    "1.intro.html": "5fc823d7",
+    "1.intro.tex": "32d5490e"
+  },
+  "2.data.qmd": {
+    "2.data.html": "fc2014fb",
+    "2.data.tex": "3f0d4caa"
+  },
+  "3.variables.qmd": {
+    "3.variables.html": "b5173359",
+    "3.variables.tex": "38b0c0e9"
+  },
+  "references.qmd": {
+    "references.html": "be812c02",
+    "references.tex": "9c1dfddd"
+  },
+  "99.tips.qmd": {
+    "99.tips.html": "45b846fc",
+    "99.tips.tex": "72d5d7c0"
+  },
+  "variables.qmd": {
+    "variables.html": "2852caf3"
+  },
+  "intro.qmd": {
+    "intro.html": "91686e7d"
+  },
+  "data.qmd": {
+    "data.html": "77b374c2"
+  },
+  "tips.qmd": {
+    "tips.html": "767decc8"
+  }
+}
