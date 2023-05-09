@@ -305,7 +305,7 @@
     "href": "quarto.html#参考文献",
     "title": "5  Quarto",
     "section": "5.10 参考文献",
-    "text": "5.10 参考文献\nZoteroなどの文献管理アプリを通じてbibファイルを作成し，引用する．"
+    "text": "5.10 参考文献\nZoteroなどの文献管理アプリを通じてbibファイルを作成し，引用する．\n@knuth84とすれば Knuth (1984) となる． [@knuth84]とすれば (Knuth 1984) となる．\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
   },
   {
     "objectID": "tips.html",
