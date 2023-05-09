@@ -124,6 +124,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -197,13 +198,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#使用するデータ" id="toc-使用するデータ" class="nav-link active" data-scroll-target="#使用するデータ"><span class="toc-section-number">2.1</span>  使用するデータ</a></li>
   <li><a href="#データの保存先" id="toc-データの保存先" class="nav-link" data-scroll-target="#データの保存先"><span class="toc-section-number">2.2</span>  データの保存先</a></li>
-  <li><a href="#csvの場合" id="toc-csvの場合" class="nav-link" data-scroll-target="#csvの場合"><span class="toc-section-number">2.3</span>  csvの場合</a>
+  <li><a href="#import-datasetからデータを読み込む" id="toc-import-datasetからデータを読み込む" class="nav-link" data-scroll-target="#import-datasetからデータを読み込む"><span class="toc-section-number">2.3</span>  Import Datasetからデータを読み込む</a>
   <ul class="collapse">
-  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="toc-section-number">2.3.1</span>  read.csv</a></li>
-  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="toc-section-number">2.3.2</span>  read_csv</a></li>
+  <li><a href="#from-text-baseの場合" id="toc-from-text-baseの場合" class="nav-link" data-scroll-target="#from-text-baseの場合"><span class="toc-section-number">2.3.1</span>  From text (base)…の場合</a></li>
+  <li><a href="#from-text-readrの場合" id="toc-from-text-readrの場合" class="nav-link" data-scroll-target="#from-text-readrの場合"><span class="toc-section-number">2.3.2</span>  From text (readr)…の場合</a></li>
   </ul></li>
-  <li><a href="#dta-stata-の場合" id="toc-dta-stata-の場合" class="nav-link" data-scroll-target="#dta-stata-の場合"><span class="toc-section-number">2.4</span>  dta (Stata) の場合</a></li>
-  <li><a href="#sav-spss-の場合" id="toc-sav-spss-の場合" class="nav-link" data-scroll-target="#sav-spss-の場合"><span class="toc-section-number">2.5</span>  sav (SPSS) の場合</a></li>
+  <li><a href="#csvの場合" id="toc-csvの場合" class="nav-link" data-scroll-target="#csvの場合"><span class="toc-section-number">2.4</span>  csvの場合</a></li>
+  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="toc-section-number">2.5</span>  read.csv</a>
+  <ul class="collapse">
+  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="toc-section-number">2.5.1</span>  read_csv</a></li>
+  </ul></li>
+  <li><a href="#dta-stata-の場合" id="toc-dta-stata-の場合" class="nav-link" data-scroll-target="#dta-stata-の場合"><span class="toc-section-number">2.6</span>  dta (Stata) の場合</a></li>
+  <li><a href="#sav-spss-の場合" id="toc-sav-spss-の場合" class="nav-link" data-scroll-target="#sav-spss-の場合"><span class="toc-section-number">2.7</span>  sav (SPSS) の場合</a></li>
   </ul>
 </nav>
     </div>
@@ -260,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>scripts</code>：Rスクリプトを保存するフォルダ</li>
 </ul></li>
 </ul>
-<p>MACの画面だと <a href="#fig-folders">Figure&nbsp;<span>2.1</span></a> のようになる．</p>
+<p>MACの画面だと <a href="#fig-folders">Figure&nbsp;<span>2.1</span></a> のようになる．Rの基礎で<code>here()</code>関数と<code>dir_create()</code>関数を組み合わせて作成している．ここの<code>raw</code>というフォルダに<code>u001.zip</code>を展開した<strong>中身</strong>を保存する．<code>u001</code>というフォルダは使用しない（使用してもよいがファイルの場所を間違えないようにすること．本資料では，rawのすぐ下にデータがあるように設定している）．</p>
 <div id="fig-folders" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/folders.png" class="img-fluid figure-img"></p>
@@ -268,15 +274,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </section>
-<section id="csvの場合" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="csvの場合"><span class="header-section-number">2.3</span> csvの場合</h2>
-<section id="read.csv" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">2.3.1</span> read.csv</h3>
+<section id="import-datasetからデータを読み込む" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="import-datasetからデータを読み込む"><span class="header-section-number">2.3</span> Import Datasetからデータを読み込む</h2>
+<p><code>here</code>をつかったり，ファイルのパスを書くことに慣れないうちは，自分でファイルを探して指定する方法が確実かもしれない． まず<code>csv</code>の場合は，「File」<span class="math inline">\(\rightarrow\)</span>「Import Dataset」<span class="math inline">\(\rightarrow\)</span>「From text (base)…」か「File」<span class="math inline">\(\rightarrow\)</span>「Import Dataset」<span class="math inline">\(\rightarrow\)</span>「From text (readr)…」を使用する．</p>
+<section id="from-text-baseの場合" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="from-text-baseの場合"><span class="header-section-number">2.3.1</span> From text (base)…の場合</h3>
+<p><code>u001.csv</code>を指定し「Open」を選択すると， <a href="#fig-readcsv">Figure&nbsp;<span>2.2</span></a> のような画面が現れる．「Heading」は「Yes」とする．</p>
+<div id="fig-readcsv" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/readcsv.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">図&nbsp;2.2： From text (base)…の場合</figcaption><p></p>
+</figure>
+</div>
+<p>右下の「Data Frame」に正しくデータが表示されているようであれば，「Import」を選択する． するとデータがソース画面に表示される．うまく読み込まれていそうであればデータは閉じてしまおう． コンソールには読み込みに用いたコードが残されているので，これをコピーしておこう．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csvでcsvデータを読み込む</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>d_csv_1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_csv_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>u001 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/GitHub/R4SS/data/raw/u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="from-text-readrの場合" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="from-text-readrの場合"><span class="header-section-number">2.3.2</span> From text (readr)…の場合</h3>
+<p>右端の「Browse」から<code>u001.csv</code>を指定し「Open」を選択すると， <a href="#fig-read_csv">Figure&nbsp;<span>2.3</span></a> のような画面が現れる．</p>
+<div id="fig-read_csv" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/read_csv.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">図&nbsp;2.3： From text (readr)…の場合</figcaption><p></p>
+</figure>
+</div>
+<p>そのまま「Import」を選択すればよい．ここでもデータがソースの別のタブで開かれるが，不要なので確認したら閉じてしまおう．コンソールには次のプログラムが残っているので，スクリプトにコピーしておこう．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>u001 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1000 Columns: 72
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>なおデフォルトではデータを代入するオブジェクトの名前は<code>u001</code>となっているが，コピーしたら<code>d</code>など適当な分かりやすい名前に変更するとよい．</p>
+</section>
+</section>
+<section id="csvの場合" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="csvの場合"><span class="header-section-number">2.4</span> csvの場合</h2>
+<p>では直接パスを書き，データを読み込んでみる．</p>
+</section>
+<section id="read.csv" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">2.5</span> read.csv</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csvでcsvデータを読み込む</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d_csv_1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_csv_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  caseid sex ybirth mbirth ZQ03 JC_1 JC_41 ZQ08A ZQ08B ZQ08C ZQ08D ZQ08E ZQ08F
 1  10001   1   1976     10    1    2    12     4     1     3     4     4     4
@@ -328,18 +379,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 5    1
 6    2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_csv_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_csv_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.frame"</code></pre>
 </div>
 </div>
-</section>
-<section id="read_csv" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">2.3.2</span> read_csv</h3>
+<p><code>here</code>を使用すれば次のように書ける．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_csvでcsvデータを読み込む</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>d_csv_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>d_csv_1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="read_csv" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">2.5.1</span> read_csv</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_csvでcsvデータを読み込む</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>d_csv_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 1000 Columns: 72
 ── Column specification ────────────────────────────────────────────────────────
@@ -349,8 +403,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_csv_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_csv_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 72
   caseid   sex ybirth mbirth  ZQ03  JC_1 JC_41 ZQ08A ZQ08B ZQ08C ZQ08D ZQ08E
@@ -369,21 +423,34 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 #   ZQ23B &lt;dbl&gt;, ZQ23C &lt;dbl&gt;, ZQ23D &lt;dbl&gt;, ZQ24 &lt;dbl&gt;, ZQ25 &lt;dbl&gt;, ZQ26A &lt;dbl&gt;,
 #   ZQ26B &lt;dbl&gt;, ZQ26C &lt;dbl&gt;, ZQ26D &lt;dbl&gt;, ZQ26E &lt;dbl&gt;, ZQ26F &lt;dbl&gt;, …</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_csv_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_csv_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="dta-stata-の場合" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="dta-stata-の場合"><span class="header-section-number">2.4</span> dta (Stata) の場合</h2>
+<p><code>here</code>を使用すれば次のように書ける．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_dtaでdtaデータを読み込む</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/raw/u001.dta"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_dta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d_csv_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1000 Columns: 72
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="dta-stata-の場合" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="dta-stata-の場合"><span class="header-section-number">2.6</span> dta (Stata) の場合</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_dtaでdtaデータを読み込む</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/raw/u001.dta"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_dta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 72
   caseid sex     ybirth mbirth ZQ03    JC_1     JC_41    ZQ08A   ZQ08B   ZQ08C  
@@ -402,20 +469,24 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 #   ZQ11_O &lt;dbl+lbl&gt;, ZQ12 &lt;dbl+lbl&gt;, ZQ14_1A &lt;dbl+lbl&gt;, ZQ14_1B &lt;dbl+lbl&gt;,
 #   ZQ14_1C &lt;dbl+lbl&gt;, ZQ14_1D &lt;dbl+lbl&gt;, ZQ23A &lt;dbl+lbl&gt;, ZQ23B &lt;dbl+lbl&gt;, …</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_dta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_dta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
-</section>
-<section id="sav-spss-の場合" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="sav-spss-の場合"><span class="header-section-number">2.5</span> sav (SPSS) の場合</h2>
+<p><code>here</code>を使用すれば次のように書ける．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_savでsavデータを読み込む</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data/raw/u001.sav"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_sav)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.dta"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sav-spss-の場合" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="sav-spss-の場合"><span class="header-section-number">2.7</span> sav (SPSS) の場合</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_savでsavデータを読み込む</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data/raw/u001.sav"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_sav)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 72
   caseid sex     ybirth mbirth ZQ03    JC_1     JC_41    ZQ08A   ZQ08B   ZQ08C  
@@ -434,11 +505,15 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 #   ZQ11_O &lt;dbl+lbl&gt;, ZQ12 &lt;dbl+lbl&gt;, ZQ14_1A &lt;dbl+lbl&gt;, ZQ14_1B &lt;dbl+lbl&gt;,
 #   ZQ14_1C &lt;dbl+lbl&gt;, ZQ14_1D &lt;dbl+lbl&gt;, ZQ23A &lt;dbl+lbl&gt;, ZQ23B &lt;dbl+lbl&gt;, …</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_sav)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_sav)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
+</div>
+<p><code>here</code>を使用すれば次のように書ける．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.sav"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
