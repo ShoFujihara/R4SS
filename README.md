@@ -1,2 +1,4 @@
-# DA4SS
- Data Analysis for Social Survey
+# R4SS
+ R for Social Survey
+
+https://shofujihara.github.io/R4SS
