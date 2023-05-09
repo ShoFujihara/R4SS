@@ -5,7 +5,7 @@ project:
 book:
   title: "社会調査のためのR入門"
   author: "藤原翔（東京大学社会科学研究所）"
-  date: "`r Sys.Date()`"
+  date: last-modified
   chapters:
     - index.qmd
     - intro.qmd
