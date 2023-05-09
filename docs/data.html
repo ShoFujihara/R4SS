@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#dta-stata-の場合" id="toc-dta-stata-の場合" class="nav-link" data-scroll-target="#dta-stata-の場合"><span class="toc-section-number">2.6</span>  dta (Stata) の場合</a></li>
   <li><a href="#sav-spss-の場合" id="toc-sav-spss-の場合" class="nav-link" data-scroll-target="#sav-spss-の場合"><span class="toc-section-number">2.7</span>  sav (SPSS) の場合</a></li>
+  <li><a href="#ラベルを取り除きたい" id="toc-ラベルを取り除きたい" class="nav-link" data-scroll-target="#ラベルを取り除きたい"><span class="toc-section-number">2.8</span>  ラベルを取り除きたい</a></li>
   </ul>
 </nav>
     </div>
@@ -475,7 +476,7 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
-<p><code>here</code>を使用すれば次のように書ける．</p>
+<p>Stataのファイルに含まれているラベルの情報も読み込まれる．<code>here</code>を使用すれば次のように書ける．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.dta"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -511,9 +512,44 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
-<p><code>here</code>を使用すれば次のように書ける．</p>
+<p>Stataと同様にSPSSのファイルに含まれているラベルの情報も読み込まれる． <code>here</code>を使用すれば次のように書ける．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.sav"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ラベルを取り除きたい" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="ラベルを取り除きたい"><span class="header-section-number">2.8</span> ラベルを取り除きたい</h2>
+<p>ラベルを取り除きたい場合は，<code>zap_label()</code>関数や<code>zap_labels()</code>関数を用いる．</p>
+<ul>
+<li><code>zap_label()</code>：変数ラベルを取り除く</li>
+<li><code>zap_labels()</code>：値ラベルを取り除く</li>
+</ul>
+<p>以下では，<code>d_sav</code>に<code>zap_label()</code>関数と<code>zap_labels()</code>関数を適用し，変数ラベルと値ラベルを取り除き，<code>d_sav_nolab</code>という新しいオブジェクトとして保存している．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>d_sav_nolab <span class="ot">&lt;-</span> d_sav <span class="sc">|&gt;</span> <span class="fu">zap_label</span>() <span class="sc">|&gt;</span> <span class="fu">zap_labels</span>()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>d_sav_nolab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,000 × 72
+   caseid   sex ybirth mbirth  ZQ03  JC_1 JC_41 ZQ08A ZQ08B ZQ08C ZQ08D ZQ08E
+    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  10001     1   1976     10     1     2    12     4     1     3     4     4
+ 2  10002     1   1972      1     1     2     9     6     2     2     4     6
+ 3  10003     1   1975      4     1     2     9     6     6     6     3     6
+ 4  10004     2   1974     11     1     2     7     6     1     1     5     1
+ 5  10005     1   1978      1     2    10    88     6     2     2     4     1
+ 6  10006     1   1984      2     2    10    88     6     1     2     6     3
+ 7  10007     2   1976      6     1     2     8     6     4     1     5     1
+ 8  10008     1   1975      4     1     2     9     5     2     2     4     4
+ 9  10009     2   1985      9     1     3     5     1     1     1     4     1
+10  10010     1   1972      2     1     2     8     6     1     2     5     6
+# ℹ 990 more rows
+# ℹ 60 more variables: ZQ08F &lt;dbl&gt;, ZQ08G &lt;dbl&gt;, ZQ08H &lt;dbl&gt;, ZQ11_A &lt;dbl&gt;,
+#   ZQ11_B &lt;dbl&gt;, ZQ11_C &lt;dbl&gt;, ZQ11_D &lt;dbl&gt;, ZQ11_E &lt;dbl&gt;, ZQ11_F &lt;dbl&gt;,
+#   ZQ11_G &lt;dbl&gt;, ZQ11_H &lt;dbl&gt;, ZQ11_I &lt;dbl&gt;, ZQ11_J &lt;dbl&gt;, ZQ11_K &lt;dbl&gt;,
+#   ZQ11_L &lt;dbl&gt;, ZQ11_M &lt;dbl&gt;, ZQ11_N &lt;dbl&gt;, ZQ11_O &lt;dbl&gt;, ZQ12 &lt;dbl&gt;,
+#   ZQ14_1A &lt;dbl&gt;, ZQ14_1B &lt;dbl&gt;, ZQ14_1C &lt;dbl&gt;, ZQ14_1D &lt;dbl&gt;, ZQ23A &lt;dbl&gt;,
+#   ZQ23B &lt;dbl&gt;, ZQ23C &lt;dbl&gt;, ZQ23D &lt;dbl&gt;, ZQ24 &lt;dbl&gt;, ZQ25 &lt;dbl&gt;, …</code></pre>
+</div>
 </div>
 
 

@@ -3,5 +3,11 @@
 .RData
 .Ruserdata
 
+/data
+/submitted
 /.quarto/
 /_site/
+/notes
+/previous
+/paper
+/documents
