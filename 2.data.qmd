@@ -1,0 +1,62 @@
+# データの読み込み
+
+データの読み込みを行う際に`readr`と`haven`パッケージを用いる．
+`readr`パッケージのかわりに`tidyverse`パッケージを呼び出してもよい．
+
+
+```{r}
+# パッケージの呼び出し
+pacman::p_load(
+  here,
+  readr,   # csvファイルを読み込む．tidyverseとしてもよい．
+  haven   # sav, dta, sasファイルなどを読み込む．
+  )
+```
+
+
+
+## csvの場合
+
+### read.csv
+
+```{r}
+# read.csvでcsvデータを読み込む
+d_csv_1 <- read.csv("data/raw/u001.csv")
+# 確認
+head(d_csv_1)
+# データのクラス
+class(d_csv_1)
+```
+
+### read_csv
+
+```{r}
+# read_csvでcsvデータを読み込む
+d_csv_2 <- read_csv("data/raw/u001.csv")
+# 確認
+head(d_csv_2)
+# データのクラス
+class(d_csv_2)
+```
+
+## dta (Stata) の場合
+
+```{r}
+# read_dtaでdtaデータを読み込む
+d_dta <- read_dta("data/raw/u001.dta")
+# 確認
+head(d_dta)
+# データのクラス
+class(d_dta)
+```
+
+## sav (SPSS) の場合
+
+```{r}
+# read_savでsavデータを読み込む
+d_sav <- read_sav("data/raw/u001.sav")
+# 確認
+head(d_sav)
+# データのクラス
+class(d_sav)
+```
