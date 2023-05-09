@@ -1,9 +1,4 @@
-# はじめに {.unnumbered}
+# 社会調査のためのR入門 {.unnumbered}
 
-Rの基礎について
+社会調査のためのRの入門です．
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
