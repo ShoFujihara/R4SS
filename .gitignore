@@ -2,7 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_score
 
+data
 /data
 /submitted
 /.quarto/
