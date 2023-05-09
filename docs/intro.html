@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>intro</title>
+<title>社会調査のためのR - 1&nbsp; Rの基礎</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,11 +87,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./data.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -125,28 +128,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rの基礎</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">社会調査のためのR</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">社会調査のためのR入門</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rの基礎</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの読み込み</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">変数</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#rstudioの起動とpaneの設定" id="toc-rstudioの起動とpaneの設定" class="nav-link active" data-scroll-target="#rstudioの起動とpaneの設定"><span class="toc-section-number">1.1</span>  RStudioの起動とpaneの設定</a></li>
+  <li><a href="#rによる計算" id="toc-rによる計算" class="nav-link" data-scroll-target="#rによる計算"><span class="toc-section-number">1.2</span>  Rによる計算</a></li>
+  <li><a href="#ベクトル" id="toc-ベクトル" class="nav-link" data-scroll-target="#ベクトル"><span class="toc-section-number">1.3</span>  ベクトル</a></li>
+  <li><a href="#オブジェクト" id="toc-オブジェクト" class="nav-link" data-scroll-target="#オブジェクト"><span class="toc-section-number">1.4</span>  オブジェクト</a></li>
+  <li><a href="#rによる変数の処理" id="toc-rによる変数の処理" class="nav-link" data-scroll-target="#rによる変数の処理"><span class="toc-section-number">1.5</span>  Rによる変数の処理</a></li>
+  <li><a href="#パッケージ" id="toc-パッケージ" class="nav-link" data-scroll-target="#パッケージ"><span class="toc-section-number">1.6</span>  パッケージ</a></li>
+  <li><a href="#パイプ演算子" id="toc-パイプ演算子" class="nav-link" data-scroll-target="#パイプ演算子"><span class="toc-section-number">1.7</span>  パイプ演算子</a></li>
+  <li><a href="#ディレクトリを作成する" id="toc-ディレクトリを作成する" class="nav-link" data-scroll-target="#ディレクトリを作成する"><span class="toc-section-number">1.8</span>  ディレクトリを作成する</a></li>
+  <li><a href="#プロジェクトの作成" id="toc-プロジェクトの作成" class="nav-link" data-scroll-target="#プロジェクトの作成"><span class="toc-section-number">1.9</span>  プロジェクトの作成</a></li>
+  <li><a href="#データの場所の確認" id="toc-データの場所の確認" class="nav-link" data-scroll-target="#データの場所の確認"><span class="toc-section-number">1.10</span>  データの場所の確認</a></li>
+  <li><a href="#rの終了" id="toc-rの終了" class="nav-link" data-scroll-target="#rの終了"><span class="toc-section-number">1.11</span>  Rの終了</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rの基礎</span></h1>
+</div>
 
 
-<section id="rの基礎" class="level1">
-<h1>Rの基礎</h1>
-<section id="rstudioの起動とpaneの設定" class="level2">
-<h2 class="anchored" data-anchor-id="rstudioの起動とpaneの設定">RStudioの起動とpaneの設定</h2>
-<p>まずはRStudio（あるいはRStudio Cloud）を起動すると <a href="#fig-RStudio">Figure&nbsp;1</a> のような画面が表示される．</p>
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="rstudioの起動とpaneの設定" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="rstudioの起動とpaneの設定"><span class="header-section-number">1.1</span> RStudioの起動とpaneの設定</h2>
+<p>まずはRStudio（あるいはRStudio Cloud）を起動すると <a href="#fig-RStudio">Figure&nbsp;<span>1.1</span></a> のような画面が表示される．</p>
 <div id="fig-RStudio" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/RStudio.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: RStudioの画面</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: RStudioの画面</figcaption><p></p>
 </figure>
 </div>
 <p>画面には次の4つの領域（pane）がある．</p>
@@ -156,21 +240,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>右上：Environment pane．Environmentでは作成されたオブジェクトを確認できる．History，Connection，Built，Git，Tutorialなどのタブもある．</li>
 <li>右下：Output pane．ここにはファイル，図，パッケージ，ヘルプなどが表示される．</li>
 </ul>
-<p>paneについては一時的に縮小や拡大が可能であり，<a href="#fig-pane">Figure&nbsp;3</a> の赤で囲まれた枠でpaneの設定ができる．左上のEdit <span class="math inline">\(\rightarrow\)</span> Preferences… <span class="math inline">\(\rightarrow\)</span> Pane Layoutでも細かな設定が可能である．筆者は赤で囲まれた枠から「Console on Right」を選択し，右上にConsole paneが表示されるように設定している．</p>
+<p>paneについては一時的に縮小や拡大が可能であり，<a href="#fig-pane">Figure&nbsp;<span>1.3</span></a> の赤で囲まれた枠でpaneの設定ができる．左上のEdit <span class="math inline">\(\rightarrow\)</span> Preferences… <span class="math inline">\(\rightarrow\)</span> Pane Layoutでも細かな設定が可能である．筆者は赤で囲まれた枠から「Console on Right」を選択し，右上にConsole paneが表示されるように設定している．</p>
 <div id="fig-pane" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/pane.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: 赤で囲まれた枠でPaneの設定</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.2: 赤で囲まれた枠でPaneの設定</figcaption><p></p>
 </figure>
 </div>
 </section>
-<section id="rによる計算" class="level2">
-<h2 class="anchored" data-anchor-id="rによる計算">Rによる計算</h2>
-<p>コンソール上に <a href="#fig-pane">Figure&nbsp;3</a> のような四則演算を直接入力する．</p>
+<section id="rによる計算" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="rによる計算"><span class="header-section-number">1.2</span> Rによる計算</h2>
+<p>コンソール上に <a href="#fig-pane">Figure&nbsp;<span>1.3</span></a> のような四則演算を直接入力する．</p>
 <div id="fig-pane" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/ex_1_1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: コンソールに直接入力する</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.3: コンソールに直接入力する</figcaption><p></p>
 </figure>
 </div>
 <p>するとすぐ下に結果が表示されるはずである．</p>
@@ -198,20 +282,20 @@ ESCを使う
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>計算の途中で改行すると <a href="#fig-esc">Figure&nbsp;4</a> のようになる． この場合ESCキーを押すことで<code>&gt;</code>の状態に戻すことができる． 何かのミスで結果が表示されない場合などは，ESCで元の状態に戻して再度コードを検討する．</p>
+<p>計算の途中で改行すると <a href="#fig-esc">Figure&nbsp;<span>1.4</span></a> のようになる． この場合ESCキーを押すことで<code>&gt;</code>の状態に戻すことができる． 何かのミスで結果が表示されない場合などは，ESCで元の状態に戻して再度コードを検討する．</p>
 <div id="fig-esc" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/esc.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: 計算の途中で改行した結果</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.4: 計算の途中で改行した結果</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>次は，<a href="#fig-script">Figure&nbsp;5</a> の赤い四角の部分からソースにRスクリプトを作成する．</p>
+<p>次は，<a href="#fig-script">Figure&nbsp;<span>1.5</span></a> の赤い四角の部分からソースにRスクリプトを作成する．</p>
 <div id="fig-script" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/script.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: ここからスクリプトを開く</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.5: ここからスクリプトを開く</figcaption><p></p>
 </figure>
 </div>
 <p>そして，Rスクリプト上に以下のコードを入力する．<code>#</code>（ハッシュ）はメモを作成するための記号であり，同じ行で<code>#</code>の後にくるものは実行されない．これをコメントアウトと呼ぶ．</p>
@@ -347,8 +431,8 @@ ESCを使う
 </div>
 </div>
 </section>
-<section id="ベクトル" class="level2">
-<h2 class="anchored" data-anchor-id="ベクトル">ベクトル</h2>
+<section id="ベクトル" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="ベクトル"><span class="header-section-number">1.3</span> ベクトル</h2>
 <p>社会調査データの分析では，人々によって異なる変数の分布（たとえば中心的な傾向やばらつきの程度）や変数間の関連を分析する．その時，変数は数値の列（ベクトル）として管理され，これを引数として関数で処理を行う．複数の数値を並べるためには<code>c</code>（combineの略）を用い，カンマ<code>,</code>でつなぐ．</p>
 <p>次のような4つのケースのある変数を考える．</p>
 <p><span class="math display">\[\{1,2,2,3\}\]</span></p>
@@ -401,8 +485,8 @@ ESCを使う
 </div>
 </div>
 </section>
-<section id="オブジェクト" class="level2">
-<h2 class="anchored" data-anchor-id="オブジェクト">オブジェクト</h2>
+<section id="オブジェクト" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="オブジェクト"><span class="header-section-number">1.4</span> オブジェクト</h2>
 <p>値，データ，ベクトル，コメントなど様々なものをオブジェクトに代入できる．次のように<code>a</code>というオブジェクトに<code>4</code>という値を代入してみる．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aというオブジェクトに4を代入</span></span>
@@ -437,8 +521,8 @@ ESCを使う
 </div>
 <p>このようなベクトルをオブジェクトとし，それに対して関数を適用する．</p>
 </section>
-<section id="rによる変数の処理" class="level2">
-<h2 class="anchored" data-anchor-id="rによる変数の処理">Rによる変数の処理</h2>
+<section id="rによる変数の処理" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="rによる変数の処理"><span class="header-section-number">1.5</span> Rによる変数の処理</h2>
 <p>平均50，標準偏差10の正規分布からランダムに100個のデータを取り出し，架空のデータを作成する． データは<code>rnorm()</code>関数に<code>n = 100</code>，<code>mean = 50</code>，<code>sd = 10</code>を指定することで作成できる． そのデータについては<code>x</code>というオブジェクトに代入しておく．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均50，標準偏差10の正規分布からランダムに100個のデータを取り出す</span></span>
@@ -660,8 +744,8 @@ length()関数についての注意点
 </div>
 </div>
 </section>
-<section id="パッケージ" class="level2">
-<h2 class="anchored" data-anchor-id="パッケージ">パッケージ</h2>
+<section id="パッケージ" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="パッケージ"><span class="header-section-number">1.6</span> パッケージ</h2>
 <p>Rでは分析などの機能をひとつのパッケージとしてまとめている．RStudioの右下のOutput paneの「Packages」のタブからパッケージはインストール可能である．または<code>install.packages("パッケージ名")</code> と入力しても良い．<code>install.packages("パッケージ名", dependencies = TRUE)</code>のように<code>dependencies = TRUE</code>はつけておいたほうがよい．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下をコンソールに貼り付ければ，インストールされる（ただし時間がかかる）</span></span>
@@ -699,8 +783,8 @@ length()関数についての注意点
 </div>
 </div>
 </section>
-<section id="パイプ演算子" class="level2">
-<h2 class="anchored" data-anchor-id="パイプ演算子">パイプ演算子</h2>
+<section id="パイプ演算子" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="パイプ演算子"><span class="header-section-number">1.7</span> パイプ演算子</h2>
 <p>通常は<code>関数(引数)</code>として入力されるが，パイプ処理では<code>引数 |&gt; 関数()</code>のようにパイプの左側の結果をパイプ右側に配置した関数の最初の引数（第1引数）に適用できる． 更に<code>|&gt;</code>を複数つなげて<code>データ |&gt; 関数() |&gt; 関数()</code> のようにできるため，どのような処理を行ったかが分かりやすい形でコードが整理される．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 総和</span></span>
@@ -800,8 +884,8 @@ Attaching package: 'magrittr'</code></pre>
 </div>
 </div>
 </section>
-<section id="ディレクトリを作成する" class="level2">
-<h2 class="anchored" data-anchor-id="ディレクトリを作成する">ディレクトリを作成する</h2>
+<section id="ディレクトリを作成する" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="ディレクトリを作成する"><span class="header-section-number">1.8</span> ディレクトリを作成する</h2>
 <p>データ，スクリプト，作成した図表，先行研究，資料，執筆した論文などをひとつのフォルダの中にまとめておこう．このようなあるプロジェクトに関連するファイルが含まれたフォルダを作業ディレクトリ（Working Directory）と呼ぶ．例えばここでは<code>R4SS</code>という名前のフォルダを作成する．中身はひとまずはからのままでもよい．</p>
 <p><code>R4SS</code>というフォルダを作成しても，Rには<code>R4SS</code>フォルダは作業ディレクトリとしては認識していない．</p>
 <p>「Session」<span class="math inline">\(\rightarrow\)</span>「Set Working Directory」<span class="math inline">\(\rightarrow\)</span>「Choose Directory…」を選択し，<code>R4SS</code>フォルダを探して選択し，「Open」を選択することによって， <code>R4SS</code>が作業ディレクトリとしては認識される．</p>
@@ -826,20 +910,20 @@ Attaching package: 'magrittr'</code></pre>
 </div>
 <p>基本的にはRStudioを起動するたびに作業ディレクトリを指定する必要がある． しかし，以下で説明するプロジェクトを指定する作業を一度行ってしまえば，その作業の必要はない．</p>
 </section>
-<section id="プロジェクトの作成" class="level2">
-<h2 class="anchored" data-anchor-id="プロジェクトの作成">プロジェクトの作成</h2>
-<p><a href="#fig-project">Figure&nbsp;6</a> のように左上のアイコンからプロジェクトを作成しよう．すでに<code>R4SS</code>という名前のフォルダを作成されているという前提で手順を説明する．</p>
+<section id="プロジェクトの作成" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="プロジェクトの作成"><span class="header-section-number">1.9</span> プロジェクトの作成</h2>
+<p><a href="#fig-project">Figure&nbsp;<span>1.6</span></a> のように左上のアイコンからプロジェクトを作成しよう．すでに<code>R4SS</code>という名前のフォルダを作成されているという前提で手順を説明する．</p>
 <div id="fig-project" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/project.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6: プロジェクトを作成する</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.6: プロジェクトを作成する</figcaption><p></p>
 </figure>
 </div>
-<p><a href="#fig-project_select">Figure&nbsp;7</a> のように，新規でディレクトリ（New Directory）を作成するのか，すでにあるディレクトリ（Existing Directory）を使うのかをたずねられるので，ここではすでにあるディレクトリを使用する．「Browse」を選択し，作業ディレクトリを選択したら「Open」を選択する．「Projecto working directory:」の欄にパスが記入された状態になるので，「Create Project」を選択する．</p>
+<p><a href="#fig-project_select">Figure&nbsp;<span>1.7</span></a> のように，新規でディレクトリ（New Directory）を作成するのか，すでにあるディレクトリ（Existing Directory）を使うのかをたずねられるので，ここではすでにあるディレクトリを使用する．「Browse」を選択し，作業ディレクトリを選択したら「Open」を選択する．「Projecto working directory:」の欄にパスが記入された状態になるので，「Create Project」を選択する．</p>
 <div id="fig-project_select" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/project_select.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;7: 新規にフォルダを作成するか既存のフォルダを利用するのかを選択する</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.7: 新規にフォルダを作成するか既存のフォルダを利用するのかを選択する</figcaption><p></p>
 </figure>
 </div>
 <p>すると，<code>R4SS</code>というフォルダの中に<code>R4SS.Rproj</code>というファイルが作成される．このように，プロジェクトファイル（<code>R4SS.Rproj</code>のように<code>.Rproj</code>という拡張子のファイル）を作業ディレクトリに作成しておけば，<code>.Rproj</code>ファイルをクリックすると自動的にファイルのある場所が作業ディレクトリとして指定される．確認の方法は複数ある．</p>
@@ -875,8 +959,8 @@ Attaching package: 'magrittr'</code></pre>
 </div>
 </div>
 </section>
-<section id="データの場所の確認" class="level2">
-<h2 class="anchored" data-anchor-id="データの場所の確認">データの場所の確認</h2>
+<section id="データの場所の確認" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="データの場所の確認"><span class="header-section-number">1.10</span> データの場所の確認</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -884,15 +968,14 @@ Attaching package: 'magrittr'</code></pre>
 </div>
 </div>
 </section>
-<section id="rの終了" class="level2">
-<h2 class="anchored" data-anchor-id="rの終了">Rの終了</h2>
+<section id="rの終了" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="rの終了"><span class="header-section-number">1.11</span> Rの終了</h2>
 <ul>
 <li>スクリプト（.Rとなっているテキストのファイル）のみを保存して終了すればよい．</li>
 <li>個人的には作業スペースの保存は必要ないと考えるので，Save Workspace…などとたずねられても，Noとする．</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -994,6 +1077,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">社会調査のためのR入門</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データの読み込み</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
