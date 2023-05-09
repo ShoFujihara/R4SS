@@ -21,8 +21,6 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-    embed-resources: true
-    standalone: true
     
 crossref:
   fig-title: 図     # (default is "Figure")
