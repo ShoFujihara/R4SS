@@ -35,14 +35,55 @@ pacman::p_load(
            - `u001c.pdf`：調査票
     - `scripts`：Rスクリプトを保存するフォルダ
     
-MACの画面だと @fig-folders のようになる．
+MACの画面だと @fig-folders のようになる．Rの基礎で`here()`関数と`dir_create()`関数を組み合わせて作成している．ここの`raw`というフォルダに`u001.zip`を展開した**中身**を保存する．`u001`というフォルダは使用しない（使用してもよいがファイルの場所を間違えないようにすること．本資料では，rawのすぐ下にデータがあるように設定している）．
+
 
 ![RStudioの画面](figures/folders.png){#fig-folders}
 
 
+## Import Datasetからデータを読み込む
+
+`here`をつかったり，ファイルのパスを書くことに慣れないうちは，自分でファイルを探して指定する方法が確実かもしれない．
+まず`csv`の場合は，「File」$\rightarrow$「Import Dataset」$\rightarrow$「From text (base)...」か「File」$\rightarrow$「Import Dataset」$\rightarrow$「From text (readr)...」を使用する．
+
+### From text (base)...の場合
+
+`u001.csv`を指定し「Open」を選択すると， @fig-readcsv のような画面が現れる．「Heading」は「Yes」とする．
+
+![From text (base)...の場合](figures/readcsv.png){#fig-readcsv}
+
+右下の「Data Frame」に正しくデータが表示されているようであれば，「Import」を選択する．
+するとデータがソース画面に表示される．うまく読み込まれていそうであればデータは閉じてしまおう．
+コンソールには読み込みに用いたコードが残されているので，これをコピーしておこう．
+
+```{r}
+#| eval: false
+u001 <- read.csv("~/GitHub/R4SS/data/raw/u001.csv")
+```
+
+
+
+### From text (readr)...の場合
+
+右端の「Browse」から`u001.csv`を指定し「Open」を選択すると， @fig-read_csv のような画面が現れる．
+
+![From text (readr)...の場合](figures/read_csv.png){#fig-read_csv}
+
+そのまま「Import」を選択すればよい．ここでもデータがソースの別のタブで開かれるが，不要なので確認したら閉じてしまおう．コンソールには次のプログラムが残っているので，スクリプトにコピーしておこう．
+
+```{r}
+library(readr)
+u001 <- read_csv("data/raw/u001.csv")
+```
+
+なおデフォルトではデータを代入するオブジェクトの名前は`u001`となっているが，コピーしたら`d`など適当な分かりやすい名前に変更するとよい．
+
 ## csvの場合
 
-### read.csv
+では直接パスを書き，データを読み込んでみる．
+
+
+## read.csv
 
 ```{r}
 # read.csvでcsvデータを読み込む
@@ -51,6 +92,12 @@ d_csv_1 <- read.csv("data/raw/u001.csv")
 head(d_csv_1)
 # データのクラス
 class(d_csv_1)
+```
+
+`here`を使用すれば次のように書ける．
+
+```{r}
+d_csv_1 <- read.csv(here("data","raw","u001.csv"))
 ```
 
 ### read_csv
@@ -64,6 +111,12 @@ head(d_csv_2)
 class(d_csv_2)
 ```
 
+`here`を使用すれば次のように書ける．
+
+```{r}
+d_csv_2 <- read_csv(here("data","raw","u001.csv"))
+```
+
 ## dta (Stata) の場合
 
 ```{r}
@@ -75,6 +128,13 @@ head(d_dta)
 class(d_dta)
 ```
 
+`here`を使用すれば次のように書ける．
+
+```{r}
+d_dta <- read_dta(here("data","raw","u001.dta"))
+```
+
+
 ## sav (SPSS) の場合
 
 ```{r}
@@ -85,3 +145,11 @@ head(d_sav)
 # データのクラス
 class(d_sav)
 ```
+
+`here`を使用すれば次のように書ける．
+
+```{r}
+d_sav <- read_sav(here("data","raw","u001.sav"))
+```
+
+
