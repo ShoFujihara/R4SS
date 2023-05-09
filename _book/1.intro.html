@@ -905,7 +905,7 @@ Attaching package: 'magrittr'</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/R4SS"</code></pre>
+<pre><code>[1] "/Users/sf/GitHub/R4SS"</code></pre>
 </div>
 </div>
 <p>基本的にはRStudioを起動するたびに作業ディレクトリを指定する必要がある． しかし，以下で説明するプロジェクトを指定する作業を一度行ってしまえば，その作業の必要はない．</p>
@@ -937,7 +937,7 @@ Attaching package: 'magrittr'</code></pre>
 <div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作業ディレクトリの確認</span></span>
 <span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/R4SS"</code></pre>
+<pre><code>[1] "/Users/sf/GitHub/R4SS"</code></pre>
 </div>
 </div>
 <p><code>here</code>パッケージの<code>here()</code>関数を用いることで，作業ディレクトリの仲間で確認できる．</p>
@@ -945,17 +945,17 @@ Attaching package: 'magrittr'</code></pre>
 <div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作業ディレクトリの確認</span></span>
 <span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/R4SS"</code></pre>
+<pre><code>[1] "/Users/sf/GitHub/R4SS"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作業ディレクトリの中のdataフォルダ</span></span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/R4SS/data"</code></pre>
+<pre><code>[1] "/Users/sf/GitHub/R4SS/data"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co">#作業ディレクトリの中のdataフォルダのcsvファイル</span></span>
 <span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/R4SS/data/u001.csv"</code></pre>
+<pre><code>[1] "/Users/sf/GitHub/R4SS/data/u001.csv"</code></pre>
 </div>
 </div>
 </section>
@@ -964,7 +964,7 @@ Attaching package: 'magrittr'</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/R4SS/data"</code></pre>
+<pre><code>[1] "/Users/sf/GitHub/R4SS/data"</code></pre>
 </div>
 </div>
 </section>
