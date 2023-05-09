@@ -1,15 +1,16 @@
 project:
   type: website
   output-dir: docs
+
 book:
   title: "社会調査のためのR"
   author: "藤原翔（東京大学社会科学研究所）"
   date: "`r Sys.Date()`"
   chapters:
     - index.qmd
-    - 1.intro.qmd
-    - 2.data.qmd
-    - 3.variables.qmd
+    - intro.qmd
+    - data.qmd
+    - variables.qmd
     - references.qmd
 
 bibliography: references.bib

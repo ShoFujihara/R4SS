@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="データの読み込み" class="level1">
+<h1>データの読み込み</h1>
+<p>データの読み込みを行う際に<code>readr</code>と<code>haven</code>パッケージを用いる． <code>readr</code>パッケージのかわりに<code>tidyverse</code>パッケージを呼び出してもよい．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージの呼び出し</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  here,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  readr,   <span class="co"># csvファイルを読み込む．tidyverseとしてもよい．</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  haven   <span class="co"># sav, dta, sasファイルなどを読み込む．</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="csvの場合" class="level2">
+<h2 class="anchored" data-anchor-id="csvの場合">csvの場合</h2>
+<section id="read.csv" class="level3">
+<h3 class="anchored" data-anchor-id="read.csv">read.csv</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csvでcsvデータを読み込む</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>d_csv_1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_csv_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  caseid sex ybirth mbirth ZQ03 JC_1 JC_41 ZQ08A ZQ08B ZQ08C ZQ08D ZQ08E ZQ08F
+1  10001   1   1976     10    1    2    12     4     1     3     4     4     4
+2  10002   1   1972      1    1    2     9     6     2     2     4     6     6
+3  10003   1   1975      4    1    2     9     6     6     6     3     6     6
+4  10004   2   1974     11    1    2     7     6     1     1     5     1     1
+5  10005   1   1978      1    2   10    88     6     2     2     4     1     2
+6  10006   1   1984      2    2   10    88     6     1     2     6     3     6
+  ZQ08G ZQ08H ZQ11_A ZQ11_B ZQ11_C ZQ11_D ZQ11_E ZQ11_F ZQ11_G ZQ11_H ZQ11_I
+1     5     3      2      2      2      2      2      2      2      2      2
+2     6     5      2      2      2      2      2      1      2      2      2
+3     4     6      2      2      2      2      1      1      1      2      2
+4     4     2      2      2      2      2      2      2      2      2      2
+5     5     1      2      2      2      2      1      2      2      2      2
+6     6     6      2      2      2      2      2      2      2      2      2
+  ZQ11_J ZQ11_K ZQ11_L ZQ11_M ZQ11_N ZQ11_O ZQ12 ZQ14_1A ZQ14_1B ZQ14_1C
+1      2      2      2      2      2      2    2       0       0       1
+2      2      2      2      2      2      2    2       0       0       0
+3      2      2      2      2      2      2    4       0       0       0
+4      2      2      2      2      2      2    3       1       1       0
+5      1      2      1      2      2      2    4       2       0       0
+6      1      2      2      2      1      2    2       0       0       1
+  ZQ14_1D ZQ23A ZQ23B ZQ23C ZQ23D ZQ24 ZQ25 ZQ26A ZQ26B ZQ26C ZQ26D ZQ26E ZQ26F
+1       0     5     5     5     4    1    1     4     5     3     5     3     4
+2       1     3     5     2     2    1    3     5     5     2     5     1     5
+3       0     3     2     2     2    1    3     5     5     4     5     3     5
+4       0     3     5     2     2    1    2     3     5     2     4     2     4
+5       0     5     8     5     5    1    2     3     3     4     3     3     4
+6       0     4     8     3     2    1    4     3     4     3     4     3     5
+  ZQ30D ZQ35 ZQ39A ZQ42 ZQ43 ZQ47A ZQ47B ZQ47C ZQ50 ZQ52A ZQ52Y ZQ54A ZQ54B
+1     2    4     4    9    2     6     5     8    2     2    51     1     2
+2     1    5     3    1    1     9     5    10    2     2    51     1     2
+3     1    4     5    9    4     6     3     6    2     2    56     3     5
+4     2    5     3    3    3     6     8     9    2     2    48     6     1
+5     4    5     4    2    2     1    99    99    1     8   888     8     8
+6     4    7     4    2    3     2    15    10    1     8   888     8     8
+  ZQ54C ZQ54D ZQ61_A ZQ61_B ZQ61_C ZQ61_D ZQ61_E ZQ61_F ZQ61_G ZQ61_H ZQ61_I
+1     9     9      1      2      2      2      2      2      2      2      2
+2     2     4      1      2      2      2      2      2      2      2      2
+3     3     2      1      2      2      2      2      2      2      2      2
+4     5     4      1      2      2      2      2      2      2      2      2
+5     8     8      2      2      2      1      2      2      2      2      2
+6     8     8      1      2      2      2      2      2      2      2      2
+  ZQ62
+1    3
+2    2
+3    2
+4    4
+5    1
+6    2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_csv_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+</div>
+</section>
+<section id="read_csv" class="level3">
+<h3 class="anchored" data-anchor-id="read_csv">read_csv</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_csvでcsvデータを読み込む</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>d_csv_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1000 Columns: 72
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_csv_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 72
+  caseid   sex ybirth mbirth  ZQ03  JC_1 JC_41 ZQ08A ZQ08B ZQ08C ZQ08D ZQ08E
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  10001     1   1976     10     1     2    12     4     1     3     4     4
+2  10002     1   1972      1     1     2     9     6     2     2     4     6
+3  10003     1   1975      4     1     2     9     6     6     6     3     6
+4  10004     2   1974     11     1     2     7     6     1     1     5     1
+5  10005     1   1978      1     2    10    88     6     2     2     4     1
+6  10006     1   1984      2     2    10    88     6     1     2     6     3
+# ℹ 60 more variables: ZQ08F &lt;dbl&gt;, ZQ08G &lt;dbl&gt;, ZQ08H &lt;dbl&gt;, ZQ11_A &lt;dbl&gt;,
+#   ZQ11_B &lt;dbl&gt;, ZQ11_C &lt;dbl&gt;, ZQ11_D &lt;dbl&gt;, ZQ11_E &lt;dbl&gt;, ZQ11_F &lt;dbl&gt;,
+#   ZQ11_G &lt;dbl&gt;, ZQ11_H &lt;dbl&gt;, ZQ11_I &lt;dbl&gt;, ZQ11_J &lt;dbl&gt;, ZQ11_K &lt;dbl&gt;,
+#   ZQ11_L &lt;dbl&gt;, ZQ11_M &lt;dbl&gt;, ZQ11_N &lt;dbl&gt;, ZQ11_O &lt;dbl&gt;, ZQ12 &lt;dbl&gt;,
+#   ZQ14_1A &lt;dbl&gt;, ZQ14_1B &lt;dbl&gt;, ZQ14_1C &lt;dbl&gt;, ZQ14_1D &lt;dbl&gt;, ZQ23A &lt;dbl&gt;,
+#   ZQ23B &lt;dbl&gt;, ZQ23C &lt;dbl&gt;, ZQ23D &lt;dbl&gt;, ZQ24 &lt;dbl&gt;, ZQ25 &lt;dbl&gt;, ZQ26A &lt;dbl&gt;,
+#   ZQ26B &lt;dbl&gt;, ZQ26C &lt;dbl&gt;, ZQ26D &lt;dbl&gt;, ZQ26E &lt;dbl&gt;, ZQ26F &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_csv_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="dta-stata-の場合" class="level2">
+<h2 class="anchored" data-anchor-id="dta-stata-の場合">dta (Stata) の場合</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_dtaでdtaデータを読み込む</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/raw/u001.dta"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_dta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 72
+  caseid sex     ybirth mbirth ZQ03    JC_1     JC_41    ZQ08A   ZQ08B   ZQ08C  
+   &lt;dbl&gt; &lt;dbl+l&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;dbl+lb&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+l&gt;
+1  10001 1 [mal…   1976     10 1 [し…  2 [正… 12     … 4 [週… 1 [毎… 3 [週…
+2  10002 1 [mal…   1972      1 1 [し…  2 [正…  9     … 6 [ほ… 2 [週… 2 [週…
+3  10003 1 [mal…   1975      4 1 [し…  2 [正…  9     … 6 [ほ… 6 [ほ… 6 [ほ…
+4  10004 2 [fem…   1974     11 1 [し…  2 [正…  7     … 6 [ほ… 1 [毎… 1 [毎…
+5  10005 1 [mal…   1978      1 2 [し… 10 [無… 88 [非… 6 [ほ… 2 [週… 2 [週…
+6  10006 1 [mal…   1984      2 2 [し… 10 [無… 88 [非… 6 [ほ… 1 [毎… 2 [週…
+# ℹ 62 more variables: ZQ08D &lt;dbl+lbl&gt;, ZQ08E &lt;dbl+lbl&gt;, ZQ08F &lt;dbl+lbl&gt;,
+#   ZQ08G &lt;dbl+lbl&gt;, ZQ08H &lt;dbl+lbl&gt;, ZQ11_A &lt;dbl+lbl&gt;, ZQ11_B &lt;dbl+lbl&gt;,
+#   ZQ11_C &lt;dbl+lbl&gt;, ZQ11_D &lt;dbl+lbl&gt;, ZQ11_E &lt;dbl+lbl&gt;, ZQ11_F &lt;dbl+lbl&gt;,
+#   ZQ11_G &lt;dbl+lbl&gt;, ZQ11_H &lt;dbl+lbl&gt;, ZQ11_I &lt;dbl+lbl&gt;, ZQ11_J &lt;dbl+lbl&gt;,
+#   ZQ11_K &lt;dbl+lbl&gt;, ZQ11_L &lt;dbl+lbl&gt;, ZQ11_M &lt;dbl+lbl&gt;, ZQ11_N &lt;dbl+lbl&gt;,
+#   ZQ11_O &lt;dbl+lbl&gt;, ZQ12 &lt;dbl+lbl&gt;, ZQ14_1A &lt;dbl+lbl&gt;, ZQ14_1B &lt;dbl+lbl&gt;,
+#   ZQ14_1C &lt;dbl+lbl&gt;, ZQ14_1D &lt;dbl+lbl&gt;, ZQ23A &lt;dbl+lbl&gt;, ZQ23B &lt;dbl+lbl&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_dta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+</div>
+</section>
+<section id="sav-spss-の場合" class="level2">
+<h2 class="anchored" data-anchor-id="sav-spss-の場合">sav (SPSS) の場合</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_savでsavデータを読み込む</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data/raw/u001.sav"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 確認</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_sav)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 72
+  caseid sex     ybirth mbirth ZQ03    JC_1     JC_41    ZQ08A   ZQ08B   ZQ08C  
+   &lt;dbl&gt; &lt;dbl+l&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl+l&gt; &lt;dbl+lb&gt; &lt;dbl+lb&gt; &lt;dbl+l&gt; &lt;dbl+l&gt; &lt;dbl+l&gt;
+1  10001 1 [mal…   1976     10 1 [し…  2 [正… 12     … 4 [週… 1 [毎… 3 [週…
+2  10002 1 [mal…   1972      1 1 [し…  2 [正…  9     … 6 [ほ… 2 [週… 2 [週…
+3  10003 1 [mal…   1975      4 1 [し…  2 [正…  9     … 6 [ほ… 6 [ほ… 6 [ほ…
+4  10004 2 [fem…   1974     11 1 [し…  2 [正…  7     … 6 [ほ… 1 [毎… 1 [毎…
+5  10005 1 [mal…   1978      1 2 [し… 10 [無… 88 [非… 6 [ほ… 2 [週… 2 [週…
+6  10006 1 [mal…   1984      2 2 [し… 10 [無… 88 [非… 6 [ほ… 1 [毎… 2 [週…
+# ℹ 62 more variables: ZQ08D &lt;dbl+lbl&gt;, ZQ08E &lt;dbl+lbl&gt;, ZQ08F &lt;dbl+lbl&gt;,
+#   ZQ08G &lt;dbl+lbl&gt;, ZQ08H &lt;dbl+lbl&gt;, ZQ11_A &lt;dbl+lbl&gt;, ZQ11_B &lt;dbl+lbl&gt;,
+#   ZQ11_C &lt;dbl+lbl&gt;, ZQ11_D &lt;dbl+lbl&gt;, ZQ11_E &lt;dbl+lbl&gt;, ZQ11_F &lt;dbl+lbl&gt;,
+#   ZQ11_G &lt;dbl+lbl&gt;, ZQ11_H &lt;dbl+lbl&gt;, ZQ11_I &lt;dbl+lbl&gt;, ZQ11_J &lt;dbl+lbl&gt;,
+#   ZQ11_K &lt;dbl+lbl&gt;, ZQ11_L &lt;dbl+lbl&gt;, ZQ11_M &lt;dbl+lbl&gt;, ZQ11_N &lt;dbl+lbl&gt;,
+#   ZQ11_O &lt;dbl+lbl&gt;, ZQ12 &lt;dbl+lbl&gt;, ZQ14_1A &lt;dbl+lbl&gt;, ZQ14_1B &lt;dbl+lbl&gt;,
+#   ZQ14_1C &lt;dbl+lbl&gt;, ZQ14_1D &lt;dbl+lbl&gt;, ZQ23A &lt;dbl+lbl&gt;, ZQ23B &lt;dbl+lbl&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データのクラス</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(d_sav)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
