@@ -1,6 +1,6 @@
 # はじめに {.unnumbered}
 
-This is a Quarto book.
+Rの基礎について
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
 
