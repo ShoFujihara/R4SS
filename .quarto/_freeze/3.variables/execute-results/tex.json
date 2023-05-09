@@ -1,0 +1,14 @@
+{
+  "hash": "4134b9d1ab927efb8cd5409ee949f079",
+  "result": {
+    "markdown": "# 変数\n\n`dplyr`パッケージの4つの関数を使用方法をマスターしよう．\n\n- `count`関数\n- `summarise`関数\n- `mutate`関数\n- `filter`関数\n- `select`関数\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n\nAttaching package: 'dplyr'\n```\n:::\n\n::: {.cell-output .cell-output-stderr}\n```\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n```\n:::\n\n::: {.cell-output .cell-output-stderr}\n```\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n```\n:::\n:::\n\n\n\n## 新しい変数の作成\n\n\n## 変数の選択\n\n\n## ケースの選択\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
