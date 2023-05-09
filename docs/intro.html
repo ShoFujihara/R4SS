@@ -203,10 +203,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#rによる変数の処理" id="toc-rによる変数の処理" class="nav-link" data-scroll-target="#rによる変数の処理"><span class="toc-section-number">1.5</span>  Rによる変数の処理</a></li>
   <li><a href="#パッケージ" id="toc-パッケージ" class="nav-link" data-scroll-target="#パッケージ"><span class="toc-section-number">1.6</span>  パッケージ</a></li>
   <li><a href="#パイプ演算子" id="toc-パイプ演算子" class="nav-link" data-scroll-target="#パイプ演算子"><span class="toc-section-number">1.7</span>  パイプ演算子</a></li>
-  <li><a href="#ディレクトリを作成する" id="toc-ディレクトリを作成する" class="nav-link" data-scroll-target="#ディレクトリを作成する"><span class="toc-section-number">1.8</span>  ディレクトリを作成する</a></li>
+  <li><a href="#作業ディレクトリを作成する" id="toc-作業ディレクトリを作成する" class="nav-link" data-scroll-target="#作業ディレクトリを作成する"><span class="toc-section-number">1.8</span>  作業ディレクトリを作成する</a></li>
   <li><a href="#プロジェクトの作成" id="toc-プロジェクトの作成" class="nav-link" data-scroll-target="#プロジェクトの作成"><span class="toc-section-number">1.9</span>  プロジェクトの作成</a></li>
-  <li><a href="#データの場所の確認" id="toc-データの場所の確認" class="nav-link" data-scroll-target="#データの場所の確認"><span class="toc-section-number">1.10</span>  データの場所の確認</a></li>
-  <li><a href="#rの終了" id="toc-rの終了" class="nav-link" data-scroll-target="#rの終了"><span class="toc-section-number">1.11</span>  Rの終了</a></li>
+  <li><a href="#フォルダの整理" id="toc-フォルダの整理" class="nav-link" data-scroll-target="#フォルダの整理"><span class="toc-section-number">1.10</span>  フォルダの整理</a></li>
+  <li><a href="#ファイルの場所を表示する" id="toc-ファイルの場所を表示する" class="nav-link" data-scroll-target="#ファイルの場所を表示する"><span class="toc-section-number">1.11</span>  ファイルの場所を表示する</a></li>
+  <li><a href="#rの終了" id="toc-rの終了" class="nav-link" data-scroll-target="#rの終了"><span class="toc-section-number">1.12</span>  Rの終了</a></li>
   </ul>
 </nav>
     </div>
@@ -235,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-RStudio" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/RStudio.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: RStudioの画面</figcaption><p></p>
+<p></p><figcaption class="figure-caption">図&nbsp;1.1： RStudioの画面</figcaption><p></p>
 </figure>
 </div>
 <p>画面には次の4つの領域（pane）がある．</p>
@@ -249,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-pane" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/pane.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.2: 赤で囲まれた枠でPaneの設定</figcaption><p></p>
+<p></p><figcaption class="figure-caption">図&nbsp;1.2： 赤で囲まれた枠でPaneの設定</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -259,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-pane" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/ex_1_1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.3: コンソールに直接入力する</figcaption><p></p>
+<p></p><figcaption class="figure-caption">図&nbsp;1.3： コンソールに直接入力する</figcaption><p></p>
 </figure>
 </div>
 <p>するとすぐ下に結果が表示されるはずである．</p>
@@ -291,7 +292,7 @@ ESCを使う
 <div id="fig-esc" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/esc.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.4: 計算の途中で改行した結果</figcaption><p></p>
+<p></p><figcaption class="figure-caption">図&nbsp;1.4： 計算の途中で改行した結果</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -300,7 +301,7 @@ ESCを使う
 <div id="fig-script" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/script.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.5: ここからスクリプトを開く</figcaption><p></p>
+<p></p><figcaption class="figure-caption">図&nbsp;1.5： ここからスクリプトを開く</figcaption><p></p>
 </figure>
 </div>
 <p>そして，Rスクリプト上に以下のコードを入力する．<code>#</code>（ハッシュ）はメモを作成するための記号であり，同じ行で<code>#</code>の後にくるものは実行されない．これをコメントアウトと呼ぶ．</p>
@@ -756,23 +757,50 @@ length()関数についての注意点
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 以下をコンソールに貼り付ければ，インストールされる（ただし時間がかかる）</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)  <span class="co"># データの整理</span></span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"haven"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)  <span class="co"># データの読み込み</span></span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)  <span class="co"># データの変換</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"janitor"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)  <span class="co"># データの変換</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)   <span class="co"># プロジェクト内のファイルを表示</span></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"fs"</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)  <span class="co"># フォルダの作成</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>これまでの作業はインストールだけであり，そのままではパッケージの関数などは利用できない．パッケージを使用したい場合は<code>library(パッケージ名)</code>で呼び出す必要がある．これはRStudioを閉じて再度立ち上げたら必要な作業なので，スクリプトに書いておく．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># データの整理</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)  <span class="co"># データの読み込み</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)  <span class="co"># 度数分布表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># データの整理</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)  <span class="co"># データの読み込み</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)  <span class="co"># 度数分布表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)  <span class="co"># プロジェクト内のファイルを表示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>here() starts at /Users/sf/GitHub/R4SS</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fs)  <span class="co"># ファイルの作成</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>なおインストールされているパッケージについてはOutput paneの「Packages」のタブか <code>.packages(all.available=TRUE)</code>と入力することで確認できる．</p>
 <p>以上の作業をまとめて行いたい場合，<code>pacman</code>パッケージの<code>p_load()</code>関数を用いる．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pacmanパッケージがインストールされていない場合は以下からインストールを実行</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("pacman")</span></span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージのインストール（もしインストールされていなければ）と呼び出し</span></span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,</span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>               haven,</span>
-<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>               janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pacmanパッケージがインストールされていない場合は以下からインストールを実行</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("pacman")</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージのインストール（もしインストールされていなければ）と呼び出し</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse,</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>               haven,</span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>               janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -792,59 +820,59 @@ length()関数についての注意点
 <h2 data-number="1.7" class="anchored" data-anchor-id="パイプ演算子"><span class="header-section-number">1.7</span> パイプ演算子</h2>
 <p>通常は<code>関数(引数)</code>として入力されるが，パイプ処理では<code>引数 |&gt; 関数()</code>のようにパイプの左側の結果をパイプ右側に配置した関数の最初の引数（第1引数）に適用できる． 更に<code>|&gt;</code>を複数つなげて<code>データ |&gt; 関数() |&gt; 関数()</code> のようにできるため，どのような処理を行ったかが分かりやすい形でコードが整理される．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 総和</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 総和</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5016.82</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均値</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均値</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50.1682</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均値を丸める</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">mean</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 平均値を丸める</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">mean</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50.2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 中央値</span></span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">median</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 中央値</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">median</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50.47907</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 不偏分散</span></span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">var</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 不偏分散</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">var</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 98.70409</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 標準偏差</span></span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">sd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 標準偏差</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">sd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.934993</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最大値</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最大値</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 75.02645</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最小値</span></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 最小値</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 22.51132</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 大きさ</span></span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 大きさ</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 100</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 四分位数</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">quantile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 四分位数</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">quantile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      0%      25%      50%      75%     100% 
 22.51132 42.74002 50.47907 58.33915 75.02645 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 要約</span></span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 要約</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   22.51   42.74   50.48   50.17   58.34   75.03 </code></pre>
@@ -862,7 +890,7 @@ length()関数についての注意点
 <div class="callout-body-container callout-body">
 <p>パイプ演算子はもともと<code>magrittr</code>パッケージの<code>%&gt;%</code>という演算子のことを示していた．しかし，R4.1+では<code>|&gt;</code>が標準で組み込まれている（ネイティブパイプと呼ばれる）．したがって<code>|&gt;</code>を使用するのに<code>magrittr</code>パッケージを呼び出す必要はない．実際は<code>%&gt;%</code>のほうが分かりやすく，使用しやすい場面もある．なお，パイプ演算子のショートカットキーは <span class="math inline">\(\uparrow\)</span> +「Command」+「m」である．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'magrittr'</code></pre>
@@ -877,11 +905,11 @@ Attaching package: 'magrittr'</code></pre>
 
     extract</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50.1682</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50.1682</code></pre>
 </div>
@@ -889,8 +917,8 @@ Attaching package: 'magrittr'</code></pre>
 </div>
 </div>
 </section>
-<section id="ディレクトリを作成する" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="ディレクトリを作成する"><span class="header-section-number">1.8</span> ディレクトリを作成する</h2>
+<section id="作業ディレクトリを作成する" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="作業ディレクトリを作成する"><span class="header-section-number">1.8</span> 作業ディレクトリを作成する</h2>
 <p>データ，スクリプト，作成した図表，先行研究，資料，執筆した論文などをひとつのフォルダの中にまとめておこう．このようなあるプロジェクトに関連するファイルが含まれたフォルダを作業ディレクトリ（Working Directory）と呼ぶ．例えばここでは<code>R4SS</code>という名前のフォルダを作成する．中身はひとまずはからのままでもよい．</p>
 <p><code>R4SS</code>というフォルダを作成しても，Rには<code>R4SS</code>フォルダは作業ディレクトリとしては認識していない．</p>
 <p>「Session」<span class="math inline">\(\rightarrow\)</span>「Set Working Directory」<span class="math inline">\(\rightarrow\)</span>「Choose Directory…」を選択し，<code>R4SS</code>フォルダを探して選択し，「Open」を選択することによって， <code>R4SS</code>が作業ディレクトリとしては認識される．</p>
@@ -908,7 +936,7 @@ Attaching package: 'magrittr'</code></pre>
 </figure>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/sf/GitHub/R4SS"</code></pre>
 </div>
@@ -921,14 +949,14 @@ Attaching package: 'magrittr'</code></pre>
 <div id="fig-project" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/project.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.6: プロジェクトを作成する</figcaption><p></p>
+<p></p><figcaption class="figure-caption">図&nbsp;1.6： プロジェクトを作成する</figcaption><p></p>
 </figure>
 </div>
 <p><a href="#fig-project_select">Figure&nbsp;<span>1.7</span></a> のように，新規でディレクトリ（New Directory）を作成するのか，すでにあるディレクトリ（Existing Directory）を使うのかをたずねられるので，ここではすでにあるディレクトリを使用する．「Browse」を選択し，作業ディレクトリを選択したら「Open」を選択する．「Projecto working directory:」の欄にパスが記入された状態になるので，「Create Project」を選択する．</p>
 <div id="fig-project_select" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/project_select.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.7: 新規にフォルダを作成するか既存のフォルダを利用するのかを選択する</figcaption><p></p>
+<p></p><figcaption class="figure-caption">図&nbsp;1.7： 新規にフォルダを作成するか既存のフォルダを利用するのかを選択する</figcaption><p></p>
 </figure>
 </div>
 <p>すると，<code>R4SS</code>というフォルダの中に<code>R4SS.Rproj</code>というファイルが作成される．このように，プロジェクトファイル（<code>R4SS.Rproj</code>のように<code>.Rproj</code>という拡張子のファイル）を作業ディレクトリに作成しておけば，<code>.Rproj</code>ファイルをクリックすると自動的にファイルのある場所が作業ディレクトリとして指定される．確認の方法は複数ある．</p>
@@ -939,46 +967,88 @@ Attaching package: 'magrittr'</code></pre>
 <li><code>here</code>パッケージの<code>here()</code>関数を用いる．</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作業ディレクトリの確認</span></span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作業ディレクトリの確認</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/sf/GitHub/R4SS"</code></pre>
 </div>
 </div>
-<p><code>here</code>パッケージの<code>here()</code>関数を用いることで，作業ディレクトリの仲間で確認できる．</p>
+<p><code>here</code>パッケージの<code>here()</code>関数を用いる．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作業ディレクトリの確認</span></span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作業ディレクトリの確認</span></span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/sf/GitHub/R4SS"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 作業ディレクトリの中のdataフォルダ</span></span>
-<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/GitHub/R4SS/data"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co">#作業ディレクトリの中のdataフォルダのcsvファイル</span></span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/GitHub/R4SS/data/u001.csv"</code></pre>
-</div>
 </div>
 </section>
-<section id="データの場所の確認" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="データの場所の確認"><span class="header-section-number">1.10</span> データの場所の確認</h2>
+<section id="フォルダの整理" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="フォルダの整理"><span class="header-section-number">1.10</span> フォルダの整理</h2>
+<p><code>dir_create()</code>関数でファイルを作成する．ファイルの作成場所に<code>here()</code>とすれば作業ディレクトリにファイルが作成されるので，<code>here(c("フォルダ1", "フォルダ2",...))</code>のようにすれば，作業ディレクトリにフォルダ1，フォルダ2，．．．のようにファイルが作成される．</p>
+<p>次のコードによって，作業ディレクトリに<code>scripts</code>，<code>figures</code>，<code>tables</code>，<code>documents</code>，<code>manuscripts</code>というフォルダを作成する．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_create</span>(<span class="fu">here</span>(<span class="fu">c</span>(<span class="st">"scripts"</span>,           <span class="co"># Rスクリプトを保存</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"figures"</span>,           <span class="co"># 図を保存</span></span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"tables"</span>,           <span class="co"># 表を保存</span></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"documents"</span>,        <span class="co"># 先行研究や資料を保存するフォルダ</span></span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"manuscripts"</span>      <span class="co"># 原稿を保存</span></span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a>                  )))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>data</code>というフォルダには未加工のデータを保存するフォルダ<code>raw</code>と処理済みのデータを保存するフォルダ<code>processed</code>の2つを準備したい．<code>here()</code>関数の第1引数を<code>"data"</code>とし第2引数を<code>"raw"</code>として，<code>dir_create()</code>関数を適用する．</p>
+<p>順番に確認していこう．作業ディレクトリの<code>data</code>というフォルダの<code>raw</code>というフォルダは<code>here("data", "raw")</code>で，作業ディレクトリの<code>data</code>というフォルダの<code>processed</code>というフォルダは<code>here("data", "processed")</code>で指定できる．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/sf/GitHub/R4SS/data"</code></pre>
+<pre><code>[1] "/Users/sf/GitHub/R4SS/data/raw"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"processed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/sf/GitHub/R4SS/data/processed"</code></pre>
 </div>
 </div>
-</section>
-<section id="rの終了" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="rの終了"><span class="header-section-number">1.11</span> Rの終了</h2>
+<p>これはパスを書いただけなので，<code>dir_create()</code>関数でフォルダを作成する．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_create</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>))        <span class="co"># データを保存（生データ）</span></span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_create</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"processed"</span>))  <span class="co"># データを保存（処理したデータ）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>次のようなフォルダが作成されていれば作業完了である．</p>
 <ul>
-<li>スクリプト（.Rとなっているテキストのファイル）のみを保存して終了すればよい．</li>
-<li>個人的には作業スペースの保存は必要ないと考えるので，Save Workspace…などとたずねられても，Noとする．</li>
+<li><code>R4SS</code>：作業ディレクトリ
+<ul>
+<li><code>data</code>：データを保存するフォルダ
+<ul>
+<li><code>processed</code>：加工したデータを保存するフォルダ</li>
+<li><code>raw</code>：加工前の生データを保存するフォルダ</li>
+</ul></li>
+<li><code>scripts</code>：Rスクリプトを保存するフォルダ</li>
+<li><code>figures</code>：図を保存するフォルダ</li>
+<li><code>tables</code>：表を保存するフォルダ</li>
+<li><code>documents</code>：先行研究や資料を保存するフォルダ</li>
+<li><code>manuscripts</code>：原稿を保存するフォルダ</li>
+</ul></li>
 </ul>
+<p>先程保存したRスクリプトは<code>scripts</code>フォルダ内に移動しておこう．</p>
+</section>
+<section id="ファイルの場所を表示する" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="ファイルの場所を表示する"><span class="header-section-number">1.11</span> ファイルの場所を表示する</h2>
+<p><code>u001.csv</code>の場所は，<code>../R4SS/data/u001.csv</code>のようになっている． <code>here()</code>をつかって表示してみよう．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># u001.csvの場所の表示</span></span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/Users/sf/GitHub/R4SS/data/raw/u001.csv"</code></pre>
+</div>
+</div>
+</section>
+<section id="rの終了" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="rの終了"><span class="header-section-number">1.12</span> Rの終了</h2>
+<p>Rスクリプトを保存して終了すればよい．個人的には作業スペースの保存は必要ないと考えるので，Save Workspace…などとたずねられても，Noとする．<a href="#fig-save_option">Figure&nbsp;<span>1.8</span></a> で，「Restore .RData into workspace at startup」のチェックは外し，「Save Workspace to .RDta on exit:」も「Never」としておこう．</p>
+<div id="fig-save_option" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/save_option.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">図&nbsp;1.8： 保存についてのオプション</figcaption><p></p>
+</figure>
+</div>
 
 
 </section>

@@ -13,8 +13,7 @@ dir_create(here(c("scripts",           # storing all .R, .Rmd, .py files
                   "paper",             # current versions of the document
                   "notes",             # random notes
                   "documents",          # supporting documents
-                  "submitted",
-                  "docs"
+                  "submitted"
 )
 )
 )

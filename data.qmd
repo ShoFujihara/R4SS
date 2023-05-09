@@ -1,8 +1,8 @@
 # データの読み込み
 
+
 データの読み込みを行う際に`readr`と`haven`パッケージを用いる．
 `readr`パッケージのかわりに`tidyverse`パッケージを呼び出してもよい．
-
 
 ```{r}
 # パッケージの呼び出し
@@ -13,6 +13,31 @@ pacman::p_load(
   )
 ```
 
+## 使用するデータ
+
+東京大学社会科学研究所附属社会調査・データアーカイブ研究センター（the Center for Social Research and Data Archives: CSRDA）で公開されている「東大社研・若年パネル調査（JLPS-Y）wave1，2007（非制限公開疑似データ）」（調査番号：u001，寄託者：東京大学社会科学研究所パネル調査プロジェクト）を用いる．
+
+[https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/
+](https://csrda.iss.u-tokyo.ac.jp/infrastructure/urd/)
+
+
+## データの保存先
+
+
+- `R4SS`：作業ディレクトリ
+    - `data`：データを保存するフォルダ
+        - `processed`：加工したデータを保存するフォルダ
+        - `raw`：加工前の生データを保存するフォルダ
+           - `u001_readme.docx`
+           - `u001.csv`：csv形式のデータ
+           - `u001.dta`：dta形式のデータ（Stata）
+           - `u001.sav`：sav形式のデータ（SPSS）
+           - `u001c.pdf`：調査票
+    - `scripts`：Rスクリプトを保存するフォルダ
+    
+MACの画面だと @fig-folders のようになる．
+
+![RStudioの画面](figures/folders.png){#fig-folders}
 
 
 ## csvの場合

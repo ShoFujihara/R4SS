@@ -19,8 +19,8 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
 
-
-
+crossref:
+  fig-title: 図     # (default is "Figure")
+  tbl-title: 表     # (default is "Table")
+  title-delim: "："     # (default is ":")
