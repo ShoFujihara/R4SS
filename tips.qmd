@@ -1,6 +1,212 @@
-# 便利なRの機能
+# そのためメモ
 
 便利だが普段はあまりつかわないため忘れがちな点についてメモしておく．
+本テキストのどこかで扱う内容もメモする．
+
+
+## 文字列の処理
+
+```{r}
+fruit
+# 長さ
+str_length(fruit)
+# くっつける
+str_c("fruit_", fruit)
+# パターンの数
+str_count(fruit, "[a-b]")
+# パターンの発見
+str_detect(fruit, "[a-b]")
+# 繰り返す
+str_dup(letters, 5)
+# 終わる
+fruit[str_ends(fruit, "a")]
+# 同じ
+str_equal(fruit, "banana")
+# エスケープ
+str_escape("^")
+str_extract(fruit, "[a-c]")
+str_extract(fruit, "b[a-n]")
+str_extract_all(fruit, "apple", simplify = TRUE)
+
+str_detect(c("a", "."), str_escape("."))
+
+
+x <- "Hello, World!"
+str_extract_all(x, boundary("character"), simplify = TRUE)
+str_extract_all(x, boundary("line_break"), simplify = TRUE)
+str_extract_all(x, boundary("sentence"), simplify = TRUE)
+str_extract_all(x, boundary("word"), simplify = TRUE)
+
+
+str_flatten(fruit)
+str_flatten_comma(fruit)
+str_glue("I bought ", "{fruit}", " by {rnorm(length(fruit), mean = 100, sd = 10) |> format(digits = 3)} yen")
+str_glue_data()
+
+starwars |> str_glue_data("Is {height} over 100? {ifelse(height >= 100, 'Yes','No')}.")
+
+x <- c(NA,"a","b","c",NA)
+x
+str_c("fruit_", x)
+str_c("fruit_", str_replace_na(x, replacement = "DKNA"))
+
+
+str_to_lower(LETTERS)
+str_sub(fruit, 1, 1) <- str_to_upper(str_sub(fruit, 1, 1))
+fruit
+
+
+str_to_upper("gender")
+str_to_upper("全角のａ")
+
+str_to_lower("ESTSIMATE")
+str_to_lower("Ａ")
+
+str_view(fruit, "a")
+str_view(fruit, "[ae]")
+str_view(fruit, ".a.")
+
+```
+
+
+## 正規表現（regular expression）
+
+- extended regular expressions (the default)
+- Perl-like regular expressions
+- literal regular expressions
+
+メタキャラクター：`. \ | ( ) [ { ^ $ * + ?`
+
+
+```{r}
+letters
+grep("j|k", fruit)
+grep("[jk]", fruit)
+grepl("j|k", fruit)
+grepl("[jk]", fruit)
+sub("[jk]","XXXXX", fruit)
+gsub("[jk]","XXXXX", fruit)
+
+x <- "Hello World!"
+
+# 文頭
+grepl("^e", x)
+grepl("^H", x)
+grepl("^h", x)
+
+# 文末
+grepl("d$", x)
+grepl("!$", x)
+
+# いずれか
+grepl("[!]", x)
+grepl("[a]", x)
+grepl("[A-Za-z0-9]", "!!!!!")
+grepl("[A-Za-z0-9]", "99999")
+grepl("[A-Za-z0-9]", "#####")
+grepl("[A-Za-z0-9]", "####1#")
+
+# グルーピング
+grepl("(e)", x)
+grepl("(e) +(d)", x)
+grepl("(e)+(w)", x)
+grepl("(H)(e)", x)
+grepl("(H)(l)", x)
+
+
+
+grep("[e]", x)
+grepl("[e]", x)
+grepl("e", x)
+grepl("l|k", x)
+grepl("e", x)
+grepl("h", x)
+grepl(".", x)
+
+grep("[e]", letters)
+grepl("[e]", letters)
+grepl("e", letters)
+grepl("l|k", letters)
+grepl("e", letters)
+grepl("h", letters)
+grepl(".", letters)
+```
+
+```{r}
+library(tidyverse)
+starwars$name[grepl("aa|[k]", starwars$name)]
+```
+
+
+## any_of, all_of
+
+変数名をオブジェクトとして用いるときに便利．
+
+```{r}
+select_vars <- c("height", "mass")
+starwars |> select(select_vars) 
+starwars |> select(any_of(select_vars))
+```
+
+
+## map
+
+```{r}
+library(purrr)
+x <- 1:10
+sqrt(x)
+map(x, sqrt)
+map_vec(x, sqrt)
+```
+
+d <- d %>% mutate(gpa_std = (gpa_sum - mean(gpa_sum, na.rm = TRUE)) 
+  / sd(gpa_sum, na.rm = TRUE))
+
+## 部分一致
+
+`data.frame`形式であれば`$`で変数名の部分一致が利用できるが，`tibble`形式ではできない．部分一致によってエラーが生じる可能性もあるので省略せずに入力するほうが良い．
+
+
+```{r}
+library(tidyverse)
+starwars
+starwars$hei
+starwars$ha
+starwars_df <- as.data.frame(starwars) 
+starwars_df$hei
+starwars_df$ha
+```
+
+
+## 因子
+
+```{r}
+x <- c(0,1,1,1,0)
+y <- factor(x)
+y
+str(y)
+attributes(y)
+levels(y)
+as.numeric(y)
+as.numeric(as.character(y))
+```
+
+
+## 集計データを個票データに変換する
+
+```{r}
+# クロス表
+occupationalStatus
+# 集計データ
+data.frame(occupationalStatus)
+# 個票データ
+df_occupationalStatus <- vcdExtra::expand.dft(data.frame(occupationalStatus), dreq = "Freq") |> 
+  mutate(across(origin:destination, factor))
+# 
+df_occupationalStatus |> summary()
+```
+
+
 
 ## 関数の中身を確認する
 
@@ -20,3 +226,33 @@ methods(mean)
 ```{r}
 mean.default
 ```
+
+```{r}
+getAnywhere(mean.default)
+```
+
+
+```{r}
+library(DescTools)
+OddsRatio
+methods(OddsRatio)
+DescTools:::OddsRatio.default
+getAnywhere(OddsRatio.default)
+```
+
+
+## unname
+
+Cramer's Vを`chisq.test()`の結果を利用して作成する．
+その際，`unname()`によってカイ2乗統計量の名前をとる．
+
+```{r}
+occupationalStatus
+chisq.test(occupationalStatus)
+X2 <- chisq.test(occupationalStatus)$statistic |> unname()
+X2
+my_CramerV <- sqrt(X2/min(dim(occupationalStatus)-1)/sum(occupationalStatus))
+my_CramerV
+DescTools::CramerV(occupationalStatus)
+```
+

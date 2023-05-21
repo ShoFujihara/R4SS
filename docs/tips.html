@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>社会調査のためのR入門 - 6&nbsp; 便利なRの機能</title>
+<title>社会調査のためのR入門 - 6&nbsp; そのためメモ</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">便利なRの機能</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">そのためメモ</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -188,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tips.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">便利なRの機能</span></a>
+  <a href="./tips.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">そのためメモ</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,7 +205,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#関数の中身を確認する" id="toc-関数の中身を確認する" class="nav-link active" data-scroll-target="#関数の中身を確認する"><span class="toc-section-number">6.1</span>  関数の中身を確認する</a></li>
+  <li><a href="#正規表現regular-expression" id="toc-正規表現regular-expression" class="nav-link active" data-scroll-target="#正規表現regular-expression"><span class="toc-section-number">6.1</span>  正規表現（regular expression）</a></li>
+  <li><a href="#any_of-all_of" id="toc-any_of-all_of" class="nav-link" data-scroll-target="#any_of-all_of"><span class="toc-section-number">6.2</span>  any_of, all_of</a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><span class="toc-section-number">6.3</span>  map</a></li>
+  <li><a href="#部分一致" id="toc-部分一致" class="nav-link" data-scroll-target="#部分一致"><span class="toc-section-number">6.4</span>  部分一致</a></li>
+  <li><a href="#因子" id="toc-因子" class="nav-link" data-scroll-target="#因子"><span class="toc-section-number">6.5</span>  因子</a></li>
+  <li><a href="#集計データを個票データに変換する" id="toc-集計データを個票データに変換する" class="nav-link" data-scroll-target="#集計データを個票データに変換する"><span class="toc-section-number">6.6</span>  集計データを個票データに変換する</a></li>
+  <li><a href="#関数の中身を確認する" id="toc-関数の中身を確認する" class="nav-link" data-scroll-target="#関数の中身を確認する"><span class="toc-section-number">6.7</span>  関数の中身を確認する</a></li>
+  <li><a href="#unname" id="toc-unname" class="nav-link" data-scroll-target="#unname"><span class="toc-section-number">6.8</span>  unname</a></li>
   </ul>
 </nav>
     </div>
@@ -214,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">便利なRの機能</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">そのためメモ</span></h1>
 </div>
 
 
@@ -228,31 +235,668 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>便利だが普段はあまりつかわないため忘れがちな点についてメモしておく．</p>
-<section id="関数の中身を確認する" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="関数の中身を確認する"><span class="header-section-number">6.1</span> 関数の中身を確認する</h2>
+<p>便利だが普段はあまりつかわないため忘れがちな点についてメモしておく． 本テキストのどこかで扱う内容もメモする．</p>
+<section id="正規表現regular-expression" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="正規表現regular-expression"><span class="header-section-number">6.1</span> 正規表現（regular expression）</h2>
+<ul>
+<li>extended regular expressions (the default)</li>
+<li>Perl-like regular expressions</li>
+<li>literal regular expressions</li>
+</ul>
+<p>メタキャラクター - <code>. \ | ( ) [ { ^ $ * + ?</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>letters</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+[20] "t" "u" "v" "w" "x" "y" "z"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"j|k"</span>, letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"[jk]"</span>, letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(<span class="st">"j|k"</span>, letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[25] FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grepl</span>(<span class="st">"[jk]"</span>, letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[25] FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sub</span>(<span class="st">"[jk]"</span>,<span class="st">"XXXX"</span>, letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "a"    "b"    "c"    "d"    "e"    "f"    "g"    "h"    "i"    "XXXX"
+[11] "XXXX" "l"    "m"    "n"    "o"    "p"    "q"    "r"    "s"    "t"   
+[21] "u"    "v"    "w"    "x"    "y"    "z"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">"[jk]"</span>,<span class="st">"XXXX"</span>, letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "a"    "b"    "c"    "d"    "e"    "f"    "g"    "h"    "i"    "XXXX"
+[11] "XXXX" "l"    "m"    "n"    "o"    "p"    "q"    "r"    "s"    "t"   
+[21] "u"    "v"    "w"    "x"    "y"    "z"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">regexpr</span>(<span class="st">"[jk]"</span>, letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] -1 -1 -1 -1 -1 -1 -1 -1 -1  1  1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[26] -1
+attr(,"match.length")
+ [1] -1 -1 -1 -1 -1 -1 -1 -1 -1  1  1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[26] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gregexpr</span>(<span class="st">"[jk]"</span>, letters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[2]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[3]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[4]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[5]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[6]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[7]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[8]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[9]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[10]]
+[1] 1
+attr(,"match.length")
+[1] 1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[11]]
+[1] 1
+attr(,"match.length")
+[1] 1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[12]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[13]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[14]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[15]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[16]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[17]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[18]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[19]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[20]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[21]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[22]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[23]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[24]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[25]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[26]]
+[1] -1
+attr(,"match.length")
+[1] -1
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>starwars<span class="sc">$</span>name[<span class="fu">grepl</span>(<span class="st">"aa|[k]"</span>, starwars<span class="sc">$</span>name)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Luke Skywalker"        "Biggs Darklighter"     "Anakin Skywalker"     
+ [4] "Wilhuff Tarkin"        "Jek Tono Porkins"      "Bossk"                
+ [7] "Ackbar"                "Wicket Systri Warrick" "Jar Jar Binks"        
+[10] "Quarsh Panaka"         "Shmi Skywalker"        "Dooku"                
+[13] "Shaak Ti"             </code></pre>
+</div>
+</div>
+</section>
+<section id="any_of-all_of" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="any_of-all_of"><span class="header-section-number">6.2</span> any_of, all_of</h2>
+<p>変数名をオブジェクトとして用いるときに便利．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>select_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"height"</span>, <span class="st">"mass"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">select</span>(select_vars) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using an external vector in selections was deprecated in tidyselect 1.1.0.
+ℹ Please use `all_of()` or `any_of()` instead.
+  # Was:
+  data %&gt;% select(select_vars)
+
+  # Now:
+  data %&gt;% select(all_of(select_vars))
+
+See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 2
+   height  mass
+    &lt;int&gt; &lt;dbl&gt;
+ 1    172    77
+ 2    167    75
+ 3     96    32
+ 4    202   136
+ 5    150    49
+ 6    178   120
+ 7    165    75
+ 8     97    32
+ 9    183    84
+10    182    77
+# ℹ 77 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">any_of</span>(select_vars))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 2
+   height  mass
+    &lt;int&gt; &lt;dbl&gt;
+ 1    172    77
+ 2    167    75
+ 3     96    32
+ 4    202   136
+ 5    150    49
+ 6    178   120
+ 7    165    75
+ 8     97    32
+ 9    183    84
+10    182    77
+# ℹ 77 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="map" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="map"><span class="header-section-number">6.3</span> map</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
+ [9] 3.000000 3.162278</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(x, sqrt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] 1.414214
+
+[[3]]
+[1] 1.732051
+
+[[4]]
+[1] 2
+
+[[5]]
+[1] 2.236068
+
+[[6]]
+[1] 2.44949
+
+[[7]]
+[1] 2.645751
+
+[[8]]
+[1] 2.828427
+
+[[9]]
+[1] 3
+
+[[10]]
+[1] 3.162278</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_vec</span>(x, sqrt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1.000000 1.414214 1.732051 2.000000 2.236068 2.449490 2.645751 2.828427
+ [9] 3.000000 3.162278</code></pre>
+</div>
+</div>
+<p>d &lt;- d %&gt;% mutate(gpa_std = (gpa_sum - mean(gpa_sum, na.rm = TRUE)) / sd(gpa_sum, na.rm = TRUE))</p>
+</section>
+<section id="部分一致" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="部分一致"><span class="header-section-number">6.4</span> 部分一致</h2>
+<p><code>data.frame</code>形式であれば<code>$</code>で変数名の部分一致が利用できるが，<code>tibble</code>形式ではできない．部分一致によってエラーが生じる可能性もあるので省略せずに入力するほうが良い．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 87 × 14
+   name     height  mass hair_color skin_color eye_color birth_year sex   gender
+   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+ 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+ 2 C-3PO       167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+ 3 R2-D2        96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+ 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+ 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+ 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+ 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+ 8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…
+ 9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+# ℹ 77 more rows
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>starwars<span class="sc">$</span>hei</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Unknown or uninitialised column: `hei`.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>starwars<span class="sc">$</span>ha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Unknown or uninitialised column: `ha`.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>starwars_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(starwars) </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>starwars_df<span class="sc">$</span>hei</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 172 167  96 202 150 178 165  97 183 182 188 180 228 180 173 175 170 180  66
+[20] 170 183 200 190 177 175 180 150  NA  88 160 193 191 170 196 224 206 183 137
+[39] 112 183 163 175 180 178  94 122 163 188 198 196 171 184 188 264 188 196 185
+[58] 157 183 183 170 166 165 193 191 183 168 198 229 213 167  79  96 193 191 178
+[77] 216 234 188 178 206  NA  NA  NA  NA  NA 165</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>starwars_df<span class="sc">$</span>ha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "blond"         NA              NA              "none"         
+ [5] "brown"         "brown, grey"   "brown"         NA             
+ [9] "black"         "auburn, white" "blond"         "auburn, grey" 
+[13] "brown"         "brown"         NA              NA             
+[17] "brown"         "brown"         "white"         "grey"         
+[21] "black"         "none"          "none"          "black"        
+[25] "none"          "none"          "auburn"        "brown"        
+[29] "brown"         "none"          "brown"         "none"         
+[33] "blond"         "none"          "none"          "none"         
+[37] "brown"         "black"         "none"          "black"        
+[41] "black"         "none"          "none"          "none"         
+[45] "none"          "none"          "none"          "none"         
+[49] "white"         "none"          "black"         "none"         
+[53] "none"          "none"          "none"          "none"         
+[57] "black"         "brown"         "brown"         "none"         
+[61] "black"         "black"         "brown"         "white"        
+[65] "black"         "black"         "blonde"        "none"         
+[69] "none"          "none"          "white"         "none"         
+[73] "none"          "none"          "none"          "none"         
+[77] "none"          "brown"         "brown"         "none"         
+[81] "none"          "black"         "brown"         "brown"        
+[85] "none"          "unknown"       "brown"        </code></pre>
+</div>
+</div>
+</section>
+<section id="因子" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="因子"><span class="header-section-number">6.5</span> 因子</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">factor</span>(x)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1 1 1 0
+Levels: 0 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Factor w/ 2 levels "0","1": 1 2 2 2 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$levels
+[1] "0" "1"
+
+$class
+[1] "factor"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "0" "1"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 2 2 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.character</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1 1 1 0</code></pre>
+</div>
+</div>
+</section>
+<section id="集計データを個票データに変換する" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="集計データを個票データに変換する"><span class="header-section-number">6.6</span> 集計データを個票データに変換する</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># クロス表</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>occupationalStatus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      destination
+origin   1   2   3   4   5   6   7   8
+     1  50  19  26   8   7  11   6   2
+     2  16  40  34  18  11  20   8   3
+     3  12  35  65  66  35  88  23  21
+     4  11  20  58 110  40 183  64  32
+     5   2   8  12  23  25  46  28  12
+     6  12  28 102 162  90 554 230 177
+     7   0   6  19  40  21 158 143  71
+     8   0   3  14  32  15 126  91 106</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 集計データ</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(occupationalStatus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   origin destination Freq
+1       1           1   50
+2       2           1   16
+3       3           1   12
+4       4           1   11
+5       5           1    2
+6       6           1   12
+7       7           1    0
+8       8           1    0
+9       1           2   19
+10      2           2   40
+11      3           2   35
+12      4           2   20
+13      5           2    8
+14      6           2   28
+15      7           2    6
+16      8           2    3
+17      1           3   26
+18      2           3   34
+19      3           3   65
+20      4           3   58
+21      5           3   12
+22      6           3  102
+23      7           3   19
+24      8           3   14
+25      1           4    8
+26      2           4   18
+27      3           4   66
+28      4           4  110
+29      5           4   23
+30      6           4  162
+31      7           4   40
+32      8           4   32
+33      1           5    7
+34      2           5   11
+35      3           5   35
+36      4           5   40
+37      5           5   25
+38      6           5   90
+39      7           5   21
+40      8           5   15
+41      1           6   11
+42      2           6   20
+43      3           6   88
+44      4           6  183
+45      5           6   46
+46      6           6  554
+47      7           6  158
+48      8           6  126
+49      1           7    6
+50      2           7    8
+51      3           7   23
+52      4           7   64
+53      5           7   28
+54      6           7  230
+55      7           7  143
+56      8           7   91
+57      1           8    2
+58      2           8    3
+59      3           8   21
+60      4           8   32
+61      5           8   12
+62      6           8  177
+63      7           8   71
+64      8           8  106</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 個票データ</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>df_occupationalStatus <span class="ot">&lt;-</span> vcdExtra<span class="sc">::</span><span class="fu">expand.dft</span>(<span class="fu">data.frame</span>(occupationalStatus), <span class="at">dreq =</span> <span class="st">"Freq"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(origin<span class="sc">:</span>destination, factor))</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>df_occupationalStatus <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     origin      destination  
+ 6      :1355   6      :1186  
+ 4      : 518   7      : 593  
+ 7      : 458   4      : 459  
+ 8      : 387   8      : 424  
+ 3      : 345   3      : 330  
+ 5      : 156   5      : 244  
+ (Other): 279   (Other): 262  </code></pre>
+</div>
+</div>
+</section>
+<section id="関数の中身を確認する" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="関数の中身を確認する"><span class="header-section-number">6.7</span> 関数の中身を確認する</h2>
 <p><code>mean()</code>関数がどのようにして作成されているのかを確認したい場合，<code>mean</code>のように<code>()</code>をとって入力すればよい．しかし，<code>UseMethod("mean")</code>のように関数が表示され，中身を確認できない場合もある．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x10790e9d0&gt;
+&lt;bytecode: 0x12eafe8e8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
 <p>このような場合は，<code>methods()</code>関数を用いるとよい</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] mean.Date*     mean.default*  mean.difftime* mean.POSIXct*  mean.POSIXlt* 
-[6] mean.quosure* 
+<pre><code> [1] mean,ANY-method          mean,Matrix-method       mean,sparseMatrix-method
+ [4] mean,sparseVector-method mean.Date*               mean.default*           
+ [7] mean.difftime*           mean.POSIXct*            mean.POSIXlt*           
+[10] mean.quosure*            mean.vctrs_vctr*         mean.yearmon*           
+[13] mean.yearqtr*            mean.zoo*               
 see '?methods' for accessing help and source code</code></pre>
 </div>
 </div>
 <p>様々な結果が示されるがここでは，2めの要素にある<code>mean.default*</code>を確認しよう．<code>*</code>をとって<code>mean.default</code>と入力するだけでよい．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mean.default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>mean.default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, trim = 0, na.rm = FALSE, ...) 
 {
@@ -278,8 +922,263 @@ see '?methods' for accessing help and source code</code></pre>
     }
     .Internal(mean(x))
 }
-&lt;bytecode: 0x10e129778&gt;
+&lt;bytecode: 0x119711518&gt;
 &lt;environment: namespace:base&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getAnywhere</span>(mean.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A single object matching 'mean.default' was found
+It was found in the following places
+  package:base
+  registered S3 method for mean from namespace base
+  namespace:base
+with value
+
+function (x, trim = 0, na.rm = FALSE, ...) 
+{
+    if (!is.numeric(x) &amp;&amp; !is.complex(x) &amp;&amp; !is.logical(x)) {
+        warning("argument is not numeric or logical: returning NA")
+        return(NA_real_)
+    }
+    if (isTRUE(na.rm)) 
+        x &lt;- x[!is.na(x)]
+    if (!is.numeric(trim) || length(trim) != 1L) 
+        stop("'trim' must be numeric of length one")
+    n &lt;- length(x)
+    if (trim &gt; 0 &amp;&amp; n) {
+        if (is.complex(x)) 
+            stop("trimmed means are not defined for complex data")
+        if (anyNA(x)) 
+            return(NA_real_)
+        if (trim &gt;= 0.5) 
+            return(stats::median(x, na.rm = FALSE))
+        lo &lt;- floor(n * trim) + 1
+        hi &lt;- n + 1 - lo
+        x &lt;- sort.int(x, partial = unique(c(lo, hi)))[lo:hi]
+    }
+    .Internal(mean(x))
+}
+&lt;bytecode: 0x119711518&gt;
+&lt;environment: namespace:base&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>OddsRatio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function (x, conf.level = NULL, ...) 
+{
+    UseMethod("OddsRatio")
+}
+&lt;bytecode: 0x139b96810&gt;
+&lt;environment: namespace:DescTools&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(OddsRatio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] OddsRatio.default*  OddsRatio.glm*      OddsRatio.multinom*
+[4] OddsRatio.zeroinfl*
+see '?methods' for accessing help and source code</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>DescTools<span class="sc">:::</span>OddsRatio.default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function (x, conf.level = NULL, y = NULL, method = c("wald", 
+    "mle", "midp"), interval = c(0, 1000), ...) 
+{
+    if (!is.null(y)) 
+        x &lt;- table(x, y, ...)
+    if (is.null(conf.level)) 
+        conf.level &lt;- NA
+    p &lt;- (d &lt;- dim(x))[1L]
+    if (!is.numeric(x) || length(d) != 2L || p != d[2L] || p != 
+        2L) 
+        stop("'x' is not a 2x2 numeric matrix")
+    switch(match.arg(arg = method, choices = c("wald", "mle", 
+        "midp")), wald = {
+        if (any(x == 0)) x &lt;- x + 0.5
+        lx &lt;- log(x)
+        or &lt;- exp(lx[1, 1] + lx[2, 2] - lx[1, 2] - lx[2, 1])
+        if (is.na(conf.level)) {
+            res &lt;- or
+        } else {
+            sigma2lor &lt;- sum(1/x)
+            ci &lt;- or * exp(c(1, -1) * qnorm((1 - conf.level)/2) * 
+                sqrt(sigma2lor))
+            res &lt;- c(`odds ratio` = or, lwr.ci = ci[1], upr.ci = ci[2])
+        }
+    }, mle = {
+        if (is.na(conf.level)) {
+            res &lt;- unname(fisher.test(x, conf.int = FALSE)$estimate)
+        } else {
+            res &lt;- fisher.test(x, conf.level = conf.level)
+            res &lt;- c(res$estimate, lwr.ci = res$conf.int[1], 
+                upr.ci = res$conf.int[2])
+        }
+    }, midp = {
+        a1 &lt;- x[1, 1]
+        a0 &lt;- x[1, 2]
+        b1 &lt;- x[2, 1]
+        b0 &lt;- x[2, 2]
+        or &lt;- 1
+        mue &lt;- function(a1, a0, b1, b0, or) {
+            mm &lt;- matrix(c(a1, a0, b1, b0), 2, 2, byrow = TRUE)
+            fisher.test(mm, or = or, alternative = "l")$p - fisher.test(x = x, 
+                or = or, alternative = "g")$p
+        }
+        midp &lt;- function(a1, a0, b1, b0, or = 1) {
+            mm &lt;- matrix(c(a1, a0, b1, b0), 2, 2, byrow = TRUE)
+            lteqtoa1 &lt;- fisher.test(mm, or = or, alternative = "l")$p.val
+            gteqtoa1 &lt;- fisher.test(mm, or = or, alternative = "g")$p.val
+            0.5 * (lteqtoa1 - gteqtoa1 + 1)
+        }
+        EST &lt;- uniroot(function(or) {
+            mue(a1, a0, b1, b0, or)
+        }, interval = interval)$root
+        if (is.na(conf.level)) {
+            res &lt;- EST
+        } else {
+            alpha &lt;- 1 - conf.level
+            LCL &lt;- uniroot(function(or) {
+                1 - midp(a1, a0, b1, b0, or) - alpha/2
+            }, interval = interval)$root
+            UCL &lt;- 1/uniroot(function(or) {
+                midp(a1, a0, b1, b0, or = 1/or) - alpha/2
+            }, interval = interval)$root
+            res &lt;- c(`odds ratio` = EST, lwr.ci = LCL, upr.ci = UCL)
+        }
+    })
+    return(res)
+}
+&lt;bytecode: 0x11b986728&gt;
+&lt;environment: namespace:DescTools&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getAnywhere</span>(OddsRatio.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A single object matching 'OddsRatio.default' was found
+It was found in the following places
+  registered S3 method for OddsRatio from namespace DescTools
+  namespace:DescTools
+with value
+
+function (x, conf.level = NULL, y = NULL, method = c("wald", 
+    "mle", "midp"), interval = c(0, 1000), ...) 
+{
+    if (!is.null(y)) 
+        x &lt;- table(x, y, ...)
+    if (is.null(conf.level)) 
+        conf.level &lt;- NA
+    p &lt;- (d &lt;- dim(x))[1L]
+    if (!is.numeric(x) || length(d) != 2L || p != d[2L] || p != 
+        2L) 
+        stop("'x' is not a 2x2 numeric matrix")
+    switch(match.arg(arg = method, choices = c("wald", "mle", 
+        "midp")), wald = {
+        if (any(x == 0)) x &lt;- x + 0.5
+        lx &lt;- log(x)
+        or &lt;- exp(lx[1, 1] + lx[2, 2] - lx[1, 2] - lx[2, 1])
+        if (is.na(conf.level)) {
+            res &lt;- or
+        } else {
+            sigma2lor &lt;- sum(1/x)
+            ci &lt;- or * exp(c(1, -1) * qnorm((1 - conf.level)/2) * 
+                sqrt(sigma2lor))
+            res &lt;- c(`odds ratio` = or, lwr.ci = ci[1], upr.ci = ci[2])
+        }
+    }, mle = {
+        if (is.na(conf.level)) {
+            res &lt;- unname(fisher.test(x, conf.int = FALSE)$estimate)
+        } else {
+            res &lt;- fisher.test(x, conf.level = conf.level)
+            res &lt;- c(res$estimate, lwr.ci = res$conf.int[1], 
+                upr.ci = res$conf.int[2])
+        }
+    }, midp = {
+        a1 &lt;- x[1, 1]
+        a0 &lt;- x[1, 2]
+        b1 &lt;- x[2, 1]
+        b0 &lt;- x[2, 2]
+        or &lt;- 1
+        mue &lt;- function(a1, a0, b1, b0, or) {
+            mm &lt;- matrix(c(a1, a0, b1, b0), 2, 2, byrow = TRUE)
+            fisher.test(mm, or = or, alternative = "l")$p - fisher.test(x = x, 
+                or = or, alternative = "g")$p
+        }
+        midp &lt;- function(a1, a0, b1, b0, or = 1) {
+            mm &lt;- matrix(c(a1, a0, b1, b0), 2, 2, byrow = TRUE)
+            lteqtoa1 &lt;- fisher.test(mm, or = or, alternative = "l")$p.val
+            gteqtoa1 &lt;- fisher.test(mm, or = or, alternative = "g")$p.val
+            0.5 * (lteqtoa1 - gteqtoa1 + 1)
+        }
+        EST &lt;- uniroot(function(or) {
+            mue(a1, a0, b1, b0, or)
+        }, interval = interval)$root
+        if (is.na(conf.level)) {
+            res &lt;- EST
+        } else {
+            alpha &lt;- 1 - conf.level
+            LCL &lt;- uniroot(function(or) {
+                1 - midp(a1, a0, b1, b0, or) - alpha/2
+            }, interval = interval)$root
+            UCL &lt;- 1/uniroot(function(or) {
+                midp(a1, a0, b1, b0, or = 1/or) - alpha/2
+            }, interval = interval)$root
+            res &lt;- c(`odds ratio` = EST, lwr.ci = LCL, upr.ci = UCL)
+        }
+    })
+    return(res)
+}
+&lt;bytecode: 0x11b986728&gt;
+&lt;environment: namespace:DescTools&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="unname" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="unname"><span class="header-section-number">6.8</span> unname</h2>
+<p>Cramer’s Vを<code>chisq.test()</code>の結果を利用して作成する． その際，<code>unname()</code>によってカイ2乗統計量の名前をとる．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>occupationalStatus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      destination
+origin   1   2   3   4   5   6   7   8
+     1  50  19  26   8   7  11   6   2
+     2  16  40  34  18  11  20   8   3
+     3  12  35  65  66  35  88  23  21
+     4  11  20  58 110  40 183  64  32
+     5   2   8  12  23  25  46  28  12
+     6  12  28 102 162  90 554 230 177
+     7   0   6  19  40  21 158 143  71
+     8   0   3  14  32  15 126  91 106</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(occupationalStatus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in chisq.test(occupationalStatus): Chi-squared approximation may be
+incorrect</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  occupationalStatus
+X-squared = 1416, df = 49, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>X2 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(occupationalStatus)<span class="sc">$</span>statistic <span class="sc">|&gt;</span> <span class="fu">unname</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in chisq.test(occupationalStatus): Chi-squared approximation may be
+incorrect</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>X2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1416.04</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>my_CramerV <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(X2<span class="sc">/</span><span class="fu">min</span>(<span class="fu">dim</span>(occupationalStatus)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">/</span><span class="fu">sum</span>(occupationalStatus))</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>my_CramerV</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2404799</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>DescTools<span class="sc">::</span><span class="fu">CramerV</span>(occupationalStatus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2404799</code></pre>
 </div>
 </div>
 
