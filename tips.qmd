@@ -65,7 +65,20 @@ str_to_lower("Ａ")
 str_view(fruit, "a")
 str_view(fruit, "[ae]")
 str_view(fruit, ".a.")
+str_view(fruit, "^A")
+str_view(fruit, "a$")
+str_view(fruit, ".a.|.b.")
+```
 
+
+```{r}
+str_view(words, "^y")
+str_view(words, "x$")
+str_view(words, "^...$")
+str_view(words, "^*.......*$")
+str_view(words, "[^a-u]")
+str_view(words, "a|b")
+str_view(words, "(a|b)")
 ```
 
 
