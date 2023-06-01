@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="藤原翔（東京大学社会科学研究所）">
-<meta name="dcterms.date" content="2023-05-10">
+<meta name="dcterms.date" content="2023-05-28">
 
 <title>社会調査のためのR入門</title>
 <style>
@@ -126,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tips.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">便利なRの機能</span></a>
+  <a href="./tips.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">そのためメモ</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -173,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 10, 2023</p>
+      <p class="date">May 28, 2023</p>
     </div>
   </div>
     
@@ -191,12 +191,13 @@ ul.task-list li input[type="checkbox"] {
 <p>研究や授業でRを使用することが多くなったため，メモとしてこの資料を作成しましたが，せっかくなので公開します．</p>
 <p>基本的には社会調査データの分析を前提とした統計手法や例を用います．データは実際に行われた社会調査のデータをもとに作成されたものを利用します．</p>
 <p>プログラミング初心者でRの操作にもそもそも不慣れな筆者だからこそ，初学者に分かりやすく伝えられる部分もあるかもしれません．</p>
-<p>もちろん簡単なRの操作だけで終わるのはもったいないです． 様々なRの機能をフル活用することで，良い分析や図示などが可能になります．</p>
+<p>もちろん簡単なRの操作だけで終わるのはもったいないです． 様々なRの機能をフル活用することで，良い分析や図示などが可能になります． Rによって美しくインパクトのある図を描くことや最先端のモデルを用いた分析が可能です．</p>
+<p>データ図示（Data Visualization）は規則性やパターンを確かめたり発見したりするための重要な方法です．</p>
 </section>
 <section id="表記上の注意" class="level2">
 <h2 class="anchored" data-anchor-id="表記上の注意">表記上の注意</h2>
-<p>パッケージについては<code>パッケージ名</code>パッケージ， 関数については<code>関数名()</code>関数と示す．例えば<code>tidyverse</code>というパッケージは<code>tidyverse</code>パッケージ， <code>summarise</code>という関数は<code>summarise()</code>関数と示す． 特定のパッケージの関数であることを明記するために<code>パッケージ名::関数名()</code>関数とすることもある．例えば<code>dplyr::summarise()</code>関数と示す．</p>
-<p>その他，オブジェクトなどはaではなく<code>a</code>のように示す．</p>
+<p>パッケージについては<code>パッケージ名</code>パッケージ， 関数については関数の名前の後に丸括弧をつけて，<code>関数名()</code>関数と示す．例えば<code>tidyverse</code>というパッケージは<code>tidyverse</code>パッケージ， <code>summarise</code>という関数は<code>summarise()</code>関数と示す． 特定のパッケージの関数であることを明記するために<code>パッケージ名::関数名()</code>関数とすることもある．例えば<code>dplyr::summarise()</code>関数と示す．</p>
+<p>その他，オブジェクトなどはaやGSS7402ではなく<code>a</code>や<code>GSS7402</code>のように示す．括弧は必要ない．</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

@@ -7,6 +7,11 @@
 ## 文字列の処理
 
 ```{r}
+library(tidyverse)
+library(stringr)
+```
+
+```{r}
 fruit
 # 長さ
 str_length(fruit)
@@ -41,7 +46,6 @@ str_extract_all(x, boundary("word"), simplify = TRUE)
 str_flatten(fruit)
 str_flatten_comma(fruit)
 str_glue("I bought ", "{fruit}", " by {rnorm(length(fruit), mean = 100, sd = 10) |> format(digits = 3)} yen")
-str_glue_data()
 
 starwars |> str_glue_data("Is {height} over 100? {ifelse(height >= 100, 'Yes','No')}.")
 
