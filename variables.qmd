@@ -89,5 +89,10 @@ d |> pull(ybirth)
 d |> filter(ybirth == 1981)
 ```
 
+## 変数名のクリーニング
+
+```{r}
+#janitor::clean_names()
+```
 
 
