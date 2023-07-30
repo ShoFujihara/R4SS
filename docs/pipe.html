@@ -311,47 +311,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(x) <span class="fu">list</span>(<span class="fu">mean</span>(x), <span class="fu">sd</span>(x), <span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="fu">length</span>(x)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(x) <span class="fu">list</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(x), <span class="at">SD =</span> <span class="fu">sd</span>(x), <span class="at">Min =</span> <span class="fu">min</span>(x), <span class="at">Max =</span> <span class="fu">max</span>(x), <span class="at">n =</span> <span class="fu">length</span>(x)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
+<pre><code>$Mean
 [1] 50.5
 
-[[2]]
+$SD
 [1] 29.01149
 
-[[3]]
+$Min
 [1] 1
 
-[[4]]
+$Max
 [1] 100
 
-[[5]]
+$n
 [1] 100</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(x) <span class="fu">list</span>(<span class="fu">mean</span>(x)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(x) <span class="fu">list</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(x)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
+<pre><code>$Mean
 [1] 50.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(x) <span class="fu">c</span>(<span class="fu">mean</span>(x), <span class="fu">sd</span>(x), <span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="fu">length</span>(x)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(x) <span class="fu">c</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(x), <span class="at">SD =</span> <span class="fu">sd</span>(x), <span class="at">Min =</span> <span class="fu">min</span>(x), <span class="at">Max =</span> <span class="fu">max</span>(x), <span class="at">n =</span> <span class="fu">length</span>(x)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  50.50000  29.01149   1.00000 100.00000 100.00000</code></pre>
+<pre><code>     Mean        SD       Min       Max         n 
+ 50.50000  29.01149   1.00000 100.00000 100.00000 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(x) <span class="fu">list</span>(<span class="fu">mean</span>(x), <span class="fu">sd</span>(x), <span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="fu">length</span>(x)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(x) <span class="fu">list</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(x), <span class="at">SD =</span> <span class="fu">sd</span>(x), <span class="at">Min =</span> <span class="fu">min</span>(x), <span class="at">Max =</span> <span class="fu">max</span>(x), <span class="at">n =</span> <span class="fu">length</span>(x)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
+<pre><code>$Mean
 [1] 50.5
 
-[[2]]
+$SD
 [1] 29.01149
 
-[[3]]
+$Min
 [1] 1
 
-[[4]]
+$Max
 [1] 100
 
-[[5]]
+$n
 [1] 100</code></pre>
 </div>
 </div>
@@ -369,47 +370,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 50.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(.) <span class="fu">list</span>(<span class="fu">mean</span>(.), <span class="fu">sd</span>(.), <span class="fu">min</span>(.), <span class="fu">max</span>(.), <span class="fu">length</span>(.)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(.) <span class="fu">list</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(.), <span class="at">SD =</span> <span class="fu">sd</span>(.), <span class="at">Min =</span> <span class="fu">min</span>(.), <span class="at">Max =</span> <span class="fu">max</span>(.), <span class="at">n =</span> <span class="fu">length</span>(.)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
+<pre><code>$Mean
 [1] 50.5
 
-[[2]]
+$SD
 [1] 29.01149
 
-[[3]]
+$Min
 [1] 1
 
-[[4]]
+$Max
 [1] 100
 
-[[5]]
+$n
 [1] 100</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(.) <span class="fu">list</span>(<span class="fu">mean</span>(.)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(.) <span class="fu">list</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(.)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
+<pre><code>$Mean
 [1] 50.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(.) <span class="fu">c</span>(<span class="fu">mean</span>(.), <span class="fu">sd</span>(.), <span class="fu">min</span>(.), <span class="fu">max</span>(.), <span class="fu">length</span>(.)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(.) <span class="fu">c</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(.), <span class="at">SD =</span> <span class="fu">sd</span>(.), <span class="at">Min =</span> <span class="fu">min</span>(.), <span class="at">Max =</span> <span class="fu">max</span>(.), <span class="at">n =</span> <span class="fu">length</span>(.)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  50.50000  29.01149   1.00000 100.00000 100.00000</code></pre>
+<pre><code>     Mean        SD       Min       Max         n 
+ 50.50000  29.01149   1.00000 100.00000 100.00000 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(.) <span class="fu">list</span>(<span class="fu">mean</span>(.), <span class="fu">sd</span>(.), <span class="fu">min</span>(.), <span class="fu">max</span>(.), <span class="fu">length</span>(.)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">|&gt;</span> (\(.) <span class="fu">list</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(.), <span class="at">SD =</span> <span class="fu">sd</span>(.), <span class="at">Min =</span> <span class="fu">min</span>(.), <span class="at">Max =</span> <span class="fu">max</span>(.), <span class="at">n =</span> <span class="fu">length</span>(.)))()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
+<pre><code>$Mean
 [1] 50.5
 
-[[2]]
+$SD
 [1] 29.01149
 
-[[3]]
+$Min
 [1] 1
 
-[[4]]
+$Max
 [1] 100
 
-[[5]]
+$n
 [1] 100</code></pre>
 </div>
 </div>
