@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>社会調査のためのR入門 - 6&nbsp; そのためメモ</title>
+<title>社会調査のためのR入門 - 7&nbsp; その他メモ</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">そのためメモ</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">その他メモ</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -183,12 +183,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quarto</span></a>
+  <a href="./ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ggplot入門</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tips.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">そのためメモ</span></a>
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tips.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">その他メモ</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,15 +210,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#文字列の処理" id="toc-文字列の処理" class="nav-link active" data-scroll-target="#文字列の処理"><span class="toc-section-number">6.1</span>  文字列の処理</a></li>
-  <li><a href="#正規表現regular-expression" id="toc-正規表現regular-expression" class="nav-link" data-scroll-target="#正規表現regular-expression"><span class="toc-section-number">6.2</span>  正規表現（regular expression）</a></li>
-  <li><a href="#any_of-all_of" id="toc-any_of-all_of" class="nav-link" data-scroll-target="#any_of-all_of"><span class="toc-section-number">6.3</span>  any_of, all_of</a></li>
-  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><span class="toc-section-number">6.4</span>  map</a></li>
-  <li><a href="#部分一致" id="toc-部分一致" class="nav-link" data-scroll-target="#部分一致"><span class="toc-section-number">6.5</span>  部分一致</a></li>
-  <li><a href="#因子" id="toc-因子" class="nav-link" data-scroll-target="#因子"><span class="toc-section-number">6.6</span>  因子</a></li>
-  <li><a href="#集計データを個票データに変換する" id="toc-集計データを個票データに変換する" class="nav-link" data-scroll-target="#集計データを個票データに変換する"><span class="toc-section-number">6.7</span>  集計データを個票データに変換する</a></li>
-  <li><a href="#関数の中身を確認する" id="toc-関数の中身を確認する" class="nav-link" data-scroll-target="#関数の中身を確認する"><span class="toc-section-number">6.8</span>  関数の中身を確認する</a></li>
-  <li><a href="#unname" id="toc-unname" class="nav-link" data-scroll-target="#unname"><span class="toc-section-number">6.9</span>  unname</a></li>
+  <li><a href="#文字列の処理" id="toc-文字列の処理" class="nav-link active" data-scroll-target="#文字列の処理"><span class="toc-section-number">7.1</span>  文字列の処理</a></li>
+  <li><a href="#正規表現regular-expression" id="toc-正規表現regular-expression" class="nav-link" data-scroll-target="#正規表現regular-expression"><span class="toc-section-number">7.2</span>  正規表現（regular expression）</a></li>
+  <li><a href="#any_of-all_of" id="toc-any_of-all_of" class="nav-link" data-scroll-target="#any_of-all_of"><span class="toc-section-number">7.3</span>  any_of, all_of</a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><span class="toc-section-number">7.4</span>  map</a></li>
+  <li><a href="#部分一致" id="toc-部分一致" class="nav-link" data-scroll-target="#部分一致"><span class="toc-section-number">7.5</span>  部分一致</a></li>
+  <li><a href="#因子" id="toc-因子" class="nav-link" data-scroll-target="#因子"><span class="toc-section-number">7.6</span>  因子</a></li>
+  <li><a href="#集計データを個票データに変換する" id="toc-集計データを個票データに変換する" class="nav-link" data-scroll-target="#集計データを個票データに変換する"><span class="toc-section-number">7.7</span>  集計データを個票データに変換する</a></li>
+  <li><a href="#関数の中身を確認する" id="toc-関数の中身を確認する" class="nav-link" data-scroll-target="#関数の中身を確認する"><span class="toc-section-number">7.8</span>  関数の中身を確認する</a></li>
+  <li><a href="#unname" id="toc-unname" class="nav-link" data-scroll-target="#unname"><span class="toc-section-number">7.9</span>  unname</a></li>
   </ul>
 </nav>
     </div>
@@ -222,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">そのためメモ</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">その他メモ</span></h1>
 </div>
 
 
@@ -237,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>便利だが普段はあまりつかわないため忘れがちな点についてメモしておく． 本テキストのどこかで扱う内容もメモする．</p>
-<section id="文字列の処理" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="文字列の処理"><span class="header-section-number">6.1</span> 文字列の処理</h2>
+<section id="文字列の処理" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="文字列の処理"><span class="header-section-number">7.1</span> 文字列の処理</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -520,86 +525,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_glue</span>(<span class="st">"I bought "</span>, <span class="st">"{fruit}"</span>, <span class="st">" by {rnorm(length(fruit), mean = 100, sd = 10) |&gt; format(digits = 3)} yen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>I bought apple by  87.1 yen
-I bought apricot by  88.4 yen
-I bought avocado by  83.5 yen
-I bought banana by 111.3 yen
-I bought bell pepper by 106.1 yen
-I bought bilberry by 105.3 yen
-I bought blackberry by  93.2 yen
-I bought blackcurrant by  79.7 yen
-I bought blood orange by 112.1 yen
-I bought blueberry by  96.3 yen
-I bought boysenberry by 105.4 yen
-I bought breadfruit by  91.7 yen
-I bought canary melon by  81.8 yen
-I bought cantaloupe by  91.8 yen
-I bought cherimoya by 102.6 yen
-I bought cherry by  90.0 yen
-I bought chili pepper by  92.9 yen
-I bought clementine by  96.1 yen
-I bought cloudberry by  83.7 yen
-I bought coconut by 120.4 yen
-I bought cranberry by 114.3 yen
-I bought cucumber by  93.6 yen
-I bought currant by 101.0 yen
-I bought damson by 101.1 yen
-I bought date by  97.4 yen
-I bought dragonfruit by  98.8 yen
-I bought durian by 122.3 yen
-I bought eggplant by  96.3 yen
-I bought elderberry by 114.6 yen
-I bought feijoa by  97.6 yen
-I bought fig by 111.3 yen
-I bought goji berry by 117.4 yen
-I bought gooseberry by  79.7 yen
-I bought grape by 101.6 yen
-I bought grapefruit by 102.7 yen
-I bought guava by 106.6 yen
-I bought honeydew by 109.9 yen
-I bought huckleberry by 102.3 yen
-I bought jackfruit by 106.9 yen
-I bought jambul by  90.5 yen
-I bought jujube by 100.0 yen
-I bought kiwi fruit by  89.5 yen
-I bought kumquat by  97.6 yen
-I bought lemon by  99.6 yen
-I bought lime by 105.1 yen
-I bought loquat by  96.5 yen
-I bought lychee by 109.9 yen
-I bought mandarine by 117.0 yen
-I bought mango by 100.1 yen
-I bought mulberry by  84.8 yen
-I bought nectarine by 105.2 yen
-I bought nut by 101.2 yen
-I bought olive by  93.7 yen
-I bought orange by  94.3 yen
-I bought pamelo by 100.2 yen
-I bought papaya by  93.0 yen
-I bought passionfruit by 104.0 yen
-I bought peach by 106.4 yen
-I bought pear by  97.8 yen
-I bought persimmon by 101.9 yen
-I bought physalis by  99.0 yen
-I bought pineapple by 102.6 yen
-I bought plum by  83.5 yen
-I bought pomegranate by  99.8 yen
-I bought pomelo by 100.9 yen
-I bought purple mangosteen by 104.7 yen
-I bought quince by 105.6 yen
-I bought raisin by  84.4 yen
-I bought rambutan by 101.2 yen
-I bought raspberry by 110.8 yen
-I bought redcurrant by 114.6 yen
-I bought rock melon by  94.2 yen
-I bought salal berry by 116.3 yen
-I bought satsuma by 116.1 yen
-I bought star fruit by 101.4 yen
-I bought strawberry by  92.3 yen
-I bought tamarillo by  99.0 yen
-I bought tangerine by 101.0 yen
-I bought ugli fruit by 109.5 yen
-I bought watermelon by  84.1 yen</code></pre>
+<pre><code>I bought apple by  90.2 yen
+I bought apricot by  92.7 yen
+I bought avocado by  73.7 yen
+I bought banana by  97.2 yen
+I bought bell pepper by 102.6 yen
+I bought bilberry by 117.3 yen
+I bought blackberry by 118.3 yen
+I bought blackcurrant by  98.3 yen
+I bought blood orange by 104.6 yen
+I bought blueberry by 101.8 yen
+I bought boysenberry by 101.9 yen
+I bought breadfruit by  99.0 yen
+I bought canary melon by  95.0 yen
+I bought cantaloupe by  90.9 yen
+I bought cherimoya by  86.2 yen
+I bought cherry by 101.5 yen
+I bought chili pepper by  86.6 yen
+I bought clementine by  95.8 yen
+I bought cloudberry by  83.2 yen
+I bought coconut by 103.6 yen
+I bought cranberry by  88.3 yen
+I bought cucumber by  97.6 yen
+I bought currant by  99.1 yen
+I bought damson by 106.2 yen
+I bought date by  77.6 yen
+I bought dragonfruit by 110.4 yen
+I bought durian by  92.0 yen
+I bought eggplant by 102.2 yen
+I bought elderberry by  95.3 yen
+I bought feijoa by 104.8 yen
+I bought fig by  94.7 yen
+I bought goji berry by 105.5 yen
+I bought gooseberry by  97.8 yen
+I bought grape by 109.0 yen
+I bought grapefruit by  96.5 yen
+I bought guava by 103.1 yen
+I bought honeydew by 104.5 yen
+I bought huckleberry by 105.7 yen
+I bought jackfruit by 101.7 yen
+I bought jambul by  93.4 yen
+I bought jujube by  91.3 yen
+I bought kiwi fruit by 101.3 yen
+I bought kumquat by  91.7 yen
+I bought lemon by 103.5 yen
+I bought lime by  96.1 yen
+I bought loquat by  89.4 yen
+I bought lychee by  88.1 yen
+I bought mandarine by 106.6 yen
+I bought mango by 111.8 yen
+I bought mulberry by 100.0 yen
+I bought nectarine by  92.8 yen
+I bought nut by  97.1 yen
+I bought olive by 101.4 yen
+I bought orange by  96.4 yen
+I bought pamelo by  90.7 yen
+I bought papaya by 102.5 yen
+I bought passionfruit by 103.1 yen
+I bought peach by 100.7 yen
+I bought pear by 108.8 yen
+I bought persimmon by 100.8 yen
+I bought physalis by 104.1 yen
+I bought pineapple by 110.3 yen
+I bought plum by  91.1 yen
+I bought pomegranate by  96.6 yen
+I bought pomelo by  75.1 yen
+I bought purple mangosteen by 112.2 yen
+I bought quince by  97.8 yen
+I bought raisin by  93.3 yen
+I bought rambutan by  86.0 yen
+I bought raspberry by 108.2 yen
+I bought redcurrant by 106.1 yen
+I bought rock melon by 100.5 yen
+I bought salal berry by  75.5 yen
+I bought satsuma by  98.6 yen
+I bought star fruit by 102.5 yen
+I bought strawberry by 113.2 yen
+I bought tamarillo by  94.9 yen
+I bought tangerine by  95.5 yen
+I bought ugli fruit by  92.1 yen
+I bought watermelon by  99.9 yen</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span> <span class="fu">str_glue_data</span>(<span class="st">"Is {height} over 100? {ifelse(height &gt;= 100, 'Yes','No')}."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1007,8 +1012,8 @@ Is 165 over 100? Yes.</code></pre>
 </div>
 </div>
 </section>
-<section id="正規表現regular-expression" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="正規表現regular-expression"><span class="header-section-number">6.2</span> 正規表現（regular expression）</h2>
+<section id="正規表現regular-expression" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="正規表現regular-expression"><span class="header-section-number">7.2</span> 正規表現（regular expression）</h2>
 <ul>
 <li>extended regular expressions (the default)</li>
 <li>Perl-like regular expressions</li>
@@ -1259,8 +1264,8 @@ Is 165 over 100? Yes.</code></pre>
 </div>
 </div>
 </section>
-<section id="any_of-all_of" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="any_of-all_of"><span class="header-section-number">6.3</span> any_of, all_of</h2>
+<section id="any_of-all_of" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="any_of-all_of"><span class="header-section-number">7.3</span> any_of, all_of</h2>
 <p>変数名をオブジェクトとして用いるときに便利．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb166"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>select_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"height"</span>, <span class="st">"mass"</span>)</span>
@@ -1311,8 +1316,8 @@ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</co
 </div>
 </div>
 </section>
-<section id="map" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="map"><span class="header-section-number">6.4</span> map</h2>
+<section id="map" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="map"><span class="header-section-number">7.4</span> map</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb171"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
 <span id="cb171-2"><a href="#cb171-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
@@ -1361,8 +1366,8 @@ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</co
 </div>
 <p>d &lt;- d %&gt;% mutate(gpa_std = (gpa_sum - mean(gpa_sum, na.rm = TRUE)) / sd(gpa_sum, na.rm = TRUE))</p>
 </section>
-<section id="部分一致" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="部分一致"><span class="header-section-number">6.5</span> 部分一致</h2>
+<section id="部分一致" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="部分一致"><span class="header-section-number">7.5</span> 部分一致</h2>
 <p><code>data.frame</code>形式であれば<code>$</code>で変数名の部分一致が利用できるが，<code>tibble</code>形式ではできない．部分一致によってエラーが生じる可能性もあるので省略せずに入力するほうが良い．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb177"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -1435,8 +1440,8 @@ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.</co
 </div>
 </div>
 </section>
-<section id="因子" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="因子"><span class="header-section-number">6.6</span> 因子</h2>
+<section id="因子" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="因子"><span class="header-section-number">7.6</span> 因子</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb189"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
 <span id="cb189-2"><a href="#cb189-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">factor</span>(x)</span>
@@ -1471,8 +1476,8 @@ $class
 </div>
 </div>
 </section>
-<section id="集計データを個票データに変換する" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="集計データを個票データに変換する"><span class="header-section-number">6.7</span> 集計データを個票データに変換する</h2>
+<section id="集計データを個票データに変換する" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="集計データを個票データに変換する"><span class="header-section-number">7.7</span> 集計データを個票データに変換する</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb201"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># クロス表</span></span>
 <span id="cb201-2"><a href="#cb201-2" aria-hidden="true" tabindex="-1"></a>occupationalStatus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1574,15 +1579,15 @@ origin   1   2   3   4   5   6   7   8
 </div>
 </div>
 </section>
-<section id="関数の中身を確認する" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="関数の中身を確認する"><span class="header-section-number">6.8</span> 関数の中身を確認する</h2>
+<section id="関数の中身を確認する" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="関数の中身を確認する"><span class="header-section-number">7.8</span> 関数の中身を確認する</h2>
 <p><code>mean()</code>関数がどのようにして作成されているのかを確認したい場合，<code>mean</code>のように<code>()</code>をとって入力すればよい．しかし，<code>UseMethod("mean")</code>のように関数が表示され，中身を確認できない場合もある．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb207"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a>mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x11bb27678&gt;
+&lt;bytecode: 0x1232d37c8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -1626,7 +1631,7 @@ see '?methods' for accessing help and source code</code></pre>
     }
     .Internal(mean(x))
 }
-&lt;bytecode: 0x11ffeb820&gt;
+&lt;bytecode: 0x124693e28&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -1664,7 +1669,7 @@ function (x, trim = 0, na.rm = FALSE, ...)
     }
     .Internal(mean(x))
 }
-&lt;bytecode: 0x11ffeb820&gt;
+&lt;bytecode: 0x124693e28&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -1676,7 +1681,7 @@ function (x, trim = 0, na.rm = FALSE, ...)
 {
     UseMethod("OddsRatio")
 }
-&lt;bytecode: 0x128cc05b8&gt;
+&lt;bytecode: 0x142c60b50&gt;
 &lt;environment: namespace:DescTools&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb217"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(OddsRatio)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1754,7 +1759,7 @@ see '?methods' for accessing help and source code</code></pre>
     })
     return(res)
 }
-&lt;bytecode: 0x12b98ddc0&gt;
+&lt;bytecode: 0x110276500&gt;
 &lt;environment: namespace:DescTools&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb221"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getAnywhere</span>(OddsRatio.default)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1832,13 +1837,13 @@ function (x, conf.level = NULL, y = NULL, method = c("wald",
     })
     return(res)
 }
-&lt;bytecode: 0x12b98ddc0&gt;
+&lt;bytecode: 0x110276500&gt;
 &lt;environment: namespace:DescTools&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="unname" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="unname"><span class="header-section-number">6.9</span> unname</h2>
+<section id="unname" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="unname"><span class="header-section-number">7.9</span> unname</h2>
 <p>Cramer’s Vを<code>chisq.test()</code>の結果を利用して作成する． その際，<code>unname()</code>によってカイ2乗統計量の名前をとる．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb223"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a>occupationalStatus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1991,7 +1996,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./quarto.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quarto</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -40,5 +40,8 @@
   },
   "quarto.qmd": {
     "quarto.html": "da7f804d"
+  },
+  "ggplot.qmd": {
+    "ggplot.html": "244b98da"
   }
 }
