@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>社会調査のためのR入門 - 5&nbsp; Quarto</title>
+<title>社会調査のためのR入門 - 6&nbsp; Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./tips.html" rel="next">
-<link href="./variables.html" rel="prev">
+<link href="./ggplot.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -153,7 +153,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quarto</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -203,12 +203,17 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quarto</span></a>
+  <a href="./ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ggplotによるグラフ作成</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tips.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">便利なRの機能</span></a>
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tips.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">その他メモ</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -225,16 +230,16 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#quartoとは" id="toc-quartoとは" class="nav-link active" data-scroll-target="#quartoとは"><span class="toc-section-number">5.1</span>  Quartoとは</a></li>
-  <li><a href="#yaml-headerの設定" id="toc-yaml-headerの設定" class="nav-link" data-scroll-target="#yaml-headerの設定"><span class="toc-section-number">5.2</span>  YAML headerの設定</a></li>
-  <li><a href="#セクション" id="toc-セクション" class="nav-link" data-scroll-target="#セクション"><span class="toc-section-number">5.3</span>  セクション</a></li>
-  <li><a href="#コメントアウト" id="toc-コメントアウト" class="nav-link" data-scroll-target="#コメントアウト"><span class="toc-section-number">5.4</span>  コメントアウト</a></li>
-  <li><a href="#箇条書き" id="toc-箇条書き" class="nav-link" data-scroll-target="#箇条書き"><span class="toc-section-number">5.5</span>  箇条書き</a></li>
-  <li><a href="#数式" id="toc-数式" class="nav-link" data-scroll-target="#数式"><span class="toc-section-number">5.6</span>  数式</a></li>
-  <li><a href="#コードチャンク" id="toc-コードチャンク" class="nav-link" data-scroll-target="#コードチャンク"><span class="toc-section-number">5.7</span>  コードチャンク</a></li>
-  <li><a href="#段組み" id="toc-段組み" class="nav-link" data-scroll-target="#段組み"><span class="toc-section-number">5.8</span>  2段組み</a></li>
-  <li><a href="#パネルに分けて表示" id="toc-パネルに分けて表示" class="nav-link" data-scroll-target="#パネルに分けて表示"><span class="toc-section-number">5.9</span>  パネルに分けて表示</a></li>
-  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="toc-section-number">5.10</span>  参考文献</a></li>
+  <li><a href="#quartoとは" id="toc-quartoとは" class="nav-link active" data-scroll-target="#quartoとは"><span class="toc-section-number">6.1</span>  Quartoとは</a></li>
+  <li><a href="#yaml-headerの設定" id="toc-yaml-headerの設定" class="nav-link" data-scroll-target="#yaml-headerの設定"><span class="toc-section-number">6.2</span>  YAML headerの設定</a></li>
+  <li><a href="#セクション" id="toc-セクション" class="nav-link" data-scroll-target="#セクション"><span class="toc-section-number">6.3</span>  セクション</a></li>
+  <li><a href="#コメントアウト" id="toc-コメントアウト" class="nav-link" data-scroll-target="#コメントアウト"><span class="toc-section-number">6.4</span>  コメントアウト</a></li>
+  <li><a href="#箇条書き" id="toc-箇条書き" class="nav-link" data-scroll-target="#箇条書き"><span class="toc-section-number">6.5</span>  箇条書き</a></li>
+  <li><a href="#数式" id="toc-数式" class="nav-link" data-scroll-target="#数式"><span class="toc-section-number">6.6</span>  数式</a></li>
+  <li><a href="#コードチャンク" id="toc-コードチャンク" class="nav-link" data-scroll-target="#コードチャンク"><span class="toc-section-number">6.7</span>  コードチャンク</a></li>
+  <li><a href="#段組み" id="toc-段組み" class="nav-link" data-scroll-target="#段組み"><span class="toc-section-number">6.8</span>  2段組み</a></li>
+  <li><a href="#パネルに分けて表示" id="toc-パネルに分けて表示" class="nav-link" data-scroll-target="#パネルに分けて表示"><span class="toc-section-number">6.9</span>  パネルに分けて表示</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献"><span class="toc-section-number">6.10</span>  参考文献</a></li>
   </ul>
 </nav>
     </div>
@@ -243,7 +248,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quarto</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></h1>
 </div>
 
 
@@ -257,8 +262,8 @@ div.csl-indent {
 
 </header>
 
-<section id="quartoとは" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="quartoとは"><span class="header-section-number">5.1</span> Quartoとは</h2>
+<section id="quartoとは" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="quartoとは"><span class="header-section-number">6.1</span> Quartoとは</h2>
 <p>Quartoによって本文とコードを一緒に扱うことができ，きれいなレポート，報告書，そして最終的には論文を執筆することができる．</p>
 <p>以下の説明で基本的なことが理解できたら <a href="https://quarto.org/docs/output-formats/html-basics.html">Quartoのページ</a> を確認するとよい．細かな設定をすることで自分好みの自分好みの出力が可能となる．</p>
 <p>ファイルの拡張子は<code>.qmd</code>となる．ある程度ファイルに入力したら，<code>Render</code>をクリックして実行する（自動的にファイルは上書き保存される）．するとHTMLファイルが作成される．</p>
@@ -276,8 +281,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="yaml-headerの設定" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="yaml-headerの設定"><span class="header-section-number">5.2</span> YAML headerの設定</h2>
+<section id="yaml-headerの設定" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="yaml-headerの設定"><span class="header-section-number">6.2</span> YAML headerの設定</h2>
 <p>一番上の部分（YAML headerと呼ばれ，YAMLはプログラミング言語であり，設定ファイルの記述のためによく用いられている）はまずは次のように設定しておく．これによって結果がHTMLで出力される．今回はオプションは最小限にし，目次だけが表示される設定にしている．</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Intro Quarto"</span></span>
@@ -311,19 +316,19 @@ div.csl-indent {
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> source</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="セクション" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="セクション"><span class="header-section-number">5.3</span> セクション</h2>
+<section id="セクション" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="セクション"><span class="header-section-number">6.3</span> セクション</h2>
 <p>セクションについては<code># セクション名</code>（ハッシュ1つ）を使用する． サブセクションについては<code>## サブセクション名</code>（ハッシュ2つを）を使用する． サブサブセクションについては<code>### サブサブセクション名</code>（ハッシュ3つを）を使用する．</p>
 </section>
-<section id="コメントアウト" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="コメントアウト"><span class="header-section-number">5.4</span> コメントアウト</h2>
+<section id="コメントアウト" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="コメントアウト"><span class="header-section-number">6.4</span> コメントアウト</h2>
 <p>通常のRのスクリプトで用いていた<code>#</code>は，qmdファイルの本文中で使用すると，セクションになってしまう．次のように<code>&lt;!--</code>と<code>--&gt;</code>でコメントを囲めばよい．</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">ここにコメントを書く．</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="箇条書き" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="箇条書き"><span class="header-section-number">5.5</span> 箇条書き</h2>
+<section id="箇条書き" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="箇条書き"><span class="header-section-number">6.5</span> 箇条書き</h2>
 <p>箇条書きには<code>-</code>を用いる．</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>1つ目</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2つ目</span>
@@ -345,8 +350,8 @@ div.csl-indent {
 </ul></li>
 </ul>
 </section>
-<section id="数式" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="数式"><span class="header-section-number">5.6</span> 数式</h2>
+<section id="数式" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="数式"><span class="header-section-number">6.6</span> 数式</h2>
 <p><span class="math inline">\(\LaTeX\)</span>の記法によって美しい数式を書くこともできる．数式は<code>$$</code>で囲む．</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>$$Y = b_0 + b_1X$$</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -354,8 +359,8 @@ div.csl-indent {
 <p><span class="math display">\[Y = b_0 + b_1X\]</span></p>
 <p><span class="math display">\[\bar x = \frac{1}{n}\sum_{i=1}^n x_i\]</span></p>
 </section>
-<section id="コードチャンク" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="コードチャンク"><span class="header-section-number">5.7</span> コードチャンク</h2>
+<section id="コードチャンク" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="コードチャンク"><span class="header-section-number">6.7</span> コードチャンク</h2>
 <p><code>```{r}</code>と<code>```</code>の間にRのスクリプトや他の設定について入力する．たとえば<code>1 + 2</code>を計算したければ次のようにする．</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode markdown md code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span>
@@ -437,8 +442,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="段組み" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="段組み"><span class="header-section-number">5.8</span> 2段組み</h2>
+<section id="段組み" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="段組み"><span class="header-section-number">6.8</span> 2段組み</h2>
 <p>次のように2段にわけて表示することもできる．<code>#| eval: false</code>と<code>#| echo: false</code>を使って，入力と出力をわけて示している．</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode markdown md code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>::: .column</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>::: {.column width="48%"}</span>
@@ -565,17 +570,17 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <div id="fig-hist" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="quarto_files/figure-html/fig-hist-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">図&nbsp;5.1： 身長のヒストグラム</figcaption><p></p>
+<p></p><figcaption class="figure-caption">図&nbsp;6.1： 身長のヒストグラム</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-<p><a href="#fig-hist">Figure&nbsp;<span>5.1</span></a> は身長のヒストグラムである．現在はFigure Xとなるように設定しているが，YAMLで変更可能である（図: Xや表: Xなど）．</p>
+<p><a href="#fig-hist">Figure&nbsp;<span>6.1</span></a> は身長のヒストグラムである．現在はFigure Xとなるように設定しているが，YAMLで変更可能である（図: Xや表: Xなど）．</p>
 </section>
-<section id="パネルに分けて表示" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="パネルに分けて表示"><span class="header-section-number">5.9</span> パネルに分けて表示</h2>
+<section id="パネルに分けて表示" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="パネルに分けて表示"><span class="header-section-number">6.9</span> パネルに分けて表示</h2>
 <div class="sourceCode" id="cb28"><pre class="sourceCode markdown md code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## 入力</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -646,8 +651,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
-<section id="参考文献" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">5.10</span> 参考文献</h2>
+<section id="参考文献" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="参考文献"><span class="header-section-number">6.10</span> 参考文献</h2>
 <p>Zoteroなどの文献管理アプリを通じて<code>bib</code>ファイルを作成し，引用する．</p>
 <p><code>@knuth84</code>とすれば <span class="citation" data-cites="knuth84">Knuth (<a href="references.html#ref-knuth84" role="doc-biblioref">1984</a>)</span> となる． <code>[@knuth84]</code>とすれば <span class="citation" data-cites="knuth84">(<a href="references.html#ref-knuth84" role="doc-biblioref">Knuth 1984</a>)</span> となる．</p>
 
@@ -760,13 +765,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./variables.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">変数へのアクセス</span></span>
+      <a href="./ggplot.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ggplotによるグラフ作成</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./tips.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">便利なRの機能</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">その他メモ</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
