@@ -12,6 +12,7 @@ book:
     - pipe.qmd
     - data.qmd
     - variables.qmd
+    - ggplot.qmd
     - quarto.qmd
     - tips.qmd
     - references.qmd
