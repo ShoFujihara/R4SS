@@ -173,6 +173,48 @@ d_sav_nolab
 ```
 
 
+
+## ラベルを加工したい
+
+`labelled`パッケージを用いる．
+
+```{r}
+library(labelled)
+```
+
+
+### 変数ラベルの加工
+
+```{r}
+# すべての変数ラベルを確認
+var_label(d_sav)
+var_label(d_sav$sex)
+
+# 変数のラベルにアクセスして修正
+var_label(d_sav$sex) <- "問1(1)_性別（Male = 男性, Female = 女性）"
+var_label(d_sav$sex)
+str(d_sav$sex)
+```
+
+### 値ラベルの加工
+```{r}
+# すべての値ラベルを確認
+d_sav |> val_labels()
+
+# sexのラベルを確認
+d_sav$sex |> val_labels()
+
+# 変数のラベルにアクセスして修正
+val_label(d_sav$sex, 1) <- "Male"
+val_label(d_sav$sex, 2) <- "Female"
+
+# 修正後
+d_sav$sex |> val_labels()
+d_sav |> count(sex)
+str(d_sav$sex)
+```
+
+
 ## ロングデータの作成
 
 パネルデータで分析を行う場合に，ロング形式のデータにしたほうがよい．
