@@ -252,5 +252,8 @@ d_wide |>
 ```
 
 
+なお，パネル固定効果モデルは`plm`パッケージの`plm`，`estimatr`パッケージの`lm_robust`，`fixest`パッケージの`feols`で実行できる．`feols`であると早く推定ができる．
+
+
 
 
