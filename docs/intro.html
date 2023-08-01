@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ggplot入門</span></a>
+  <a href="./ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ggplotによるグラフ作成</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -554,7 +554,7 @@ ESCを使う
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>代入する際に<code>&lt;-</code>のかわりに<code>=</code>を使用することもできる．しかしRでは代入には<code>&lt;-</code>，関数の引数の指定には<code>=</code>を一般に使用する．</p>
+<p>代入する際に<code>&lt;-</code>のかわりに<code>=</code>を使用することもできる．しかしRでは代入には<code>&lt;-</code>，関数の引数の指定には<code>=</code>を一般的には使用する．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aというオブジェクトに4を代入</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">4</span>   <span class="co"># 代入には`&lt;-`を使用する． </span></span>
@@ -562,7 +562,7 @@ ESCを使う
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">4</span>   <span class="co"># 代入には`=`を使用しない． </span></span>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">4</span>   <span class="co"># 代入には一般的には`=`を使用しない． </span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
@@ -572,11 +572,12 @@ ESCを使う
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2419707</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(x <span class="ot">&lt;-</span> <span class="dv">1</span>)  <span class="co"># 引数の指定には`&lt;-`を使用しない</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(x <span class="ot">&lt;-</span> <span class="dv">1</span>)  <span class="co"># 引数の指定には一般的には`&lt;-`を使用しない</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2419707</code></pre>
 </div>
 </div>
+<p>どちらでも使用できることが多く，他のRのユーザーや自分自身が混乱しないのであれば，すべて<code>=</code>にしても問題ない（すべて<code>&lt;-</code>とすることはないかもしれない）．</p>
 </div>
 </div>
 <p>このようなベクトルをオブジェクトとし，それに対して関数を適用する．</p>
