@@ -173,3 +173,42 @@ d_sav_nolab
 ```
 
 
+## ロングデータの作成
+
+パネルデータで分析を行う場合に，ロング形式のデータにしたほうがよい．
+`pivot_longer`を使えば簡単にロング形式のデータが作成できる．
+
+https://r4ds.hadley.nz/data-tidy.html#sec-pivoting を参照．
+
+まずはidと必要な変数`zq1`，`zq5`，`aq1`，`aq5`を準備する．
+`transmute`で必要があれば変換して，新たな名前を与える．この時`変数名__年`のようにする．`_`でもよいが，その場合は他の変数に`_`が含まれていないことを確認する．
+
+```{r}
+library(tidyverse)
+d_wide <- tibble(
+  id = 1:10,
+  zq1 = rnorm(10),
+  zq5 = rbinom(10, size = 1, prob = .5),
+  aq1 = rnorm(10),
+  aq5 = rbinom(10, size = 1, prob = .5)
+)
+d_wide
+
+d_wide |> 
+  transmute(id,
+            y__2007 = zq1,
+            x__2007 = zq5,
+            y__2008 = aq1,
+            x__2008 = aq5) |> 
+  pivot_longer(
+    cols = y__2007:x__2008, 
+    names_to = c(".value", "year"), 
+    names_sep = "__", 
+    values_drop_na = TRUE
+  ) |> 
+  mutate(year = parse_number(year))
+```
+
+
+
+
