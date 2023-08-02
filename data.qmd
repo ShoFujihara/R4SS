@@ -236,7 +236,7 @@ d_wide <- tibble(
 )
 d_wide
 
-d_wide |> 
+d_long <- d_wide |> 
   transmute(id,
             y__2007 = zq1,
             x__2007 = zq5,
@@ -248,6 +248,25 @@ d_wide |>
     names_sep = "__", 
     values_drop_na = TRUE
   ) |> 
+  mutate(year = parse_number(year))
+d_long
+```
+
+
+次のように`separate()`関数を用いることもできる．
+
+```{r}
+d_wide |> 
+  transmute(id,
+            y__2007 = zq1,
+            x__2007 = zq5,
+            y__2008 = aq1,
+            x__2008 = aq5) |> 
+  pivot_longer(cols = y__2007:x__2008) |> 
+  separate(name, into = c("var", "year")) |> 
+  pivot_wider(id_cols = c(id, year), 
+              names_from = var, 
+              values_from = value) |> 
   mutate(year = parse_number(year))
 ```
 
