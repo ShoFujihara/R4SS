@@ -1,10 +1,11 @@
 # 必要なパッケージの読み込み
+library(tidyverse)
 library(brglm)
 library(purrr)
 library(broom)
 
 # シミュレーションの設定
-set.seed(42) # 乱数の再現性のためにseedを設定
+set.seed(42) # 再現性のためにseedを設定
 n <- 50000 # サンプルサイズ
 p <- 4   # パラメータ数
 simulations <- 500 # シミュレーション回数
