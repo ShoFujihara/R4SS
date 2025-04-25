@@ -3,6 +3,21 @@
 便利だが普段はあまりつかわないため忘れがちな点についてメモしておく．
 本テキストのどこかで扱う内容もメモする．
 
+## 積分
+
+```{r}
+integrate(function(x) dnorm(x, 0, 1), lower = 0, upper = Inf)
+integrate(function(x) dnorm(x, 0, 1), lower = -1.645, upper = 1.645)
+integrate(function(x) dnorm(x, 0, 1), lower = -1.96, upper = 1.96)
+```
+
+```{r}
+integrate(function(x) dchisq(x, df = 5), lower = 0, upper = 5)
+integrate(function(x) dchisq(x, df = 100), lower = 0, upper = 100)
+```
+
+
+
 
 ## 文字列の処理
 
@@ -257,8 +272,7 @@ DescTools:::OddsRatio.default
 getAnywhere(OddsRatio.default)
 ```
 
-
-## unname
+## unnameを使う
 
 Cramer's Vを`chisq.test()`の結果を利用して作成する．
 その際，`unname()`によってカイ2乗統計量の名前をとる．
@@ -272,4 +286,9 @@ my_CramerV <- sqrt(X2/min(dim(occupationalStatus)-1)/sum(occupationalStatus))
 my_CramerV
 DescTools::CramerV(occupationalStatus)
 ```
+
+
+
+
+
 
