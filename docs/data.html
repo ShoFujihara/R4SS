@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.5.47">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>社会調査のためのR入門 - 3&nbsp; データの読み込み</title>
+<title>3&nbsp; データの読み込み – 社会調査のためのR入門</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,11 +17,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -110,7 +81,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -119,12 +96,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -132,11 +139,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">データの読み込み</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">データの読み込み</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -144,89 +156,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">社会調査のためのR入門</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">本資料の説明</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">本資料の説明</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rの基礎</span></a>
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Rの基礎</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./pipe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">パイプ演算子</span></a>
+  <a href="./pipe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">データの読み込み</span></a>
+  <a href="./data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">データの読み込み</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">変数へのアクセス</span></a>
+  <a href="./variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">変数へのアクセス</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ggplotによるグラフ作成</span></a>
+  <a href="./ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ggplotによるグラフ作成</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></a>
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tips.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">その他メモ</span></a>
+  <a href="./tips.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">その他メモ</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">参考文献</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">参考文献</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#使用するデータ" id="toc-使用するデータ" class="nav-link active" data-scroll-target="#使用するデータ"><span class="toc-section-number">3.1</span>  使用するデータ</a></li>
-  <li><a href="#データの保存先" id="toc-データの保存先" class="nav-link" data-scroll-target="#データの保存先"><span class="toc-section-number">3.2</span>  データの保存先</a></li>
-  <li><a href="#import-datasetからデータを読み込む" id="toc-import-datasetからデータを読み込む" class="nav-link" data-scroll-target="#import-datasetからデータを読み込む"><span class="toc-section-number">3.3</span>  Import Datasetからデータを読み込む</a>
+  <li><a href="#使用するデータ" id="toc-使用するデータ" class="nav-link active" data-scroll-target="#使用するデータ"><span class="header-section-number">3.1</span> 使用するデータ</a></li>
+  <li><a href="#データの保存先" id="toc-データの保存先" class="nav-link" data-scroll-target="#データの保存先"><span class="header-section-number">3.2</span> データの保存先</a></li>
+  <li><a href="#import-datasetからデータを読み込む" id="toc-import-datasetからデータを読み込む" class="nav-link" data-scroll-target="#import-datasetからデータを読み込む"><span class="header-section-number">3.3</span> Import Datasetからデータを読み込む</a>
   <ul class="collapse">
-  <li><a href="#from-text-baseの場合" id="toc-from-text-baseの場合" class="nav-link" data-scroll-target="#from-text-baseの場合"><span class="toc-section-number">3.3.1</span>  From text (base)…の場合</a></li>
-  <li><a href="#from-text-readrの場合" id="toc-from-text-readrの場合" class="nav-link" data-scroll-target="#from-text-readrの場合"><span class="toc-section-number">3.3.2</span>  From text (readr)…の場合</a></li>
+  <li><a href="#from-text-baseの場合" id="toc-from-text-baseの場合" class="nav-link" data-scroll-target="#from-text-baseの場合"><span class="header-section-number">3.3.1</span> From text (base)…の場合</a></li>
+  <li><a href="#from-text-readrの場合" id="toc-from-text-readrの場合" class="nav-link" data-scroll-target="#from-text-readrの場合"><span class="header-section-number">3.3.2</span> From text (readr)…の場合</a></li>
   </ul></li>
-  <li><a href="#csvの場合" id="toc-csvの場合" class="nav-link" data-scroll-target="#csvの場合"><span class="toc-section-number">3.4</span>  csvの場合</a></li>
-  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="toc-section-number">3.5</span>  read.csv</a>
+  <li><a href="#csvの場合" id="toc-csvの場合" class="nav-link" data-scroll-target="#csvの場合"><span class="header-section-number">3.4</span> csvの場合</a>
   <ul class="collapse">
-  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="toc-section-number">3.5.1</span>  read_csv</a></li>
+  <li><a href="#read.csv" id="toc-read.csv" class="nav-link" data-scroll-target="#read.csv"><span class="header-section-number">3.4.1</span> read.csv</a></li>
+  <li><a href="#read_csv" id="toc-read_csv" class="nav-link" data-scroll-target="#read_csv"><span class="header-section-number">3.4.2</span> read_csv</a></li>
   </ul></li>
-  <li><a href="#dta-stata-の場合" id="toc-dta-stata-の場合" class="nav-link" data-scroll-target="#dta-stata-の場合"><span class="toc-section-number">3.6</span>  dta (Stata) の場合</a></li>
-  <li><a href="#sav-spss-の場合" id="toc-sav-spss-の場合" class="nav-link" data-scroll-target="#sav-spss-の場合"><span class="toc-section-number">3.7</span>  sav (SPSS) の場合</a></li>
-  <li><a href="#ラベルを取り除きたい" id="toc-ラベルを取り除きたい" class="nav-link" data-scroll-target="#ラベルを取り除きたい"><span class="toc-section-number">3.8</span>  ラベルを取り除きたい</a></li>
-  <li><a href="#ロングデータの作成" id="toc-ロングデータの作成" class="nav-link" data-scroll-target="#ロングデータの作成"><span class="toc-section-number">3.9</span>  ロングデータの作成</a></li>
+  <li><a href="#dta-stata-の場合" id="toc-dta-stata-の場合" class="nav-link" data-scroll-target="#dta-stata-の場合"><span class="header-section-number">3.5</span> dta (Stata) の場合</a></li>
+  <li><a href="#sav-spss-の場合" id="toc-sav-spss-の場合" class="nav-link" data-scroll-target="#sav-spss-の場合"><span class="header-section-number">3.6</span> sav (SPSS) の場合</a></li>
+  <li><a href="#ラベルを取り除きたい" id="toc-ラベルを取り除きたい" class="nav-link" data-scroll-target="#ラベルを取り除きたい"><span class="header-section-number">3.7</span> ラベルを取り除きたい</a></li>
+  <li><a href="#ラベルを加工したい" id="toc-ラベルを加工したい" class="nav-link" data-scroll-target="#ラベルを加工したい"><span class="header-section-number">3.8</span> ラベルを加工したい</a>
+  <ul class="collapse">
+  <li><a href="#変数ラベルの加工" id="toc-変数ラベルの加工" class="nav-link" data-scroll-target="#変数ラベルの加工"><span class="header-section-number">3.8.1</span> 変数ラベルの加工</a></li>
+  <li><a href="#値ラベルの加工" id="toc-値ラベルの加工" class="nav-link" data-scroll-target="#値ラベルの加工"><span class="header-section-number">3.8.2</span> 値ラベルの加工</a></li>
+  </ul></li>
+  <li><a href="#ロングデータの作成" id="toc-ロングデータの作成" class="nav-link" data-scroll-target="#ロングデータの作成"><span class="header-section-number">3.9</span> ロングデータの作成</a></li>
   </ul>
 </nav>
     </div>
@@ -235,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">データの読み込み</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">データの読み込み</span></h1>
 </div>
 
 
@@ -243,20 +270,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
 
+
 </header>
+
 
 <p>データの読み込みを行う際に<code>readr</code>と<code>haven</code>パッケージを用いる． <code>readr</code>パッケージのかわりに<code>tidyverse</code>パッケージを呼び出してもよい．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># パッケージの呼び出し</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  here,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  readr,   <span class="co"># csvファイルを読み込む．tidyverseとしてもよい．</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  haven   <span class="co"># sav, dta, sasファイルなどを読み込む．</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  dplyr,  <span class="co"># データ操作のための関数</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  readr,   <span class="co"># csvファイルを読み込む．tidyverseとしてもよい．</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  haven   <span class="co"># sav, dta, sasファイルなどを読み込む．</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="使用するデータ" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="使用するデータ"><span class="header-section-number">3.1</span> 使用するデータ</h2>
@@ -283,11 +314,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>scripts</code>：Rスクリプトを保存するフォルダ</li>
 </ul></li>
 </ul>
-<p>MACの画面だと <a href="#fig-folders">Figure&nbsp;<span>3.1</span></a> のようになる．Rの基礎で<code>here()</code>関数と<code>dir_create()</code>関数を組み合わせて作成している．ここの<code>raw</code>というフォルダに<code>u001.zip</code>を展開した<strong>中身</strong>を保存する．<code>u001</code>というフォルダは使用しない（使用してもよいがファイルの場所を間違えないようにすること．本資料では，rawのすぐ下にデータがあるように設定している）．</p>
-<div id="fig-folders" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/folders.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">図&nbsp;3.1： RStudioの画面</figcaption><p></p>
+<p>MACの画面だと <a href="#fig-folders" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> のようになる．Rの基礎で<code>here()</code>関数と<code>dir_create()</code>関数を組み合わせて作成している．ここの<code>raw</code>というフォルダに<code>u001.zip</code>を展開した<strong>中身</strong>を保存する．<code>u001</code>というフォルダは使用しない（使用してもよいがファイルの場所を間違えないようにすること．本資料では，rawのすぐ下にデータがあるように設定している）．</p>
+<div id="fig-folders" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-folders-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/folders.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-folders-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;3.1： RStudioの画面
+</figcaption>
 </figure>
 </div>
 </section>
@@ -296,11 +331,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>here</code>をつかったり，ファイルのパスを書くことに慣れないうちは，自分でファイルを探して指定する方法が確実かもしれない． まず<code>csv</code>の場合は，「File」<span class="math inline">\(\rightarrow\)</span>「Import Dataset」<span class="math inline">\(\rightarrow\)</span>「From text (base)…」か「File」<span class="math inline">\(\rightarrow\)</span>「Import Dataset」<span class="math inline">\(\rightarrow\)</span>「From text (readr)…」を使用する．</p>
 <section id="from-text-baseの場合" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="from-text-baseの場合"><span class="header-section-number">3.3.1</span> From text (base)…の場合</h3>
-<p><code>u001.csv</code>を指定し「Open」を選択すると， <a href="#fig-readcsv">Figure&nbsp;<span>3.2</span></a> のような画面が現れる．「Heading」は「Yes」とする．</p>
-<div id="fig-readcsv" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/readcsv.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">図&nbsp;3.2： From text (base)…の場合</figcaption><p></p>
+<p><code>u001.csv</code>を指定し「Open」を選択すると， <a href="#fig-readcsv" class="quarto-xref">Figure&nbsp;<span>3.2</span></a> のような画面が現れる．「Heading」は「Yes」とする．</p>
+<div id="fig-readcsv" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-readcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/readcsv.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-readcsv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;3.2： From text (base)…の場合
+</figcaption>
 </figure>
 </div>
 <p>右下の「Data Frame」に正しくデータが表示されているようであれば，「Import」を選択する． するとデータがソース画面に表示される．うまく読み込まれていそうであればデータは閉じてしまおう． コンソールには読み込みに用いたコードが残されているので，これをコピーしておこう．</p>
@@ -310,11 +349,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="from-text-readrの場合" class="level3" data-number="3.3.2">
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="from-text-readrの場合"><span class="header-section-number">3.3.2</span> From text (readr)…の場合</h3>
-<p>右端の「Browse」から<code>u001.csv</code>を指定し「Open」を選択すると， <a href="#fig-read_csv">Figure&nbsp;<span>3.3</span></a> のような画面が現れる．</p>
-<div id="fig-read_csv" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="figures/read_csv.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">図&nbsp;3.3： From text (readr)…の場合</figcaption><p></p>
+<p>右端の「Browse」から<code>u001.csv</code>を指定し「Open」を選択すると， <a href="#fig-read_csv" class="quarto-xref">Figure&nbsp;<span>3.3</span></a> のような画面が現れる．</p>
+<div id="fig-read_csv" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-read_csv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/read_csv.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-read_csv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+図&nbsp;3.3： From text (readr)…の場合
+</figcaption>
 </figure>
 </div>
 <p>そのまま「Import」を選択すればよい．ここでもデータがソースの別のタブで開かれるが，不要なので確認したら閉じてしまおう．コンソールには次のプログラムが残っているので，スクリプトにコピーしておこう．</p>
@@ -336,10 +379,9 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </section>
 <section id="csvの場合" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="csvの場合"><span class="header-section-number">3.4</span> csvの場合</h2>
-<p>では直接パスを書き，データを読み込んでみる．</p>
-</section>
-<section id="read.csv" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">3.5</span> read.csv</h2>
+<p>では直接パスを書き，データを読み込んでみる．もともとRに備わっている<code>read.csv</code>を使う方法と<code>readr</code>の<code>read_csv</code>の2つの方法がある． tibble形式で読み込まれる<code>read_csv</code>を使用することを個人的には勧めたい．</p>
+<section id="read.csv" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="read.csv"><span class="header-section-number">3.4.1</span> read.csv</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csvでcsvデータを読み込む</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d_csv_1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span>
@@ -406,8 +448,9 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>d_csv_1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="read_csv" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">3.5.1</span> read_csv</h3>
+</section>
+<section id="read_csv" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="read_csv"><span class="header-section-number">3.4.2</span> read_csv</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_csvでcsvデータを読み込む</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>d_csv_2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/u001.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -461,8 +504,9 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </section>
 </section>
-<section id="dta-stata-の場合" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="dta-stata-の場合"><span class="header-section-number">3.6</span> dta (Stata) の場合</h2>
+<section id="dta-stata-の場合" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="dta-stata-の場合"><span class="header-section-number">3.5</span> dta (Stata) の場合</h2>
+<p>値ラベルや変数ラベルといったメタデータ（データについてのデータ）も一緒に読み込まれるので，なれたらこちらを使うのも良いだろう．ただし読み込んだメタデータだけをみるだけではなく，基礎集計表やコードブックを参照するのがよいだろう．</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_dtaでdtaデータを読み込む</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/raw/u001.dta"</span>)</span>
@@ -497,8 +541,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>d_dta <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.dta"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sav-spss-の場合" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="sav-spss-の場合"><span class="header-section-number">3.7</span> sav (SPSS) の場合</h2>
+<section id="sav-spss-の場合" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sav-spss-の場合"><span class="header-section-number">3.6</span> sav (SPSS) の場合</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read_savでsavデータを読み込む</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">"data/raw/u001.sav"</span>)</span>
@@ -533,8 +577,8 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>d_sav <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"raw"</span>,<span class="st">"u001.sav"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="ラベルを取り除きたい" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="ラベルを取り除きたい"><span class="header-section-number">3.8</span> ラベルを取り除きたい</h2>
+<section id="ラベルを取り除きたい" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="ラベルを取り除きたい"><span class="header-section-number">3.7</span> ラベルを取り除きたい</h2>
 <p>ラベルを取り除きたい場合は，<code>zap_label()</code>関数や<code>zap_labels()</code>関数を用いる．</p>
 <ul>
 <li><code>zap_label()</code>：変数ラベルを取り除く</li>
@@ -568,86 +612,840 @@ dbl (72): caseid, sex, ybirth, mbirth, ZQ03, JC_1, JC_41, ZQ08A, ZQ08B, ZQ08...
 </div>
 </div>
 </section>
+<section id="ラベルを加工したい" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="ラベルを加工したい"><span class="header-section-number">3.8</span> ラベルを加工したい</h2>
+<p><code>labelled</code>パッケージを用いる．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labelled)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="変数ラベルの加工" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="変数ラベルの加工"><span class="header-section-number">3.8.1</span> 変数ラベルの加工</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># すべての変数ラベルを確認</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var_label</span>(d_sav)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$caseid
+NULL
+
+$sex
+[1] "問1(1)_性別"
+
+$ybirth
+[1] "問1(2)_生年"
+
+$mbirth
+[1] "問1(2)_生月"
+
+$ZQ03
+[1] "問3_就業状況"
+
+$JC_1
+[1] "問4A(1)_現職・働き方"
+
+$JC_41
+[1] "問4A(4-1)_現職・従事時間（1日あたり）"
+
+$ZQ08A
+[1] "問8A_ふだんの生活での頻度―運動"
+
+$ZQ08B
+[1] "問8B_ふだんの生活での頻度―1日に3食を食べる"
+
+$ZQ08C
+[1] "問8C_ふだんの生活での頻度―栄養バランスの取れた食事を取る"
+
+$ZQ08D
+[1] "問8D_ふだんの生活での頻度―カップ麺やファーストフードを食べる"
+
+$ZQ08E
+[1] "問8E_ふだんの生活での頻度―食事の用意"
+
+$ZQ08F
+[1] "問8F_ふだんの生活での頻度―洗濯"
+
+$ZQ08G
+[1] "問8G_ふだんの生活での頻度―家の掃除"
+
+$ZQ08H
+[1] "問8H_ふだんの生活での頻度―日用品・食料品の買い物"
+
+$ZQ11_A
+[1] "問11-1_今までの経験―親が失業した／親が事業で失敗した"
+
+$ZQ11_B
+[1] "問11-2_今までの経験―親が離婚した"
+
+$ZQ11_C
+[1] "問11-3_今までの経験―親が再婚した"
+
+$ZQ11_D
+[1] "問11-4_今までの経験―自分が事業で失敗した"
+
+$ZQ11_E
+[1] "問11-5_今までの経験―自分が失業した"
+
+$ZQ11_F
+[1] "問11-6_今までの経験―自分が転職した"
+
+$ZQ11_G
+[1] "問11-7_今までの経験―自分が同棲した"
+
+$ZQ11_H
+[1] "問11-8_今までの経験―自分が離婚した"
+
+$ZQ11_I
+[1] "問11-9_今までの経験―自分が再婚した"
+
+$ZQ11_J
+[1] "問11-10_今までの経験―自分が学校でいじめを受けた"
+
+$ZQ11_K
+[1] "問11-11_今までの経験―自分が大きな事故や災害にあった"
+
+$ZQ11_L
+[1] "問11-12_今までの経験―自分が暴行・強盗・恐喝などの犯罪被害にあった"
+
+$ZQ11_M
+[1] "問11-13_今までの経験―自分が手術や長期療養を要する病気・ケガをした"
+
+$ZQ11_N
+[1] "問11-14_今までの経験―自分が家族の看病・介護をした"
+
+$ZQ11_O
+[1] "問11-15_今までの経験―その他大きな出来事"
+
+$ZQ12
+[1] "問12_現在の暮らしむき"
+
+$ZQ14_1A
+[1] "問14(1)_兄の人数"
+
+$ZQ14_1B
+[1] "問14(1)_姉の人数"
+
+$ZQ14_1C
+[1] "問14(1)_弟の人数"
+
+$ZQ14_1D
+[1] "問14(1)_妹の人数"
+
+$ZQ23A
+[1] "問23_最後に通った学校―本人"
+
+$ZQ23B
+[1] "問23_最後に通った学校―配偶者"
+
+$ZQ23C
+[1] "問23_最後に通った学校―父親"
+
+$ZQ23D
+[1] "問23_最後に通った学校―母親"
+
+$ZQ24
+[1] "問24_最後に通った学校を卒業したか"
+
+$ZQ25
+[1] "問25_自分の健康状態"
+
+$ZQ26A
+[1] "問26A_過去1ヶ月間―かなり神経質であったこと"
+
+$ZQ26B
+[1] "問26B_過去1ヶ月間―どうにもならないくらい気分が落ち込んでいたこと"
+
+$ZQ26C
+[1] "問26C_過去1ヶ月間―落ち着いていておだやかな気分であったこと"
+
+$ZQ26D
+[1] "問26D_過去1ヶ月間―落ち込んで、憂鬱な気分であったこと"
+
+$ZQ26E
+[1] "問26E_過去1ヶ月間―楽しい気分であったこと"
+
+$ZQ26F
+[1] "問26F_過去1ヶ月間―健康上の理由で、家事や仕事などが制限されたこと"
+
+$ZQ30D
+[1] "問30D_現在の満足度―生活全般"
+
+$ZQ35
+[1] "問35_自分自身の階層の位置づけ"
+
+$ZQ39A
+[1] "問39A_男性の仕事は収入を得ること、女性の仕事や家庭と家族の面倒をみることだ"
+
+$ZQ42
+[1] "問42_ふだん支持している政党"
+
+$ZQ43
+[1] "問43_政治上の出来事への感心"
+
+$ZQ47A
+[1] "問47_過去1年間の収入―本人"
+
+$ZQ47B
+[1] "問47_過去1年間の収入―配偶者"
+
+$ZQ47C
+[1] "問47_過去1年間の収入―世帯全体"
+
+$ZQ50
+[1] "問50_婚姻状態"
+
+$ZQ52A
+[1] "問52_配偶者生年―元号"
+
+$ZQ52Y
+[1] "問52_配偶者生年―年"
+
+$ZQ54A
+[1] "問54A_頻度―配偶者が食事の用意"
+
+$ZQ54B
+[1] "問54B_頻度―洗濯"
+
+$ZQ54C
+[1] "問54C_頻度―家の掃除"
+
+$ZQ54D
+[1] "問54D_頻度―日用品・食料品の買い物"
+
+$ZQ61_A
+[1] "問61-1_10年後の働き方―正社員・正職員として働いていたい"
+
+$ZQ61_B
+[1] "問61-2_10年後の働き方―自分で事業をおこしていたい"
+
+$ZQ61_C
+[1] "問61-3_10年後の働き方―親の家業を継いでいたい"
+
+$ZQ61_D
+[1] "問61-4_10年後の働き方―独立して一人で仕事をしていたい"
+
+$ZQ61_E
+[1] "問61-5_10年後の働き方―アルバイトやパートで働いていたい"
+
+$ZQ61_F
+[1] "問61-6_10年後の働き方―専業主婦・主夫でいたい"
+
+$ZQ61_G
+[1] "問61-7_10年後の働き方―働かないでいたい"
+
+$ZQ61_H
+[1] "問61-8_10年後の働き方―その他"
+
+$ZQ61_I
+[1] "問61-9_10年後の働き方―わからない"
+
+$ZQ62
+[1] "問62_10年後の自分の暮らしむき"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var_label</span>(d_sav<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "問1(1)_性別"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 変数のラベルにアクセスして修正</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var_label</span>(d_sav<span class="sc">$</span>sex) <span class="ot">&lt;-</span> <span class="st">"問1(1)_性別（Male = 男性, Female = 女性）"</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">var_label</span>(d_sav<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "問1(1)_性別（Male = 男性, Female = 女性）"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d_sav<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> dbl+lbl [1:1000] 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 1, ...
+ @ label        : chr "問1(1)_性別（Male = 男性, Female = 女性）"
+ @ format.spss  : chr "F8.0"
+ @ display_width: int 10
+ @ labels       : Named num [1:2] 1 2
+  ..- attr(*, "names")= chr [1:2] "male" "female"</code></pre>
+</div>
+</div>
+</section>
+<section id="値ラベルの加工" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="値ラベルの加工"><span class="header-section-number">3.8.2</span> 値ラベルの加工</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># すべての値ラベルを確認</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>d_sav <span class="sc">|&gt;</span> <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$caseid
+NULL
+
+$sex
+  male female 
+     1      2 
+
+$ybirth
+NULL
+
+$mbirth
+NULL
+
+$ZQ03
+  している していない 
+         1          2 
+
+$JC_1
+                        経営者，役員                       正社員・正職員 
+                                   1                                    2 
+パート・アルバイト・契約・臨時・嘱託                             派遣社員 
+                                   3                                    4 
+                            請負社員                   自営業主・自由業者 
+                                   5                                    6 
+                          家族従事者                                 内職 
+                                   7                                    8 
+                              その他                   無職（学生は除く） 
+                                   9                                   10 
+                学生（働いていない）       学生（現在非正規で働いている） 
+                                  11                                   12 
+                              非該当                               無回答 
+                                  88                                   99 
+
+$JC_41
+非該当 無回答 
+    88     99 
+
+$ZQ08A
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         無回答 
+             6              9 
+
+$ZQ08B
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         無回答 
+             6              9 
+
+$ZQ08C
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         無回答 
+             6              9 
+
+$ZQ08D
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         無回答 
+             6              9 
+
+$ZQ08E
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         無回答 
+             6              9 
+
+$ZQ08F
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         無回答 
+             6              9 
+
+$ZQ08G
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         無回答 
+             6              9 
+
+$ZQ08H
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         無回答 
+             6              9 
+
+$ZQ11_A
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_B
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_C
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_D
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_E
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_F
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_G
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_H
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_I
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_J
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_K
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_L
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_M
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_N
+ ○選択 非選択 
+     1      2 
+
+$ZQ11_O
+ ○選択 非選択 
+     1      2 
+
+$ZQ12
+      豊か   やや豊か     ふつう やや貧しい     貧しい     無回答 
+         1          2          3          4          5          9 
+
+$ZQ14_1A
+無回答 
+    99 
+
+$ZQ14_1B
+無回答 
+    99 
+
+$ZQ14_1C
+無回答 
+    99 
+
+$ZQ14_1D
+無回答 
+    99 
+
+$ZQ23A
+                         中学校                        高等学校 
+                              1                               2 
+           専修学校（専門学校） 短期大学・高等専門学校（5年制） 
+                              3                               4 
+                           大学                          大学院 
+                              5                               6 
+                     わからない                          無回答 
+                              7                               9 
+
+$ZQ23B
+                         中学校                        高等学校 
+                              1                               2 
+           専修学校（専門学校） 短期大学・高等専門学校（5年制） 
+                              3                               4 
+                           大学                          大学院 
+                              5                               6 
+                     わからない                  配偶者はいない 
+                              7                               8 
+                         無回答 
+                              9 
+
+$ZQ23C
+                         中学校                        高等学校 
+                              1                               2 
+           専修学校（専門学校） 短期大学・高等専門学校（5年制） 
+                              3                               4 
+                           大学                          大学院 
+                              5                               6 
+                     わからない                          無回答 
+                              7                               9 
+
+$ZQ23D
+                         中学校                        高等学校 
+                              1                               2 
+           専修学校（専門学校） 短期大学・高等専門学校（5年制） 
+                              3                               4 
+                           大学                          大学院 
+                              5                               6 
+                     わからない                          無回答 
+                              7                               9 
+
+$ZQ24
+卒業した 中退した   在学中   無回答 
+       1        2        3        9 
+
+$ZQ25
+    とても良い       まあ良い           普通 あまり良くない           悪い 
+             1              2              3              4              5 
+        無回答 
+             9 
+
+$ZQ26A
+        いつもあった ほとんどいつもあった       ときどきあった 
+                   1                    2                    3 
+        まれにあった     まったくなかった               無回答 
+                   4                    5                    9 
+
+$ZQ26B
+        いつもあった ほとんどいつもあった       ときどきあった 
+                   1                    2                    3 
+        まれにあった     まったくなかった               無回答 
+                   4                    5                    9 
+
+$ZQ26C
+        いつもあった ほとんどいつもあった       ときどきあった 
+                   1                    2                    3 
+        まれにあった     まったくなかった               無回答 
+                   4                    5                    9 
+
+$ZQ26D
+        いつもあった ほとんどいつもあった       ときどきあった 
+                   1                    2                    3 
+        まれにあった     まったくなかった               無回答 
+                   4                    5                    9 
+
+$ZQ26E
+        いつもあった ほとんどいつもあった       ときどきあった 
+                   1                    2                    3 
+        まれにあった     まったくなかった               無回答 
+                   4                    5                    9 
+
+$ZQ26F
+        いつもあった ほとんどいつもあった       ときどきあった 
+                   1                    2                    3 
+        まれにあった     まったくなかった               無回答 
+                   4                    5                    9 
+
+$ZQ30D
+                満足している どちらかといえば満足している 
+                           1                            2 
+          どちらともいえない   どちらかといえば不満である 
+                           3                            4 
+                  不満である                       無回答 
+                           5                            9 
+
+$ZQ35
+無回答 
+    99 
+
+$ZQ39A
+                    そう思う     どちらかといえばそう思う 
+                           1                            2 
+          どちらともいえない どちらかといえばそう思わない 
+                           3                            4 
+                そう思わない                   わからない 
+                           5                            6 
+                      無回答 
+                           9 
+
+$ZQ42
+                自民党                 民主党                 公明党 
+                     1                      2                      3 
+                共産党                 社民党               国民新党 
+                     4                      5                      6 
+              新党日本           その他の政党 特に支持する政党はない 
+                     7                      8                      9 
+            わからない                 無回答 
+                    10                     99 
+
+$ZQ43
+    つねに関心を払っている   ときどき関心を払っている 
+                         1                          2 
+    たまに関心を払っている ほとんど関心を払っていない 
+                         3                          4 
+                    無回答 
+                         9 
+
+$ZQ47A
+                                   なし                              25万円未満 
+                                      1                                       2 
+         50万円くらい（25～75万円未満）        100万円くらい（75～150万円未満） 
+                                      3                                       4 
+      200万円くらい（150～250万円未満）       300万円くらい（250～350万円未満） 
+                                      5                                       6 
+      400万円くらい（350～450万円未満）       500万円くらい（450～600万円未満） 
+                                      7                                       8 
+      700万円くらい（600～850万円未満）   1,000万円くらい（850～1,250万円未満） 
+                                      9                                      10 
+1,500万円くらい（1,250～1,750万円未満） 2,000万円くらい（1,750～2,250万円未満） 
+                                     11                                      12 
+                          2,250万円以上                              わからない 
+                                     13                                      14 
+                                 無回答 
+                                     99 
+
+$ZQ47B
+                                   なし                              25万円未満 
+                                      1                                       2 
+         50万円くらい（25～75万円未満）        100万円くらい（75～150万円未満） 
+                                      3                                       4 
+      200万円くらい（150～250万円未満）       300万円くらい（250～350万円未満） 
+                                      5                                       6 
+      400万円くらい（350～450万円未満）       500万円くらい（450～600万円未満） 
+                                      7                                       8 
+      700万円くらい（600～850万円未満）   1,000万円くらい（850～1,250万円未満） 
+                                      9                                      10 
+1,500万円くらい（1,250～1,750万円未満） 2,000万円くらい（1,750～2,250万円未満） 
+                                     11                                      12 
+                          2,250万円以上                              わからない 
+                                     13                                      14 
+                         配偶者はいない                                  無回答 
+                                     15                                      99 
+
+$ZQ47C
+                                   なし                              25万円未満 
+                                      1                                       2 
+         50万円くらい（25～75万円未満）        100万円くらい（75～150万円未満） 
+                                      3                                       4 
+      200万円くらい（150～250万円未満）       300万円くらい（250～350万円未満） 
+                                      5                                       6 
+      400万円くらい（350～450万円未満）       500万円くらい（450～600万円未満） 
+                                      7                                       8 
+      700万円くらい（600～850万円未満）   1,000万円くらい（850～1,250万円未満） 
+                                      9                                      10 
+1,500万円くらい（1,250～1,750万円未満） 2,000万円くらい（1,750～2,250万円未満） 
+                                     11                                      12 
+                          2,250万円以上                              わからない 
+                                     13                                      14 
+                                 無回答 
+                                     99 
+
+$ZQ50
+              未婚 既婚（配偶者あり）               死別               離別 
+                 1                  2                  3                  4 
+
+$ZQ52A
+  西暦   昭和   平成 非該当 無回答 
+     1      2      3      8      9 
+
+$ZQ52Y
+非該当 無回答 
+   888    999 
+
+$ZQ54A
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         非該当         無回答 
+             6              8              9 
+
+$ZQ54B
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         非該当         無回答 
+             6              8              9 
+
+$ZQ54C
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         非該当         無回答 
+             6              8              9 
+
+$ZQ54D
+          毎日     週に5～6日     週に3～4日     週に1～2日     月に1～3日 
+             1              2              3              4              5 
+ほとんどしない         非該当         無回答 
+             6              8              9 
+
+$ZQ61_A
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ61_B
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ61_C
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ61_D
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ61_E
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ61_F
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ61_G
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ61_H
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ61_I
+ ○選択 非選択 無回答 
+     1      2      9 
+
+$ZQ62
+    良くなる 少し良くなる   変わらない 少し悪くなる     悪くなる       無回答 
+           1            2            3            4            5            9 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sexのラベルを確認</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>d_sav<span class="sc">$</span>sex <span class="sc">|&gt;</span> <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  male female 
+     1      2 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 変数のラベルにアクセスして修正</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">val_label</span>(d_sav<span class="sc">$</span>sex, <span class="dv">1</span>) <span class="ot">&lt;-</span> <span class="st">"Male"</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">val_label</span>(d_sav<span class="sc">$</span>sex, <span class="dv">2</span>) <span class="ot">&lt;-</span> <span class="st">"Female"</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 修正後</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>d_sav<span class="sc">$</span>sex <span class="sc">|&gt;</span> <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Male Female 
+     1      2 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>d_sav <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">count</span>(sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  sex            n
+  &lt;dbl+lbl&gt;  &lt;int&gt;
+1 1 [Male]     499
+2 2 [Female]   501</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(d_sav<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> dbl+lbl [1:1000] 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 1, ...
+ @ labels: Named num [1:2] 1 2
+  ..- attr(*, "names")= chr [1:2] "Male" "Female"
+ @ label : chr "問1(1)_性別（Male = 男性, Female = 女性）"</code></pre>
+</div>
+</div>
+</section>
+</section>
 <section id="ロングデータの作成" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="ロングデータの作成"><span class="header-section-number">3.9</span> ロングデータの作成</h2>
 <p>パネルデータで分析を行う場合に，ロング形式のデータにしたほうがよい． <code>pivot_longer</code>を使えば簡単にロング形式のデータが作成できる．</p>
 <p>https://r4ds.hadley.nz/data-tidy.html#sec-pivoting を参照．</p>
 <p>まずはidと必要な変数<code>zq1</code>，<code>zq5</code>，<code>aq1</code>，<code>aq5</code>を準備する． <code>transmute</code>で必要があれば変換して，新たな名前を与える．この時<code>変数名__年</code>のようにする．<code>_</code>でもよいが，その場合は他の変数に<code>_</code>が含まれていないことを確認する．</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ purrr     1.0.1
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>d_wide <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">zq1 =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>),</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">zq5 =</span> <span class="fu">rbinom</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> .<span class="dv">5</span>),</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">aq1 =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>),</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">aq5 =</span> <span class="fu">rbinom</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> .<span class="dv">5</span>)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>d_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>d_wide <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">zq1 =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>),</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">zq5 =</span> <span class="fu">rbinom</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> .<span class="dv">5</span>),</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">aq1 =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>),</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">aq5 =</span> <span class="fu">rbinom</span>(<span class="dv">10</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> .<span class="dv">5</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>d_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
-      id     zq1   zq5     aq1   aq5
-   &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;
- 1     1 -0.388      1 -0.632      1
- 2     2  0.156      0  1.87       0
- 3     3  2.86       1 -1.34       0
- 4     4 -0.0466     1  0.437      1
- 5     5  1.01       0  0.531      1
- 6     6 -0.609      1  0.0495     1
- 7     7 -0.483      0  0.727      1
- 8     8  0.614      0 -0.0605     0
- 9     9 -0.591      1 -2.04       1
-10    10 -1.63       0 -0.850      0</code></pre>
+      id     zq1   zq5    aq1   aq5
+   &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;int&gt;
+ 1     1 -0.0745     1  1.00      1
+ 2     2 -1.20       0 -1.54      1
+ 3     3 -1.28       1  1.35      0
+ 4     4 -0.163      0  0.531     0
+ 5     5  0.594      1  0.632     1
+ 6     6  0.0291     0  0.610     1
+ 7     7 -0.845      0 -1.17      0
+ 8     8  0.900      0 -1.57      0
+ 9     9 -1.18       1  0.668     1
+10    10  1.25       1 -0.296     1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>d_wide <span class="sc">|&gt;</span> </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(id,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">y__2007 =</span> zq1,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">x__2007 =</span> zq5,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">y__2008 =</span> aq1,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">x__2008 =</span> aq5) <span class="sc">|&gt;</span> </span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> y__2007<span class="sc">:</span>x__2008, </span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"year"</span>), </span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"__"</span>, </span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">parse_number</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>d_long <span class="ot">&lt;-</span> d_wide <span class="sc">|&gt;</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(id,</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">y__2007 =</span> zq1,</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">x__2007 =</span> zq5,</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">y__2008 =</span> aq1,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">x__2008 =</span> aq5) <span class="sc">|&gt;</span> </span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> y__2007<span class="sc">:</span>x__2008, </span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"year"</span>), </span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"__"</span>, </span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">parse_number</span>(year))</span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>d_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 4
       id  year       y     x
    &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
- 1     1  2007 -0.388      1
- 2     1  2008 -0.632      1
- 3     2  2007  0.156      0
- 4     2  2008  1.87       0
- 5     3  2007  2.86       1
- 6     3  2008 -1.34       0
- 7     4  2007 -0.0466     1
- 8     4  2008  0.437      1
- 9     5  2007  1.01       0
-10     5  2008  0.531      1
-11     6  2007 -0.609      1
-12     6  2008  0.0495     1
-13     7  2007 -0.483      0
-14     7  2008  0.727      1
-15     8  2007  0.614      0
-16     8  2008 -0.0605     0
-17     9  2007 -0.591      1
-18     9  2008 -2.04       1
-19    10  2007 -1.63       0
-20    10  2008 -0.850      0</code></pre>
+ 1     1  2007 -0.0745     1
+ 2     1  2008  1.00       1
+ 3     2  2007 -1.20       0
+ 4     2  2008 -1.54       1
+ 5     3  2007 -1.28       1
+ 6     3  2008  1.35       0
+ 7     4  2007 -0.163      0
+ 8     4  2008  0.531      0
+ 9     5  2007  0.594      1
+10     5  2008  0.632      1
+11     6  2007  0.0291     0
+12     6  2008  0.610      1
+13     7  2007 -0.845      0
+14     7  2008 -1.17       0
+15     8  2007  0.900      0
+16     8  2008 -1.57       0
+17     9  2007 -1.18       1
+18     9  2008  0.668      1
+19    10  2007  1.25       1
+20    10  2008 -0.296      1</code></pre>
 </div>
 </div>
+<p>次のように<code>separate()</code>関数を用いることもできる．</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>d_wide <span class="sc">|&gt;</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(id,</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">y__2007 =</span> zq1,</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">x__2007 =</span> zq5,</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">y__2008 =</span> aq1,</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">x__2008 =</span> aq5) <span class="sc">|&gt;</span> </span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> y__2007<span class="sc">:</span>x__2008) <span class="sc">|&gt;</span> </span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(name, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"var"</span>, <span class="st">"year"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(id, year), </span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> var, </span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> value) <span class="sc">|&gt;</span> </span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">parse_number</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+      id  year       y     x
+   &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+ 1     1  2007 -0.0745     1
+ 2     1  2008  1.00       1
+ 3     2  2007 -1.20       0
+ 4     2  2008 -1.54       1
+ 5     3  2007 -1.28       1
+ 6     3  2008  1.35       0
+ 7     4  2007 -0.163      0
+ 8     4  2008  0.531      0
+ 9     5  2007  0.594      1
+10     5  2008  0.632      1
+11     6  2007  0.0291     0
+12     6  2008  0.610      1
+13     7  2007 -0.845      0
+14     7  2008 -1.17       0
+15     8  2007  0.900      0
+16     8  2008 -1.57       0
+17     9  2007 -1.18       1
+18     9  2008  0.668      1
+19    10  2007  1.25       1
+20    10  2008 -0.296      1</code></pre>
+</div>
+</div>
+<p>なお，パネル固定効果モデルは<code>plm</code>パッケージの<code>plm</code>，<code>estimatr</code>パッケージの<code>lm_robust</code>，<code>fixest</code>パッケージの<code>feols</code>で実行できる．<code>feols</code>であると早く推定ができる．</p>
 
 
 </section>
@@ -680,12 +1478,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -694,17 +1495,73 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -714,8 +1571,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -727,43 +1593,298 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./pipe.html" class="pagination-link">
+      <a href="./pipe.html" class="pagination-link" aria-label="パイプ演算子">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./variables.html" class="pagination-link">
+      <a href="./variables.html" class="pagination-link" aria-label="変数へのアクセス">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">変数へのアクセス</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

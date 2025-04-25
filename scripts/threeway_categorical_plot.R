@@ -31,7 +31,7 @@ tab <- data |>
   xtabs(~ row + col + layer, data = _) 
 
 N <- X2test <- X2 <- df <- p <- CV <- list()
-L <- sample_data$layer |> unique() |> length()
+L <- data$layer |> unique() |> length()
 for (l in 1:2) {
 N[[l]] <- sum(tab[,,l])
 X2test[[l]] <- tab[,,l] |> chisq.test() 

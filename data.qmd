@@ -8,6 +8,7 @@
 # パッケージの呼び出し
 pacman::p_load(
   here,
+  dplyr,  # データ操作のための関数
   readr,   # csvファイルを読み込む．tidyverseとしてもよい．
   haven   # sav, dta, sasファイルなどを読み込む．
   )
@@ -80,10 +81,10 @@ u001 <- read_csv("data/raw/u001.csv")
 
 ## csvの場合
 
-では直接パスを書き，データを読み込んでみる．
+では直接パスを書き，データを読み込んでみる．もともとRに備わっている`read.csv`を使う方法と`readr`の`read_csv`の2つの方法がある．
+tibble形式で読み込まれる`read_csv`を使用することを個人的には勧めたい．
 
-
-## read.csv
+### read.csv
 
 ```{r}
 # read.csvでcsvデータを読み込む
@@ -117,7 +118,13 @@ class(d_csv_2)
 d_csv_2 <- read_csv(here("data","raw","u001.csv"))
 ```
 
+
+
+
 ## dta (Stata) の場合
+
+値ラベルや変数ラベルといったメタデータ（データについてのデータ）も一緒に読み込まれるので，なれたらこちらを使うのも良いだろう．ただし読み込んだメタデータだけをみるだけではなく，基礎集計表やコードブックを参照するのがよいだろう．
+
 
 ```{r}
 # read_dtaでdtaデータを読み込む
@@ -210,7 +217,7 @@ val_label(d_sav$sex, 2) <- "Female"
 
 # 修正後
 d_sav$sex |> val_labels()
-d_sav |> count(sex)
+d_sav |> dplyr::count(sex)
 str(d_sav$sex)
 ```
 
